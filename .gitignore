@@ -1,4 +1,5 @@
 /bin/
+*/bin/
 
 # eclipse specific git ignore
 *.pydevproject
