@@ -1,6 +1,6 @@
-name: SQPlanet
+name: ${project.name}
 main: com.burkentertainment.SQPlanet.SQPlanetPlugin
-version: 1.6.0
+version: ${project.version}
 commands:
   SQPlanet:
      description: Control and edit spawning planet customization rules
