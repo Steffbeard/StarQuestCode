@@ -1,6 +1,6 @@
-name: SQTrade2
+name: ${project.name}
 main: nickmiste.SQTrade2
-version: 1.0
+version: ${project.version}
 commands:
    buy:
       description: Used when buying from a dropper shop
