@@ -1,6 +1,6 @@
-name: SQShopper
+name: ${project.name}
 main: me.Tongonto.SQShopper
-version: 1.0.1
+version: ${project.version}
 commands:
    cart:
       description: Main SQShopper command
