@@ -1,6 +1,6 @@
-name: SQTechBase
-version: 1.0
-description: Technology plugin for minecraft
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
 main: com.starquestminecraft.sqtechbase.SQTechBase
 softdepend: [Movecraft]
 commands:
