@@ -1,0 +1,10 @@
+name: ${project.name}
+description: ${project.description}
+depend: [Movecraft]
+main: net.homeip.hall.sqglobalinfo.SQGlobalInfo
+version: ${project.version}
+commands:
+    gseen:
+        description: Shows information about a player, cross-world
+    showalts:
+        description: Shows potential alts of a player based on a playername or an ip
