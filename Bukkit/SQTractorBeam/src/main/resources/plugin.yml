@@ -1,6 +1,6 @@
-name: SQTractorBeam
+name: ${project.name}
 main: me.thetimelord.SQTractorBeam
-version: 1.2
+version: ${project.version}
 commands:
    blank:
       description: Blank description.
