@@ -1,5 +1,5 @@
 name: ${project.name}
-main: ${project.groupId}.${project.name}
+main: com.whirlwindgames.sqorbits.mover.SQOrbitsPlanetMover
 version: ${project.version}
 author: lawrencethefrog
 
