@@ -1,0 +1,11 @@
+name: ${project.name}
+main: com.dibujaron.autorestart.AutoRestart
+version: ${project.version}
+commands:
+   restartall:
+      description: restart the server.
+      usage: /restart <time delay>
+   autorestart:
+      description: stop the server in one second.
+      usage: /delaystop
+
