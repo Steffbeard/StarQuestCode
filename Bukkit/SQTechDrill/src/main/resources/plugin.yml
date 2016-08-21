@@ -1,0 +1,5 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+main: me.dan14941.sqtechdrill.SQTechDrill
+depend: [SQTechBase]
