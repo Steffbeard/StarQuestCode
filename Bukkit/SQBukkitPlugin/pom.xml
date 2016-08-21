@@ -55,6 +55,10 @@
 
     <repositories>
         <repository>
+            <id>local-repo</id>
+            <url>file:///../../repo/</url>
+        </repository>
+        <repository>
             <id>sonatype-oss-snapshot</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
