@@ -132,7 +132,7 @@ public class SQApocalypse extends JavaPlugin implements Listener{
 		final Player p = event.getPlayer();
 		Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable(){
 			public void run(){
-				p.playSound(p.getLocation(), Sound.LEVEL_UP, 1.0F, 1.0F);
+				p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
 				p.sendMessage(ChatColor.RED + "=========================================");
 				p.sendMessage(ChatColor.GOLD + "Star" + ChatColor.BLUE + "Quest" + ChatColor.RED + " Solar Apocalypse: Day " + (int) day);
 				p.sendMessage(ChatColor.RED + "New Players - come back in a week! SQ is resetting its worlds, this is the end-of-world event!");

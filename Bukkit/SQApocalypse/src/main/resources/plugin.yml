@@ -1,6 +1,6 @@
-name: SQApocalypse
+name: ${project.name}
 main: com.starquestminecraft.sqapocalypse.SQApocalypse
-version: 1.0.0
+version: ${project.version}
 commands:
   apocalypse:
     description: apocalypse information.
