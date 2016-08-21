@@ -26,7 +26,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 
 public class SQOrbitsBungeeplugin extends Plugin {
 	private static final double radiansPerDegree = Math.PI/180;		//useful math constant
-	private String chatPrefix = "[SQOrbitsBungeeplugin]";
+	private String chatPrefix = "[SQOrbitsBungee]";
 	private File configFile;
 	private Configuration config;
 	
