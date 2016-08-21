@@ -1,0 +1,4 @@
+name: ${project.name}
+author: evanaesarcaesar
+version: ${project.version}
+main: net.homeip.hall.sqnetevents.SQNetEvents
