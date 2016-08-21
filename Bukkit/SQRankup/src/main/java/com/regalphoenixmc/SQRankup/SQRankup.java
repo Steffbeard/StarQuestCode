@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-import net.milkbowl.vault.VaultEco;
 import net.milkbowl.vault.permission.Permission;
 
 import org.bukkit.Bukkit;

@@ -1,6 +1,6 @@
-name: SQRankup
+name: ${project.name}
 main: com.regalphoenixmc.SQRankup.SQRankup
-version: 1.7.3
+version: ${project.version}
 softdepend: [PermissionsEx]
 depend: [Vault]
 commands:
