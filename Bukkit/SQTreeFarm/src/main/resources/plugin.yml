@@ -1,7 +1,7 @@
-name: SQTreeFarm
+name: ${project.name}
 main: com.ginger_walnut.sqtreefarm.SQTreeFarm
-version: 1.1
-description: A plugin that adds tree farms
+version: ${project.version}
+description: ${project.description}
 commands:
   treefarm:
     description: command for managing treefarms
