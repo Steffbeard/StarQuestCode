@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.bukkit.craftbukkit.libs.com.google.gson.Gson;
+import com.google.gson.Gson;
 
  public class HttpProfileRepository implements ProfileRepository {
 
