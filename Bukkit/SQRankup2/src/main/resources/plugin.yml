@@ -1,6 +1,6 @@
-name: SQRankup2
+name: ${project.name}
 main: com.starquestminecraft.sqrankup2.SQRankup2
-version: 1.0.0
+version: ${project.version}
 depend: [Vault, SQContracts, Movecraft]
 commands:
   certification:

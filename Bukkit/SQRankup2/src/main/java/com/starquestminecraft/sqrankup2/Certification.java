@@ -162,7 +162,7 @@ public class Certification implements Comparable<Certification>{
 	public String getTagColor(){
 		String tagColor = values.get("lawfultagcolor");
 		if(tagColor == null) return null;
-		return "§" + tagColor;
+		return ChatColor.COLOR_CHAR + tagColor;
 	}
 	
 	public String getTagFormatted(){
@@ -184,7 +184,7 @@ public class Certification implements Comparable<Certification>{
 	public String getOutlawTagColor(){
 		String tagColor = values.get("outlawtagcolor");
 		if(tagColor == null) return getTagColor();
-		return "§" + tagColor;
+		return ChatColor.COLOR_CHAR + tagColor;
 	}
 	
 
