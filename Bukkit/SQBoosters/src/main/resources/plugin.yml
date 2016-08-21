@@ -1,7 +1,7 @@
-name: SQBoosters
+name: ${project.name}
 main: com.ginger_walnut.sqboosters.SQBoosters
-version: 1.2
-description: A plugin that adds various boosters
+version: ${project.version}
+description: ${project.description}
 depend: [Movecraft]
 commands:
    expboost:
