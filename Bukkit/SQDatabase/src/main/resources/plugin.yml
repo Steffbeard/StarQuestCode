@@ -1,0 +1,5 @@
+name: ${project.name}
+main: us.higashiyama.george.SQDatabase.SQDatabase
+version: ${project.version}
+commands:
+  swag:
