@@ -20,9 +20,6 @@ import org.bukkit.scheduler.BukkitTask;
 import com.starquestminecraft.sqtechbase.SQTechBase;
 
 import net.milkbowl.vault.economy.Economy;
-import net.minecraft.server.v1_10_R1.CraftingManager;
-import net.minecraft.server.v1_10_R1.IRecipe;
-import net.minecraft.server.v1_10_R1.ShapelessRecipes;
 
 public class SQAutomators extends JavaPlugin {
 	
