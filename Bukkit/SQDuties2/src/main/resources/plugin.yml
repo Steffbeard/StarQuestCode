@@ -1,7 +1,7 @@
-name: SQDuties
+name: ${project.name}
 main: com.ginger_walnut.sqduties.SQDuties
-version: 2.1
-description: A plugin that allows mods to go into duty mode
+version: ${project.version}
+description: ${project.description}
 commands:
    duty:
       description: toggles duty mode
