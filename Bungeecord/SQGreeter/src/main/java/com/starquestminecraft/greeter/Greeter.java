@@ -81,11 +81,11 @@ public class Greeter extends Plugin implements Listener {
 		String username = d.getUsername(event.getConnection().getAddress().getAddress().getHostAddress());
 		String line2;
 		if(username != null){
-			line2 = "§fWelcome back, §6"+username+"§f!";
+			line2 = "\u00a7fWelcome back, \u00a76"+username+"\u00a7f!";
 		} else {
-			line2 = "§fWelcome to StarQuest!";
+			line2 = "\u00a7fWelcome to StarQuest!";
 		}
-		ping.setDescription("§1=====§6Star§9Quest §c4.0§1===== \n" + line2);
+		ping.setDescription("\u00a71=====\u00a76Star\u00a79Quest \u00a7c4.0\u00a71===== \n" + line2);
 	}
 
 	@EventHandler(priority = 64)

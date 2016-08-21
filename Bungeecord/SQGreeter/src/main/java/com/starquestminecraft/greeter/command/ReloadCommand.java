@@ -5,8 +5,8 @@ import com.starquestminecraft.greeter.Greeter;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
-import net.md_5.bungee.command.ConsoleCommandSender;
 
 public class ReloadCommand extends Command {
 	public ReloadCommand() {
@@ -14,7 +14,7 @@ public class ReloadCommand extends Command {
 	}
 
 	public void execute(CommandSender sender, String[] args) {
-		if (!(sender instanceof ConsoleCommandSender)) {
+		if (sender instanceof ProxiedPlayer) {
 			sender.sendMessage(createMessage("This command can only be run from console!"));
 			return;
 		}
