@@ -1,6 +1,6 @@
-name: IngameIDE
+name: ${project.name}
 main: com.dibujaron.ingameide.IngameIDE
-version: 1.0.0
+version: ${project.version}
 commands:
     java:
         description: edit java ingame.
