@@ -207,7 +207,7 @@ public class EntityListener implements Listener {
 	}
 	
 
-	private void checkAndRemoveTooManyEntities(EntitySpawnEvent event, List<EntityType> passives) {
+	private void checkAndRemoveTooManyEntities(CreatureSpawnEvent event, List<EntityType> passives) {
 		Entity[] cents = event.getEntity().getLocation().getChunk().getEntities();
 		int count = 0;
 		for (Entity e : cents) {
