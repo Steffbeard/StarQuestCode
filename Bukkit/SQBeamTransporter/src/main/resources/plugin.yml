@@ -1,0 +1,7 @@
+name: ${project.name}
+main: com.martinjonsson01.sqbeamtransporter.SQBeamTransporter
+version: ${project.verson}
+description: ${project.description}
+commands:
+      
+permissions:
