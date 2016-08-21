@@ -1,6 +1,6 @@
-name: SQTrees
+name: ${project.name}
 main: me.thetimelord.trees.StarQuestTreesAndMobs
-version: 1.0
+version: ${project.version}
 commands:
    readtree:
       description: Read in a tree for usage by SQTrees; Staff only.
