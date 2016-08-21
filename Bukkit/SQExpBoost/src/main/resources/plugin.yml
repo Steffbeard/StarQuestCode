@@ -1,7 +1,7 @@
-name: SQExpBoost
+name: ${project.name}
 main: com.ginger_walnut.sqexpboost.Main
-version: 1.0.3
-description: A plugin that adds the ability to boost exp drops.
+version: ${project.version}
+description: ${project.description}
 commands:
    expboost:
       description: Manages SQExpBoost
