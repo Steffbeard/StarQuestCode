@@ -1,7 +1,7 @@
-name: SQDonation
+name: ${project.name}
 main: com.ginger_walnut.sqdonation.SQDonation
-version: 1.0
-description: A plugin that adds tags for donating
+version: ${project.version}
+description: ${project.description}
 commands:
    donation:
       description: Manages SQDonation
