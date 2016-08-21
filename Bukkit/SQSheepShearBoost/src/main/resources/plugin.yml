@@ -1,7 +1,7 @@
-name: SQSheepShearBoost
+name: ${project.name}
 main: com.ginger_walnut.sqsheepshearboost.Main
-version: 1.0
-description: A plugin that adds the ability to boost mob drops.
+version: ${project.version}
+description: ${project.description}
 commands:
    sheepshearboost:
       description: Manages SQSheepShearBoost
