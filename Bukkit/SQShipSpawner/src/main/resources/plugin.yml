@@ -1,4 +1,4 @@
-name: ShipSpawner
+name: ${project.name}
 main: com.dibujaron.ShipSpawner.ShipSpawnerCore
-version: 1.2.0
+version: ${project.version}
 depend: [WorldEdit]
