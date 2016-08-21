@@ -1,6 +1,6 @@
-name: WorldRestore
+name: ${project.name}
 main: com.dibujaron.worldrestore.Core
-version: 1.0.0
+version: ${project.version}
 commands:
     WorldRestore:
         aliases: []
