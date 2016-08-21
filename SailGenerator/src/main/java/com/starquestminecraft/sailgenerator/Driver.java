@@ -1,4 +1,4 @@
-package net.countercraft.movecraft.sail;
+package com.starquestminecraft.sailgenerator;
 
 
 import java.util.ArrayList;

@@ -1,0 +1,7 @@
+name: ${project.name}
+main: com.starquestminecraft.sailgenerator.Driver
+version: ${project.version}
+commands:
+    spawnsail:
+        description: generate a sail!
+        usage: blah
