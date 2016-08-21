@@ -1,0 +1,3 @@
+name: ${project.name}
+main: com.dibujaron.DockingTube.DockingTubeCore
+version: ${project.version}
