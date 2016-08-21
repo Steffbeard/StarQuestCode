@@ -56,7 +56,7 @@ public class DroneShocktroop {
 		Location l = getSafeLocationNearTarget();
 		if(l == null) l = target.getLocation();
 		mySkeleton = (Skeleton) target.getWorld().spawnEntity(l, EntityType.SKELETON);
-		target.playSound(mySkeleton.getLocation(), Sound.PORTAL_TRAVEL, 2.0F, 2.0F);
+		target.playSound(mySkeleton.getLocation(), Sound.BLOCK_PORTAL_TRAVEL, 2.0F, 2.0F);
 		mySkeleton.setCustomName("Skywatch Shock Trooper");
 		mySkeleton.setCustomNameVisible(true);
 		EntityEquipment e = mySkeleton.getEquipment();

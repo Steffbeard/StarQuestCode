@@ -321,7 +321,7 @@ public class SQSkywatch extends JavaPlugin implements Listener {
 	}
 	
 	public static void alertPlayer(Player p, String message){
-		p.playSound(p.getLocation(), Sound.LEVEL_UP, 2.0F, 2.0F);
+		p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 2.0F, 2.0F);
 		p.sendMessage(ChatColor.RED + "=========================================");
 		p.sendMessage(ChatColor.BLUE + "SKYWATCH WARNING!");
 		p.sendMessage(ChatColor.RED + message);

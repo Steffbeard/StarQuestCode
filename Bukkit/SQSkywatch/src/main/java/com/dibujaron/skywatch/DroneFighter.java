@@ -23,7 +23,7 @@ public class DroneFighter {
 		Location l = getSafeLocationNearTarget();
 		if(l == null) return;
 		myGhast = (Ghast) target.getWorld().spawnEntity(l, EntityType.GHAST);
-		target.playSound(myGhast.getLocation(), Sound.PORTAL_TRAVEL, 2.0F, 2.0F);
+		target.playSound(myGhast.getLocation(), Sound.BLOCK_PORTAL_TRAVEL, 2.0F, 2.0F);
 		myGhast.getWorld().playEffect(myGhast.getLocation(), Effect.ENDER_SIGNAL, 0);
 	}
 	
