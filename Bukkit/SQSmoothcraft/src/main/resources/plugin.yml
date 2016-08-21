@@ -1,7 +1,7 @@
-name: SQSmoothCraft
+name: ${project.name}
 main: com.ginger_walnut.sqsmoothcraft.SQSmoothCraft
-version: 0.0.14
-description: A plugin that adds smooth space ships
+version: ${project.version}
+description: ${project.description}
 depend: [ProtocolLib]
 commands:
   ship:

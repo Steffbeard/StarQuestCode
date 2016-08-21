@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.md_5.bungee.api.ChatColor;
+
 import net.minecraft.server.v1_10_R1.EntityPlayer;
 import net.minecraft.server.v1_10_R1.PacketPlayOutEntityDestroy;
 import net.minecraft.server.v1_10_R1.PacketPlayOutPlayerInfo;
@@ -21,7 +22,9 @@ import org.bukkit.block.Dropper;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
+
 import org.bukkit.craftbukkit.v1_10_R1.entity.CraftPlayer;
+
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
@@ -288,7 +291,7 @@ public class Ship {
 			shipBlock.ship.shieldHealth = shipBlock.ship.shieldHealth - damage;
 			
 			if(shieldParticleLoc != null) {
-				
+
 				shieldParticleLoc.getWorld().playEffect(shieldParticleLoc.add(0, 0, 0), Effect.MAGIC_CRIT, 100);
 				shieldParticleLoc.getWorld().playEffect(shieldParticleLoc.add(0, 1, 0), Effect.MAGIC_CRIT, 100);
 				shieldParticleLoc.getWorld().playEffect(shieldParticleLoc.add(0, -1, 0), Effect.MAGIC_CRIT, 100);
