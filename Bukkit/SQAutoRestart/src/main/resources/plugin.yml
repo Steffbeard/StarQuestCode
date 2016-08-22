@@ -1,11 +1,12 @@
 name: ${project.name}
-main: com.dibujaron.autorestart.AutoRestart
 version: ${project.version}
+main: ${project.groupId}.${project.artifactId}.${project.name}
 commands:
-   restartall:
-      description: restart the server.
-      usage: /restart <time delay>
-   autorestart:
-      description: stop the server in one second.
-      usage: /delaystop
+  autorestart:
+    description: Stop the server in one second.
+    usage: /<command>
+  restartall:
+    description: Restart the server.
+    permission: SQAutoRestart.restartall
+    usage: /<command> <time delay>
 
