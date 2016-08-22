@@ -10,7 +10,7 @@
 
     <groupId>com.starquestminecraft.bukkit</groupId>
     <artifactId>asteroidbays</artifactId>
-    <version>1.0</version>
+    <version>1.0.0</version>
 
     <name>SQAsteroidBays</name>
     <description>Copies and pastes 1 of 3 randomly selected schematics in a location, for creating prison-server-esque asteroid mines in spawns</description>

@@ -1,4 +1,4 @@
 name: ${project.name}
 version: ${project.version}
 description: ${project.description}
-main: com.starquestminecraft.sqasteroidbays.SQAsteroidBays
+main: ${project.groupId}.${project.artifactId}.${project.name}
