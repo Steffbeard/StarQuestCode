@@ -1,4 +1,4 @@
-package com.starquestminecraft.automators;
+package com.starquestminecraft.bukkit.automators;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -16,88 +16,118 @@ import com.starquestminecraft.sqtechbase.util.InventoryUtils;
 
 public class AutoCrafter extends MachineType {
 
-	public AutoCrafter(int maxEnergy) {
-		super(maxEnergy);
-		name = "AutoCrafter";
-	}
-	
-	@Override
-	public boolean detectStructure(GUIBlock guiBlock) {
-		
-		Block mainBlock = guiBlock.getLocation().getBlock();
-		Block middleBlock = mainBlock.getRelative(BlockFace.DOWN);
-		Block bottomBlock = middleBlock.getRelative(BlockFace.DOWN);
-		
-		if(mainBlock.getType().equals(Material.LAPIS_BLOCK)) {
-			
-			if(middleBlock.getType().equals(Material.SPONGE)) {
-				
-				if(bottomBlock.getType().equals(Material.LAPIS_BLOCK)) {
-					
-					if(checkDirection(BlockFace.NORTH, mainBlock, middleBlock, bottomBlock)) {
-						return true;
-					}
-					
-					if(checkDirection(BlockFace.EAST, mainBlock, middleBlock, bottomBlock)) {
-						return true;
-					}
-					
-					if(checkDirection(BlockFace.WEST, mainBlock, middleBlock, bottomBlock)) {
-						return true;
-					}
-					
-					if(checkDirection(BlockFace.SOUTH, mainBlock, middleBlock, bottomBlock)) {
-						return true;
-					}
-					
-				}
-				
-			}
-			
-		}
-		
-		return false;
-	}
-	
-	@Override
-	public GUI getGUI(Player player, int id) {
-		return new AutomatorGUI(player, id);
-	}
-	
-	public int getSpaceLeft(Machine machine, ItemStack itemStack) {
-		return 0;
-	}
-	
-	public void sendItems(Machine machine, ItemStack itemStack) {
-		
-	}
-	
-	public void updateEnergy(Machine machine) {
-		
-		for (Player player : SQTechBase.currentGui.keySet()) {
-		     if (SQTechBase.currentGui.get(player).id == machine.getGUIBlock().id) {
-		          if (player.getOpenInventory() != null) {
-		               if (player.getOpenInventory().getTitle().equals(ChatColor.GRAY + "AutoCrafter")) {
-		                     player.getOpenInventory().setItem(8, InventoryUtils.createSpecialItem(Material.REDSTONE, (short) 0, ChatColor.RESET + "Current Energy", new String[] {ChatColor.RED + "" + ChatColor.MAGIC + "Contraband", ChatColor.RESET + "" + ChatColor.GRAY + Double.toString(machine.getEnergy())}));
-		               }
-		          }
-		     }
-		}
-		
-	}
-	
-	public boolean checkDirection(BlockFace blockFace, Block mainBlock, Block middleBlock, Block bottomBlock) {
-		
-		if(mainBlock.getRelative(blockFace).getType().equals(Material.DROPPER)) {
-			if(middleBlock.getRelative(blockFace).getType().equals(Material.WORKBENCH)) {
-				if(bottomBlock.getRelative(blockFace).getType().equals(Material.DROPPER)) {
-					return true;
-				}
-			}
-		}
-		
-		return false;
-		
-	}
-	
+    public static final String INVENTORY_TITLE = ChatColor.GRAY + "AutoCrafter";
+
+    private static final String ITEM_LORE_CONTRABAND = ChatColor.RED + "" + ChatColor.MAGIC + "Contraband";
+    private static final String ITEM_NAME_CURRENT_ENERGY = ChatColor.RESET + "Current Energy";
+
+    public AutoCrafter(final int max_energy) {
+
+        super(max_energy);
+
+        this.name = "AutoCrafter";
+
+    }
+
+    @Override
+    public boolean detectStructure(final GUIBlock gui_block) {
+
+        Block block = gui_block.getLocation().getBlock();
+        Block middle = block.getRelative(BlockFace.DOWN);
+        Block bottom = middle.getRelative(BlockFace.DOWN);
+
+        if(!block.getType().equals(Material.LAPIS_BLOCK)) {
+            return false;
+        }
+
+        if(!middle.getType().equals(Material.SPONGE)) {
+            return false;
+        }
+
+        if(!bottom.getType().equals(Material.LAPIS_BLOCK)) {
+            return false;
+        }
+
+        if(checkDirection(BlockFace.NORTH, block, middle, bottom)) {
+            return true;
+        }
+
+        if(checkDirection(BlockFace.EAST, block, middle, bottom)) {
+            return true;
+        }
+
+        if(checkDirection(BlockFace.WEST, block, middle, bottom)) {
+            return true;
+        }
+
+        if(checkDirection(BlockFace.SOUTH, block, middle, bottom)) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    @Override
+    public GUI getGUI(final Player player, final int id) {
+        return new AutomatorGUI(player, id);
+    }
+
+    @Override
+    public int getSpaceLeft(final Machine machine, final ItemStack itemstack) {
+        return 0;
+    }
+
+    @Override
+    public void sendItems(final Machine machine, final ItemStack itemstack) {
+
+    }
+
+    @Override
+    public void updateEnergy(final Machine machine) {
+
+        for(Player player : SQTechBase.currentGui.keySet()) {
+
+            if(SQTechBase.currentGui.get(player).id != machine.getGUIBlock().id) {
+                continue;
+            }
+
+            if(player.getOpenInventory() == null) {
+                continue;
+            }
+
+            if(player.getOpenInventory().getTitle().equals(INVENTORY_TITLE)) {
+                player.getOpenInventory().setItem(8, createCurrentEnergyItemStack(machine));
+            }
+
+        }
+
+    }
+
+    public boolean checkDirection(final BlockFace face, final Block block, final Block middle, final Block bottom) {
+
+        if(!block.getRelative(face).getType().equals(Material.DROPPER)) {
+            return false;
+        }
+
+        if(!middle.getRelative(face).getType().equals(Material.WORKBENCH)) {
+            return false;
+        }
+
+        if(!bottom.getRelative(face).getType().equals(Material.DROPPER)) {
+            return false;
+        }
+
+        return true;
+
+    }
+
+    private ItemStack createCurrentEnergyItemStack(final Machine machine) {
+
+        String lore_energy = ChatColor.RESET + "" + ChatColor.GRAY + machine.getEnergy();
+
+        return InventoryUtils.createSpecialItem(Material.REDSTONE, (short)0, ITEM_NAME_CURRENT_ENERGY, new String[] {ITEM_LORE_CONTRABAND, lore_energy});
+
+    }
+
 }

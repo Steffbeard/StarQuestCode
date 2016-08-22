@@ -1,5 +1,5 @@
 name: ${project.name}
 version: ${project.version}
 description: ${project.description}
-main: com.starquestminecraft.automators.SQAutomators
+main: ${project.groupId}.${project.artifactId}.${project.name}
 depend: [SQTechBase]
