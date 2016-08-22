@@ -1,5 +1,6 @@
 name: ${project.name}
-main: us.higashiyama.george.SQDatabase.SQDatabase
 version: ${project.version}
-commands:
-  swag:
+authors: [LittleWolf30510, zreed]
+description: ${project.description}
+main: com.starquestminecraft.bukkit.database.SQDatabase
+load: STARTUP
