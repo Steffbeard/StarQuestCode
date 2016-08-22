@@ -9,10 +9,10 @@
     </parent>
 
     <groupId>com.starquestminecraft.bukkit</groupId>
-    <artifactId>lockettevault</artifactId>
+    <artifactId>doorlocks</artifactId>
     <version>1.0.1</version>
 
-    <name>LocketteVault</name>
+    <name>SQDoorLocks</name>
 
     <developers>
         <developer>
