@@ -1,7 +1,5 @@
 #Log to...
 log:
-    #hawkeye plugin
-    hawkeye: true
     #Log to console & server.log file
     server-log: true
 #Set to true to notify all players online with chestfix.notify permission when a player may possibly be freecamming.
