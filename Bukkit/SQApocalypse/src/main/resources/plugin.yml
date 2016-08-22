@@ -1,9 +1,9 @@
 name: ${project.name}
-main: com.starquestminecraft.sqapocalypse.SQApocalypse
+main: ${project.groupId}.${project.artifactId}.${project.name}
 version: ${project.version}
+depend: [Movecraft, SQDatabase]
 commands:
   apocalypse:
-    description: apocalypse information.
-    usage: /apoc score or /apoc top
+    description: Apocalypse information.
+    usage: /<command> score or /apoc top
     aliases: [apoc, sqapocalypse]
-depend: [Movecraft]
