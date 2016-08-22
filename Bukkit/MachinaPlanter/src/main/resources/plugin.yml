@@ -1,6 +1,6 @@
-name: MachinaPlanter
-version: 1.9
-description: A Machina capable of tilling soil, planting seeds and harvesting plants in an area.
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
 author: Lyneira
 website: http://dev.bukkit.org/server-mods/machinacraft/
 dev-url: http://dev.bukkit.org/server-mods/machinacraft/
