@@ -12,7 +12,7 @@
     <artifactId>sailgenerator</artifactId>
     <version>0.2.0</version>
 
-    <name>SailGenerator</name>
+    <name>SQSailGenerator</name>
 
     <developers>
         <developer>
