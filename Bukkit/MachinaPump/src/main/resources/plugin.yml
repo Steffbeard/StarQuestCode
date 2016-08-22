@@ -1,6 +1,6 @@
-name: MachinaPump
-version: 1.9
-description: A Machina that drains or fills an area of water or lava.
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
 author: Lyneira
 website: http://dev.bukkit.org/server-mods/machinacraft/
 dev-url: http://dev.bukkit.org/server-mods/machinacraft/
