@@ -1,5 +1,5 @@
 name: ${project.name}
-main: com.dibujaron.ingameide.IngameIDE
+main: com.starquestminecraft.bukkit.ingameide.IngameIDE
 version: ${project.version}
 commands:
     java:
