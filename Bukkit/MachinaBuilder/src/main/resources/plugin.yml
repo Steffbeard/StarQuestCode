@@ -1,0 +1,27 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+author: Lyneira
+website: http://dev.bukkit.org/server-mods/machinacraft/
+dev-url: http://dev.bukkit.org/server-mods/machinacraft/
+main: me.lyneira.MachinaBuilder.MachinaBuilder
+depend: [MachinaCore]
+permissions:
+    machinabuilder.*:
+        children:
+            machinabuilder.all: true
+    machinabuilder.all:
+        description: Gives full access to using a builder, including deactivating another player's builder.
+        children:
+            machinabuilder.activate: true
+            machinabuilder.deactivate-own: true
+            machinabuilder.deactivate-all: true
+    machinabuilder.activate:
+        description: Allows activating a builder.
+        default: op
+    machinabuilder.deactivate-own:
+        description: Allows deactivating the player's own builder.
+        default: op
+    machinabuilder.deactivate-all:
+        description: Allows deactivating any builder.
+        default: op
