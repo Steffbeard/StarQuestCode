@@ -1,4 +1,4 @@
 name: ${project.name}
 version: ${project.version}
 description: ${project.description}
-main: me.ginger_walnut.explosions.Explosions
+main: com.starquestminecraft.bukkit.explosionfix.ExplosionFix
