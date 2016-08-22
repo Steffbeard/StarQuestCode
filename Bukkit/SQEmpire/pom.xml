@@ -29,9 +29,6 @@
         <dependency>
             <groupId>com.gmail.nossr50.mcMMO</groupId>
             <artifactId>mcMMO</artifactId>
-            <version>1.5.05-SNAPSHOT</version>
-            <scope>provided</scope>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>com.massivecraft</groupId>
@@ -71,10 +68,6 @@
     </dependencies>
 
     <repositories>
-        <repository>
-            <id>drtshock</id>
-            <url>https://ci.drtshock.net/plugin/repository/everything/</url>
-        </repository>
         <repository>
             <id>dynmap</id>
             <url>http://repo.mikeprimm.com/</url>

@@ -69,7 +69,7 @@
             <dependency>
                 <groupId>com.gmail.nossr50.mcMMO</groupId>
                 <artifactId>mcMMO</artifactId>
-                <version>1.5.05-SNAPSHOT</version>
+                <version>1.5.06-SNAPSHOT</version>
                 <scope>provided</scope>
                 <optional>true</optional>
             </dependency>
