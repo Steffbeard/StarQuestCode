@@ -61,9 +61,6 @@ public class ContainerListener implements Listener
 		if (this.plugin.getConfig().getBoolean("message")) {
 			p.sendMessage(ChatColor.RED + "[ChestFix] " + ChatColor.YELLOW + "You tried to use something you can't see.");
 		}
-		if (this.plugin.getHawkEye() != null) {
-			uk.co.oliwali.HawkEye.util.HawkEyeAPI.addCustomEntry(this.plugin, "Freecammed through something. ", p, p.getLocation(), "FREECAM");
-		}
 		if (this.plugin.getConfig().getBoolean("log.server-log")) {
 			this.plugin.log.info(p.getName() + " freecammed through something.");
 		}

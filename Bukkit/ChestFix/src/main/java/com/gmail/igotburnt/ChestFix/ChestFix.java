@@ -10,12 +10,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import uk.co.oliwali.HawkEye.HawkEye;
-
 public class ChestFix extends org.bukkit.plugin.java.JavaPlugin
 {
 	public Logger log;
-	private HawkEye hawkEye = null;
 
 	private File configFile;
 
@@ -53,11 +50,6 @@ public class ChestFix extends org.bukkit.plugin.java.JavaPlugin
 		this.config = YamlConfiguration.loadConfiguration(this.configFile);
 		this.lenient = this.config.getBoolean("lenient");
 
-		if (this.config.getBoolean("log.hawkeye"))
-		{
-			this.hawkEye = ((HawkEye) Bukkit.getPluginManager().getPlugin("HawkEye"));
-		}
-
 		this.log.info("Loading Transparent Blocks...");
 		loadTransparentBlocks();
 		this.log.info("Loading Interactable Blocks...");
@@ -79,11 +71,6 @@ public class ChestFix extends org.bukkit.plugin.java.JavaPlugin
 	public HashSet<Material> getTransparentBlocks()
 	{
 		return this.transparent;
-	}
-
-	public HawkEye getHawkEye()
-	{
-		return this.hawkEye;
 	}
 
 	public void loadRightClick()
