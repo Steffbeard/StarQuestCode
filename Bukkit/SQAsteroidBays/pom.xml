@@ -24,4 +24,11 @@
         </developer>
     </developers>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.sk89q.worldedit</groupId>
+            <artifactId>worldedit-bukkit</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
