@@ -13,7 +13,7 @@
     <artifactId>bukkit-plugin</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    
+
     <name>SQBukkitPlugin</name>
     <description>Parent POM for all Bukkit plugins.</description>
 

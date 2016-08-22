@@ -24,7 +24,7 @@
             </roles>
         </developer>
     </developers>
-    
+
     <dependencies>
         <dependency>
             <groupId>com.gmail.nossr50.mcMMO</groupId>
@@ -47,9 +47,6 @@
         <dependency>
             <groupId>com.sk89q.worldguard</groupId>
             <artifactId>worldguard-legacy</artifactId>
-            <version>6.1.3-SNAPSHOT</version>
-            <scope>provided</scope>
-			<optional>true</optional>
 		</dependency>
         <dependency>
             <groupId>com.starquestminecraft.bukkit</groupId>
@@ -63,12 +60,5 @@
             <artifactId>dynmap-api</artifactId>
         </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>sk89q</id>
-            <url>http://maven.sk89q.com/artifactory/repo/</url>
-        </repository>
-    </repositories>
 
 </project>
