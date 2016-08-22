@@ -1,0 +1,11 @@
+name: ${project.name}
+version: ${project.version}
+main: ${project.groupId}.${project.artifactId}.${project.name}
+depend: [Factions, Movecraft, SQDatabase]
+commands:
+   powerboost:
+      description: Manage personal or faction power boosts.
+      usage: /<command> <faction/personal> [cancel / (purchase <value>)]
+   taxes:
+      description: Manage your faction's taxes.
+      usage: /<command> [set <value>]
