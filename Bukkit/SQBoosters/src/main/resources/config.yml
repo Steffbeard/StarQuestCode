@@ -1,24 +1,24 @@
-expbooster: true
-mobdropbooster: true
-sheepshearingbooster: true
-shopbooster: true
-speedbooster: true
-mcmmo-miningbooster: true
-mcmmo-woodcuttingbooster: true
-mcmmo-herbalismbooster: true
-mcmmo-fishingbooster: true
-mcmmo-excavationbooster: true
-mcmmo-unarmedbooster: true
-mcmmo-archerybooster: true
-mcmmo-swordsbooster: true
-mcmmo-axesbooster: true
-mcmmo-repairbooster: true
-mcmmo-acrobaticsbooster: true
-mcmmo-alchemybooster: true
-mcmmo-pilotingbooster: false
-mcmmo-salvagebooster: true
-mcmmo-smeltingbooster: true
-mcmmo-tamingbooster: true
+expboost: true
+mobdropboost: true
+sheepshearingboost: true
+shopboost: true
+speedboost: true
+mcmmo-miningboost: true
+mcmmo-woodcuttingboost: true
+mcmmo-herbalismboost: true
+mcmmo-fishingboost: true
+mcmmo-excavationboost: true
+mcmmo-unarmedboost: true
+mcmmo-archeryboost: true
+mcmmo-swordsboost: true
+mcmmo-axesboost: true
+mcmmo-repairboost: true
+mcmmo-acrobaticsboost: true
+mcmmo-alchemyboost: true
+mcmmo-pilotingboost: false
+mcmmo-salvageboost: true
+mcmmo-smeltingboost: true
+mcmmo-tamingboost: true
 
 #entities that are effected by the mobdropbooster
 entities:
