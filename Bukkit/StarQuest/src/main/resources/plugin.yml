@@ -3,4 +3,5 @@ version: ${project.version}
 authors: [LittleWolf30510, zreed]
 description: ${project.description}
 main: ${project.groupId}.SQBase
+depend: [Vault]
 load: STARTUP
