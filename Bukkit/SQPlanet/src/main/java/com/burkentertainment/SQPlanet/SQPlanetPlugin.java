@@ -19,7 +19,7 @@ public class SQPlanetPlugin extends JavaPlugin {
 			
 			BetterRecipes.addAllRecipes(getConfig());
 
-			this.getCommand("SQPlanet").setExecutor(new SQPlanetCommand(this));
+			this.getCommand("sqplanet").setExecutor(new SQPlanetCommand(this));
 			// Event Listeners
 			getServer().getPluginManager().registerEvents(new EntityListener(this), this);
 			//getServer().getPluginManager().registerEvents(new PlayerListener(this), this);

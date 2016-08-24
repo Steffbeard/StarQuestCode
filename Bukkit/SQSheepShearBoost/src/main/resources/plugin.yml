@@ -1,24 +1,21 @@
 name: ${project.name}
-main: com.ginger_walnut.sqsheepshearboost.Main
 version: ${project.version}
 description: ${project.description}
+main: com.ginger_walnut.sqsheepshearboost.Main
+
 commands:
-   sheepshearboost:
-      description: Manages SQSheepShearBoost
-   sheepshearboost help:
-      description: Shows the help for SQSheepShearBoost
-   sheepshearboost set:
-      description: Sets the sheep shearing multiplier
+  sheepshearboost:
+    description: Manages SQSheepShearBoost
+  sheepshearboost help:
+    description: Shows the help for SQSheepShearBoost
+  sheepshearboost set:
+    description: Sets the sheep shearing multiplier
 permissions:
-   SQSheepShearBoost.viewHelp:
-      description: Premission node for viewing help
-      default: false
-   SQSheepShearBoost.setMultiplier:
-      description: Premission node for setting the multiplier
-      default: false
-   SQSheepShearBoost.addMultiplier:
-      description: Premission node for adding to the multiplier
-      default: false
-   SQSheepShearBoost.subtractMultiplier:
-      description: Premission node for subtracting to the multiplier
-      default: false
+  sqsheepshearboost.viewhelp:
+    description: Premission node for viewing help
+  sqsheepshearboost.setmultiplier:
+    description: Premission node for setting the multiplier
+  sqsheepshearboost.addmultiplier:
+    description: Premission node for adding to the multiplier
+  sqsheepshearboost.subtractmultiplier:
+    description: Premission node for subtracting to the multiplier

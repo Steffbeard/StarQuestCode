@@ -1,7 +1,3 @@
 name: ${project.name}
-main: me.thetimelord.SQTractorBeam
 version: ${project.version}
-commands:
-   blank:
-      description: Blank description.
-      usage: /<command>
+main: me.thetimelord.SQTractorBeam

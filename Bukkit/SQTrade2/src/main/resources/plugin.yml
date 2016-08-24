@@ -1,11 +1,12 @@
 name: ${project.name}
-main: nickmiste.SQTrade2
 version: ${project.version}
+main: nickmiste.SQTrade2
+
 commands:
-   buy:
-      description: Used when buying from a dropper shop
-      usage: /buy <amount>
+  buy:
+    description: Used when buying from a dropper shop
+    usage: /<command> <amount>
+
 permissions:
-   sqtrade.breakshops:
-      description: Allows staff to break shops made by other players
-      default: op      
+  sqtrade.breakshops:
+    description: Allows staff to break shops made by other players

@@ -1,4 +1,4 @@
 name: ${project.name}
-author: evanaesarcaesar
 version: ${project.version}
+author: evanaesarcaesar
 main: net.homeip.hall.sqnetevents.SQNetEvents

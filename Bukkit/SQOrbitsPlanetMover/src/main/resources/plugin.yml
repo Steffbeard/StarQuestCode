@@ -1,9 +1,8 @@
 name: ${project.name}
-main: com.whirlwindgames.sqorbits.mover.SQOrbitsPlanetMover
 version: ${project.version}
 author: lawrencethefrog
-
-softdepend: [WorldGuard,WorldEdit,dynmap]
+main: com.whirlwindgames.sqorbits.mover.SQOrbitsPlanetMover
+softdepend: [dynmap, WorldEdit, WorldGuard]
 
 commands:
   whereis:

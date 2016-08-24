@@ -5,7 +5,7 @@ main: net.homeip.hall.sqglobalinfo.SQGlobalInfo
 depend: [StarQuest]
 
 commands:
-    gseen:
-        description: Shows information about a player, cross-world
-    showalts:
-        description: Shows potential alts of a player based on a playername or an ip
+  gseen:
+    description: Shows information about a player, cross-world
+  showalts:
+    description: Shows potential alts of a player based on a playername or an ip

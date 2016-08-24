@@ -1,9 +1,11 @@
 name: ${project.name}
-main: us.higashiyama.george.SQTurrets.SQTurrets
 version: ${project.version}
+main: us.higashiyama.george.SQTurrets.SQTurrets
+depend: [SQEmpire]
+
 commands:
   turretsreload:
   turretlist:
     description: List all turrets you have permission to use
-    usage: /turretlist
+    usage: /<command>
    

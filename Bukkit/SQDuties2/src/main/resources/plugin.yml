@@ -1,9 +1,11 @@
 name: ${project.name}
-main: com.ginger_walnut.sqduties.SQDuties
 version: ${project.version}
 description: ${project.description}
+main: com.ginger_walnut.sqduties.SQDuties
+depend: [StarQuest]
+
 commands:
-   duty:
-      description: toggles duty mode
-   invrestore:
-      description: restores inventory
+  duty:
+    description: toggles duty mode
+  invrestore:
+    description: restores inventory

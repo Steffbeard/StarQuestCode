@@ -1,4 +1,4 @@
 name: ${project.name}
-main: us.higashiyama.george.SQLTownyCheck.SQLTownyCheck
 version: ${project.version}
+main: us.higashiyama.george.SQLTownyCheck.SQLTownyCheck
 depend: [StarQuest]

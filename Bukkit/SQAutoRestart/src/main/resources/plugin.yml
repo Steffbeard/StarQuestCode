@@ -1,6 +1,8 @@
 name: ${project.name}
 version: ${project.version}
 main: ${project.groupId}.${project.artifactId}.${project.name}
+depend: [StarQuest]
+
 commands:
   autorestart:
     description: Stop the server in one second.

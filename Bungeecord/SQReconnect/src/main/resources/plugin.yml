@@ -1,4 +1,3 @@
 name: ${project.name}
-main: com.dibujaron.sqreconnect.SQReconnect
 version: ${project.version}
-
+main: com.dibujaron.sqreconnect.SQReconnect

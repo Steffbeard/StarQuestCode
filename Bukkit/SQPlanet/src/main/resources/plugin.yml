@@ -1,14 +1,15 @@
 name: ${project.name}
-main: com.burkentertainment.SQPlanet.SQPlanetPlugin
 version: ${project.version}
+main: com.burkentertainment.SQPlanet.SQPlanetPlugin
+
 commands:
-  SQPlanet:
-     description: Control and edit spawning planet customization rules
-     usage: /SQPlanet reload
-     permission: sqplanet.admin
-     permission-message: Missing permissions to edit SQPlanet settings
+  sqplanet:
+    description: Control and edit spawning planet customization rules
+    permission: sqplanet.admin
+    permission-message: Missing permissions to edit SQPlanet settings
+    usage: /SQPlanet reload
+
 permissions:
   sqplanet.admin:
     description: Allows administrative access to SQPlanet
-    default: op
-    
+   

@@ -1,12 +1,12 @@
 name: ${project.name}
-main: com.dibujaron.worldrestore.Core
 version: ${project.version}
+main: com.dibujaron.worldrestore.Core
+softdepend: [Essentials, Factions, Towny, WorldGuard]
+
 commands:
-    WorldRestore:
-        aliases: []
-        usage: /worldrestore <from> <to>
-    deleteoldwgs:
-        aliases: [deleteoldwg]
-        usage: /deleteoldwgs
-softdepend: [Towny, WorldGuard, Factions, Essentials]
+  deleteoldwgs:
+      aliases: [deleteoldwg]
+      usage: /<command>
+  worldrestore:
+    usage: /<command> <from> <to>
 

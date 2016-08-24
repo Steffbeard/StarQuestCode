@@ -1,15 +1,17 @@
 name: ${project.name}
-main: com.ginger_walnut.sqdonation.SQDonation
 version: ${project.version}
 description: ${project.description}
+main: com.ginger_walnut.sqdonation.SQDonation
+depend: [StarQuest]
+
 commands:
-   donation:
-      description: Manages SQDonation
-      aliases: [donations, donater, donaters, don]
+  donation:
+    description: Manages SQDonation
+    aliases: [donations, donater, donaters, don]
 permissions:
-   SQDonation.viewHelp:
-      description: Premission node for viewing help
-      default: false
-   SQDonation.setAmount:
-      description: Premission node for changing the donation amount that somone has
-      default: false
+  sqdonation.viewhelp:
+    description: Premission node for viewing help
+    default: false
+  sqdonation.setamount:
+    description: Premission node for changing the donation amount that somone has
+    default: false

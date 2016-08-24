@@ -1,9 +1,8 @@
 name: ${project.name}
-main: us.higashiyama.george.SQSpace.SQSpace
 version: ${project.version}
+main: us.higashiyama.george.SQSpace.SQSpace
 depend: [WorldEdit, WorldGuard]
 
 permissions:
-  SQSpace.nosuffocate:
-    default: op
+  sqpace.nosuffocate:
 

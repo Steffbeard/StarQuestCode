@@ -4,9 +4,9 @@ description: ${project.description}
 author: dibujaron
 website: http://starquestminecraft.com
 main: com.starquestminecraft.sqcontracts.SQContracts
-depend: [Movecraft]
+depend: [StarQuest, Movecraft]
 
 commands:
-   contract:
-      description: contract master command.
-      usage: Do /contract help to view a list of commands
+  contract:
+    description: contract master command.
+    usage: Do /contract help to view a list of commands

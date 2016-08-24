@@ -5,12 +5,12 @@ depend: [StarQuest, SQContracts]
 
 commands:
   certification:
-    description: Rank up!
-    usage: /cert
     aliases: [certs, cert, ct]
+    description: Rank up!
+    usage: /<command>
   addapp:
     description: Mark a player as applied.
-    usage: /addapp <Player>
+    usage: /<command> <Player>
   resetrank:
     description: Reset a player's rank
-    usage: /resetrank <player>
+    usage: /<command> <player>

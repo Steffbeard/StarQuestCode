@@ -1,11 +1,14 @@
 name: ${project.name}
-main: com.ginger_walnut.sqpowertools.SQPowerTools
 version: ${project.version}
 description: ${project.description}
+main: com.ginger_walnut.sqpowertools.SQPowerTools
+depend: [ParticleLIB, SQEmpire]
+
 commands:
   sqpowertools:
     description: shows information regarding SQPowerTools
     aliases: [sqpt, sqpowertool]
+
 permissions:
   SQPowerTools.reload:
     description: permission node for reloading SQPowerTools
