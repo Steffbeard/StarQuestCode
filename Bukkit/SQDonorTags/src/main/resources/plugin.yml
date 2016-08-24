@@ -1,9 +1,8 @@
 name: ${project.name}
 main: com.starquestminecraft.SQDonorTags.SQDonorTags
 version: ${project.version}
-depend: 
-  - Vault
-  - Craftconomy3
+depend: [Craftconomy3]
+
 commands:
   donation:
      description: Update a player's donation record

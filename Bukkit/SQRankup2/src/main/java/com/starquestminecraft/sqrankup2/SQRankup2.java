@@ -6,9 +6,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import net.milkbowl.vault.chat.Chat;
-import net.milkbowl.vault.permission.Permission;
-
 import org.bukkit.Achievement;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -24,6 +21,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.starquestminecraft.bukkit.StarQuest;
 import com.starquestminecraft.sqcontracts.SQContracts;
 import com.starquestminecraft.sqcontracts.database.ContractPlayerData;
 import com.starquestminecraft.sqrankup2.database.SQLDatabase;
@@ -36,8 +34,6 @@ public class SQRankup2 extends JavaPlugin implements Listener{
 
 	private static SQRankup2 instance;
 	private SQLDatabase database;
-	public static Permission permission;
-	public static Chat chat;
 
 	public void onEnable() {
 		instance = this;
@@ -53,8 +49,7 @@ public class SQRankup2 extends JavaPlugin implements Listener{
 				count++;
 			}
 		}
-		setupPermissions();
-		setupChat();
+
 		Bukkit.getPluginManager().registerEvents(this, this);
 		AchievementTag.loadAchievements(bonusTags);
 
@@ -67,34 +62,17 @@ public class SQRankup2 extends JavaPlugin implements Listener{
 			if(!event.getPlayer().hasPlayedBefore()){
 				System.out.println("New player @alpha!");
 				System.out.println("Stripping groups!");
-				for(String s : permission.getPlayerGroups(event.getPlayer())){
+				for(String s : StarQuest.getVaultPermission().getPlayerGroups(event.getPlayer())){
 					if(s.equalsIgnoreCase("mod") || s.equalsIgnoreCase("developer") || s.equalsIgnoreCase("srmod") || s.equalsIgnoreCase("trlmod") || s.equalsIgnoreCase("trmod") || s.equalsIgnoreCase("jrdev") || s.equalsIgnoreCase("Manager")){
 						continue;
 					}
-					permission.playerRemoveGroup(event.getPlayer(), s);
+					StarQuest.getVaultPermission().playerRemoveGroup(event.getPlayer(), s);
 				}
-				permission.playerAddGroup(event.getPlayer(), "Refugee");
+				StarQuest.getVaultPermission().playerAddGroup(event.getPlayer(), "Refugee");
 			}
 		}
 	}
 
-	private boolean setupPermissions() {
-		RegisteredServiceProvider<Permission> permissionProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
-		if (permissionProvider != null) {
-			permission = permissionProvider.getProvider();
-		}
-		return (permission != null);
-	}
-
-	private boolean setupChat() {
-		RegisteredServiceProvider<Chat> chatProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.chat.Chat.class);
-		if (chatProvider != null) {
-			chat = chatProvider.getProvider();
-		}
-
-		return (chat != null);
-	}
-	
 	public static SQRankup2 get() {
 		return instance;
 	}
@@ -154,8 +132,8 @@ public class SQRankup2 extends JavaPlugin implements Listener{
 						ChatColor.RED + "Visit " + ChatColor.BLUE + "http://tinyurl.com/starquestapps" + ChatColor.RED + " to apply for Player rank!");
 
 				OfflinePlayer p = getServer().getOfflinePlayer(args[0]);
-				permission.playerAddGroup(null, p, "SETTLER");
-				permission.playerRemoveGroup(null, p, "REFUGEE");
+				StarQuest.getVaultPermission().playerAddGroup(null, p, "SETTLER");
+				StarQuest.getVaultPermission().playerRemoveGroup(null, p, "REFUGEE");
 				if (args.length >= 2) {
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "money give " + args[1] + " 30000");
 					OfflinePlayer p2 = getServer().getOfflinePlayer(args[1]);
@@ -203,8 +181,7 @@ public class SQRankup2 extends JavaPlugin implements Listener{
 				count++;
 			}
 		}
-		setupPermissions();
-		setupChat();
+
 		Bukkit.getPluginManager().registerEvents(this, this);
 		AchievementTag.loadAchievements(bonusTags);
 

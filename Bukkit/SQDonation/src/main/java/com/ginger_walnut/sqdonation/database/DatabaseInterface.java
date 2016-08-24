@@ -74,9 +74,9 @@ public class DatabaseInterface {
 					
 					System.out.print(Bukkit.getWorlds().get(0).getName());
 					System.out.print(Bukkit.getOfflinePlayer(UUID.fromString(donater)));
-					System.out.print(SQDonation.permission.getPlayerGroups(Bukkit.getWorlds().get(0).getName(), Bukkit.getOfflinePlayer(UUID.fromString(donater))));
+					System.out.print(StarQuest.getVaultPermission().getPlayerGroups(Bukkit.getWorlds().get(0).getName(), Bukkit.getOfflinePlayer(UUID.fromString(donater))));
 					
-					String[] groups = SQDonation.permission.getPlayerGroups(Bukkit.getWorlds().get(0).getName(), Bukkit.getOfflinePlayer(UUID.fromString(donater)));
+					String[] groups = StarQuest.getVaultPermission().getPlayerGroups(Bukkit.getWorlds().get(0).getName(), Bukkit.getOfflinePlayer(UUID.fromString(donater)));
 					
 					boolean isInGroup = false;
 					
@@ -92,7 +92,7 @@ public class DatabaseInterface {
 					
 					if (isInGroup) {
 						
-						SQDonation.permission.playerRemoveGroup(Bukkit.getWorlds().get(0).getName(), Bukkit.getOfflinePlayer(UUID.fromString(donater)), SQDonation.groupMap.get(amounts.get(i)));
+						StarQuest.getVaultPermission().playerRemoveGroup(Bukkit.getWorlds().get(0).getName(), Bukkit.getOfflinePlayer(UUID.fromString(donater)), SQDonation.groupMap.get(amounts.get(i)));
 						
 					}
 					
@@ -102,7 +102,7 @@ public class DatabaseInterface {
 					
 					if (amount >= amounts.get(i)) {
 						
-						SQDonation.permission.playerAddGroup(Bukkit.getWorlds().get(0).getName(), Bukkit.getOfflinePlayer(UUID.fromString(donater)), SQDonation.groupMap.get(amounts.get(i)));
+						StarQuest.getVaultPermission().playerAddGroup(Bukkit.getWorlds().get(0).getName(), Bukkit.getOfflinePlayer(UUID.fromString(donater)), SQDonation.groupMap.get(amounts.get(i)));
 						
 						i = SQDonation.groupMap.size();
 						

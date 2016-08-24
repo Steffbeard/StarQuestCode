@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import net.milkbowl.vault.permission.Permission;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -38,8 +36,6 @@ public class SQDuties extends JavaPlugin implements Listener{
 	List<String> baseGroups = new ArrayList<String>();
 	List<String> dutyGroups = new ArrayList<String>();
 	
-	public static Permission permission = null;
-	
 	@Override
 	public void onDisable() {
 
@@ -57,10 +53,8 @@ public class SQDuties extends JavaPlugin implements Listener{
 		
 		PluginDescriptionFile pdfFile = this.getDescription();
 		this.logger.info(pdfFile.getName() + " has been enabled!");
-		
-		setupPermissions();
-		
-		this.getServer().getPluginManager().registerEvents(new Events(), this);
+
+        this.getServer().getPluginManager().registerEvents(new Events(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(this, this);
 		
 		getConfig().options().copyDefaults(true);
@@ -69,20 +63,6 @@ public class SQDuties extends JavaPlugin implements Listener{
 		baseGroups = getConfig().getStringList("base groups");
 		dutyGroups = getConfig().getStringList("duty groups");
 		
-		
-	}
-	
-	private boolean setupPermissions() {
-
-		RegisteredServiceProvider<Permission> permissionProvider = getServer().getServicesManager().getRegistration(Permission.class);
-		
-		if (permissionProvider != null) {
-			
-			permission = (Permission) permissionProvider.getProvider();
-			
-		}
-
-		return permission != null;
 		
 	}
 	
@@ -225,7 +205,7 @@ public class SQDuties extends JavaPlugin implements Listener{
 	
 	public Object[] playerCanDuty(Player player) {
 		
-		String[] playerGroups = permission.getPlayerGroups(player);
+		String[] playerGroups = StarQuest.getVaultPermission().getPlayerGroups(player);
 
 		for (int i = 0; i < playerGroups.length; i ++) {
 			
@@ -248,7 +228,7 @@ public class SQDuties extends JavaPlugin implements Listener{
 	
 	public Object[] playerInDuty(Player player) {
 		
-		String[] playerGroups = permission.getPlayerGroups(player);
+		String[] playerGroups = StarQuest.getVaultPermission().getPlayerGroups(player);
 
 		for (int i = 0; i < playerGroups.length; i ++) {
 			
@@ -270,7 +250,7 @@ public class SQDuties extends JavaPlugin implements Listener{
 	
 	public GameMode getDutyGameMode(Player player) {
 
-		String[] playerGroups = permission.getPlayerGroups(player);
+		String[] playerGroups = StarQuest.getVaultPermission().getPlayerGroups(player);
 		GameMode[] gameModes = { GameMode.ADVENTURE, GameMode.SURVIVAL, GameMode.CREATIVE, GameMode.SPECTATOR };
 		
 		for (int i = 0; i < playerGroups.length; i ++) {
@@ -279,7 +259,7 @@ public class SQDuties extends JavaPlugin implements Listener{
 				
 				for (int j = 0; j < gameModes.length; j ++) {
 					
-					if (permission.groupHas("NULL", playerGroups[i], "Duty." + gameModes[j].toString())) {
+					if (StarQuest.getVaultPermission().groupHas("NULL", playerGroups[i], "Duty." + gameModes[j].toString())) {
 						
 						return gameModes[j];
 						

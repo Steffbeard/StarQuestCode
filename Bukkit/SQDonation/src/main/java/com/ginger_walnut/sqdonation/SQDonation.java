@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
 
-import net.milkbowl.vault.permission.Permission;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -31,9 +29,7 @@ public class SQDonation extends JavaPlugin{
 	public static boolean updatedLocalCopy = false;
 	
 	public static Plugin pluginMain;
-	
-	public static Permission permission = null;
-	
+
 	public FileConfiguration config = null;
 	
 	@Override

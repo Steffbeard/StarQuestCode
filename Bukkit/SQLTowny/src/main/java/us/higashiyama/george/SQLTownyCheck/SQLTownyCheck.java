@@ -1,10 +1,7 @@
-
 package us.higashiyama.george.SQLTownyCheck;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import net.milkbowl.vault.permission.Permission;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,27 +9,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class SQLTownyCheck extends JavaPlugin implements Listener {
+import com.starquestminecraft.bukkit.StarQuest;
 
-	static Permission permission;
+public class SQLTownyCheck extends JavaPlugin implements Listener {
 
 	public void onEnable() {
 
 		Database.setUp();
 		Bukkit.getServer().getPluginManager().registerEvents(this, this);
-		setupPermissions();
-	}
 
-	private boolean setupPermissions() {
-
-		RegisteredServiceProvider<Permission> permissionProvider = getServer().getServicesManager().getRegistration(Permission.class);
-		if (permissionProvider != null) {
-			permission = (Permission) permissionProvider.getProvider();
-		}
-		return permission != null;
 	}
 
 	@EventHandler
@@ -116,7 +103,7 @@ public class SQLTownyCheck extends JavaPlugin implements Listener {
 
 	private static boolean isColonist(Player p) {
 
-		String[] allGroups = permission.getPlayerGroups(p);
+		String[] allGroups = StarQuest.getVaultPermission().getPlayerGroups(p);
 		for (String s : allGroups) {
 			if (s.equals("settler") || s.equals("colonist") || s.equals("citizen") || s.equals("affluent") || s.equals("tycoon"))
 				return true;

@@ -10,16 +10,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.starquestminecraft.bukkit.StarQuest;
-import net.milkbowl.vault.chat.Chat;
-import net.milkbowl.vault.permission.Permission;
 
 public class SQRanks4 extends JavaPlugin implements Listener{
-	public static Permission permission;
-	public static Chat chat;
+
 	String[] ara_ranks = {"Arator0", "Arator1", "Arator2", "Arator3", "Arator4", "Arator5"};
 	String[] req_ranks = {"Requiem0", "Requiem1", "Requiem2", "Requiem3", "Requiem4", "Requiem5"};
 	String[] yav_ranks = {"Yavari0", "Yavari1", "Yavari2", "Yavari3", "Yavari4", "Yavari5"};
@@ -33,7 +29,7 @@ public class SQRanks4 extends JavaPlugin implements Listener{
 	}
 	
 	private String rankTitle(String rank){
-		String unformatted = chat.getGroupPrefix(Bukkit.getWorlds().get(0), rank);
+		String unformatted = StarQuest.getVaultChat().getGroupPrefix(Bukkit.getWorlds().get(0), rank);
 		if(rank.startsWith("Arator")){
 			return ChatColor.BLUE + unformatted.substring(3, unformatted.length()-3) + ChatColor.RESET;
 		}
@@ -63,20 +59,20 @@ public class SQRanks4 extends JavaPlugin implements Listener{
 	public boolean buyrank(CommandSender sender, String[] args){
 		Player player = (Player) sender;
 		
-		if(permission.playerInGroup(player, "Arator5") || permission.playerInGroup(player, "Requiem5") || permission.playerInGroup(player, "Yavari5")){
+		if(StarQuest.getVaultPermission().playerInGroup(player, "Arator5") || StarQuest.getVaultPermission().playerInGroup(player, "Requiem5") || StarQuest.getVaultPermission().playerInGroup(player, "Yavari5")){
 			player.sendMessage(ChatColor.GOLD + "You are already at max rank");
 			return false;
 		}
 		
 		String next_rank = "";
 		for(int i = 0; i < 6; i++){
-			if(permission.playerInGroup(player, ara_ranks[i])){
+			if(StarQuest.getVaultPermission().playerInGroup(player, ara_ranks[i])){
 				next_rank = ara_ranks[i+1];
 			}
-			if(permission.playerInGroup(player, req_ranks[i])){
+			if(StarQuest.getVaultPermission().playerInGroup(player, req_ranks[i])){
 				next_rank = req_ranks[i+1];
 			}
-			if(permission.playerInGroup(player, yav_ranks[i])){
+			if(StarQuest.getVaultPermission().playerInGroup(player, yav_ranks[i])){
 				next_rank = yav_ranks[i+1];
 			}
 		}
@@ -90,7 +86,7 @@ public class SQRanks4 extends JavaPlugin implements Listener{
 		
 		boolean has_prereqs = true;
 		for(String rank : prereqs){
-			if(!permission.playerInGroup(player, rank)){
+			if(!StarQuest.getVaultPermission().playerInGroup(player, rank)){
 				has_prereqs = false;
 			}
 		}
@@ -113,7 +109,7 @@ public class SQRanks4 extends JavaPlugin implements Listener{
 				if(!has_prereqs){
 					player.sendMessage(ChatColor.GOLD + "You are missing one or more of the following prerequsite ranks:");
 					for(String rank : prereqs){
-						player.sendMessage(ChatColor.GOLD + chat.getGroupPrefix(player.getWorld(), rank));
+						player.sendMessage(ChatColor.GOLD + StarQuest.getVaultChat().getGroupPrefix(player.getWorld(), rank));
 					}	
 				}
 			}
@@ -134,24 +130,11 @@ public class SQRanks4 extends JavaPlugin implements Listener{
 			if(!has_prereqs){
 				player.sendMessage(ChatColor.GOLD + "You are missing one or more of the following prerequsite ranks:");
 				for(String rank : prereqs){
-					player.sendMessage(ChatColor.GOLD + chat.getGroupPrefix(player.getWorld(), rank));
+					player.sendMessage(ChatColor.GOLD + StarQuest.getVaultChat().getGroupPrefix(player.getWorld(), rank));
 				}
 			}
 		}
 		return true;
 	}
-	
-	private boolean setupPermissions() {
-		RegisteredServiceProvider<Permission> permissionProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
-		if (permissionProvider != null) {
-			permission = permissionProvider.getProvider();
-		}
-		return (permission != null);
-	}
 
-	private boolean setupChat() {
-        RegisteredServiceProvider<Chat> chatProvider = getServer().getServicesManager().getRegistration(Chat.class);
-        chat = chatProvider.getProvider();
-        return chat != null;
-    }
 }
