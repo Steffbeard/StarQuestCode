@@ -47,6 +47,8 @@ public class StarQuest {
 
         database = HikariDatabase.create(hostname, username, password, dbname);
 
+        plugin.getLogger().info("[Database] Using " + username + "@" + hostname + " password: " + (password.isEmpty() ? "NO" : "YES") + ", database: " + dbname);
+
     }
 
     static void setupVault(final SQBase plugin) {
@@ -55,21 +57,27 @@ public class StarQuest {
             return;
         }
 
-        vault_chat = setupVaultInterface(plugin, Chat.class);
-        vault_economy = setupVaultInterface(plugin, Economy.class);
-        vault_permission = setupVaultInterface(plugin, Permission.class);
+        setupVaultChat(plugin);
+        setupVaultEconomy(plugin);
+        setupVaultPermission(plugin);
 
     }
 
-    private static <T> T setupVaultInterface(final SQBase plugin, final Class<T> clazz) {
+    static void setupVaultChat(final SQBase plugin) {
 
-        RegisteredServiceProvider<T> provider = plugin.getServer().getServicesManager().getRegistration(clazz);
+        vault_chat = setupService(plugin, Chat.class, "Vault Chat", vault_chat);
 
-        if(provider == null) {
-            return null;
-        }
+    }
 
-        return provider.getProvider();
+    static void setupVaultEconomy(final SQBase plugin) {
+
+        vault_economy = setupService(plugin, Economy.class, "Vault Economy", vault_economy);
+
+    }
+
+    static void setupVaultPermission(final SQBase plugin) {
+
+        vault_permission = setupService(plugin, Permission.class, "Vault Permission", vault_permission);
 
     }
 
@@ -87,6 +95,35 @@ public class StarQuest {
 
     public static Permission getVaultPermission() {
         return vault_permission;
+    }
+
+    private static <T> T setupService(final SQBase plugin, final Class<T> clazz, final String prefix, final T current) {
+
+        RegisteredServiceProvider<T> provider = plugin.getServer().getServicesManager().getRegistration(clazz);
+        T service = null;
+
+        if(provider != null) {
+            service = provider.getProvider();
+        }
+
+        if(current == service) {
+            return current;
+        }
+
+        if(service != null) {
+
+            String provider_class = service.getClass().getCanonicalName();
+            String provider_plugin = provider.getPlugin().getDescription().getFullName();
+
+            plugin.getLogger().info("[" + prefix + "] Using " + provider_class + " provided by " + provider_plugin);
+
+        }
+        else {
+            plugin.getLogger().info("[" + prefix +"] No provider found!");
+        }
+
+        return service;
+
     }
 
 }
