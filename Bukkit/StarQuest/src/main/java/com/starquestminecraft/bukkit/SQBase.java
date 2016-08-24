@@ -24,7 +24,7 @@ public class SQBase extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        StarQuest.setupEconomy(this);
+        StarQuest.setupVault(this);
 
     }
 

@@ -6,14 +6,18 @@ import javax.sql.DataSource;
 
 import org.bukkit.plugin.RegisteredServiceProvider;
 
+import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.permission.Permission;
 
 import com.starquestminecraft.bukkit.database.HikariDatabase;
 
 public class StarQuest {
 
     private static DataSource database;
-    private static Economy economy;
+    private static Chat vault_chat;
+    private static Economy vault_economy;
+    private static Permission vault_permission;
 
     private StarQuest() {
 
@@ -45,19 +49,27 @@ public class StarQuest {
 
     }
 
-    static void setupEconomy(final SQBase plugin) {
+    static void setupVault(final SQBase plugin) {
 
         if(plugin.getServer().getPluginManager().getPlugin("Vault") == null) {
             return;
         }
 
-        RegisteredServiceProvider<Economy> provider = plugin.getServer().getServicesManager().getRegistration(Economy.class);
+        vault_chat = setupVaultInterface(plugin, Chat.class);
+        vault_economy = setupVaultInterface(plugin, Economy.class);
+        vault_permission = setupVaultInterface(plugin, Permission.class);
+
+    }
+
+    private static <T> T setupVaultInterface(final SQBase plugin, final Class<T> clazz) {
+
+        RegisteredServiceProvider<T> provider = plugin.getServer().getServicesManager().getRegistration(clazz);
 
         if(provider == null) {
-            return;
+            return null;
         }
 
-        economy = provider.getProvider();
+        return provider.getProvider();
 
     }
 
@@ -65,8 +77,16 @@ public class StarQuest {
         return database.getConnection();
     }
 
+    public static Chat getVaultChat() {
+        return vault_chat;
+    }
+
     public static Economy getVaultEconomy() {
-        return economy;
+        return vault_economy;
+    }
+
+    public static Permission getVaultPermission() {
+        return vault_permission;
     }
 
 }
