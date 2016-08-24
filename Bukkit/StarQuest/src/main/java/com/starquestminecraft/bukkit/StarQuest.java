@@ -82,7 +82,13 @@ public class StarQuest {
     }
 
     public static Connection getDatabaseConnection() throws SQLException {
+
+        if(database == null) {
+            throw new SQLException("DataSource not initialized!");
+        }
+
         return database.getConnection();
+
     }
 
     public static Chat getVaultChat() {
