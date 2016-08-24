@@ -11,7 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
-import com.starquestminecraft.bukkit.database.SQDatabase;
+import com.starquestminecraft.bukkit.StarQuest;
 
 public class SQLDatabase {
 
@@ -35,7 +35,7 @@ public class SQLDatabase {
 
         int score = 0;
 
-        try(Connection con = SQDatabase.getConnection()) {
+        try(Connection con = StarQuest.getDatabaseConnection()) {
 
             try(PreparedStatement ps = con.prepareStatement(SQL_SELECT_SCORE)) {
 
@@ -62,7 +62,7 @@ public class SQLDatabase {
 
     public void displayTop(final Player requester) {
 
-        try(Connection con = SQDatabase.getConnection()) {
+        try(Connection con = StarQuest.getDatabaseConnection()) {
         
             try(PreparedStatement pstmt = con.prepareStatement(SQL_SELECT_TOP)) {
 
@@ -96,7 +96,7 @@ public class SQLDatabase {
 
     public void addScore(final UUID profile_id, final int addition) {
 
-        try(Connection con = SQDatabase.getConnection()) {
+        try(Connection con = StarQuest.getDatabaseConnection()) {
 
             try(PreparedStatement ps = con.prepareStatement(SQL_INSADD_SCORE)) {
 
@@ -116,7 +116,7 @@ public class SQLDatabase {
 
     public void updateScore(final UUID profile_id, final int score) {
 
-        try(Connection con = SQDatabase.getConnection()) {
+        try(Connection con = StarQuest.getDatabaseConnection()) {
 
             try(PreparedStatement ps = con.prepareStatement(SQL_INSUPD_SCORE)) {
 
@@ -136,7 +136,7 @@ public class SQLDatabase {
 
     private void createTable() {
 
-        try(Connection con = SQDatabase.getConnection()) {
+        try(Connection con = StarQuest.getDatabaseConnection()) {
         
             try(Statement s = con.createStatement()) {
 

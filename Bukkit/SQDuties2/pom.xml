@@ -10,7 +10,7 @@
 
     <groupId>com.starquestminecraft.bukkit</groupId>
     <artifactId>duties</artifactId>
-    <version>2.1.0</version>
+    <version>2.2.0</version>
 
     <name>SQDuties</name>
     <description>A plugin that allows mods to go into duty mode.</description>
@@ -28,11 +28,8 @@
     <dependencies>
         <dependency>
             <groupId>com.starquestminecraft.bukkit</groupId>
-            <artifactId>movecraft</artifactId>
-            <version>3.1.32</version>
-            <scope>provided</scope>
-			<optional>true</optional>
-		</dependency>
+            <artifactId>starquest</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

@@ -3,20 +3,25 @@ package com.ginger_walnut.sqdonation.database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
-public class SQLDatabase {
+import com.starquestminecraft.bukkit.StarQuest;
 
-	BedspawnConnectionProvider con;
+public class SQLDatabase {
 
 	static final String WRITE_OBJECT_SQL = "CALL set_donater_amount(?, ?);";
 	static final String READ_OBJECT_SQL = "SELECT * FROM minecraft.donaters";
 	static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS minecraft.donaters(donater varchar(40) NOT NULL, amount int NOT NULL)";
 	
 	public SQLDatabase() {
-		
-		con = new BedspawnConnectionProvider();
-		createTable(con.getConnection());
+
+        try {
+            createTable(StarQuest.getDatabaseConnection());
+        }
+        catch(SQLException ex) {
+
+        }
 		
 	}
 

@@ -1,12 +1,12 @@
 package com.dibujaron.sqports;
 
-import net.countercraft.movecraft.bungee.BungeePlayerHandler;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import com.starquestminecraft.bukkit.util.BungeeUtil;
 
 public class PortTask extends BukkitRunnable{
 
@@ -59,7 +59,7 @@ public class PortTask extends BukkitRunnable{
 			int pty = port.ty + diffY;
 			int ptz = port.tz + diffZ;
 			plr.getInventory().clear();
-			BungeePlayerHandler.sendPlayer(plr, port.target, port.target, ptx, pty, ptz);
+			BungeeUtil.sendPlayer(plr, port.target, port.target, ptx, pty, ptz);
 		}
 	}
 

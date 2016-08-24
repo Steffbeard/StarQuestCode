@@ -7,11 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import net.countercraft.movecraft.bungee.BungeePlayerHandler;
-
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import com.starquestminecraft.bukkit.util.BungeeUtil;
 import com.whirlwindgames.dibujaron.sqempire.Empire;
 import com.whirlwindgames.dibujaron.sqempire.SQEmpire;
 import com.whirlwindgames.dibujaron.sqempire.database.EmpireDB;
@@ -73,7 +72,7 @@ public class EmpirePlayer {
 									SQEmpire.economy.depositPlayer(player, 10000);
 									if(p.empire == Empire.ARATOR.getID()){
 										Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pp user " + player.getName() + " addgroup Arator0");
-										BungeePlayerHandler.sendPlayer(player, "AratorSystem", "AratorSystem", 2598, 100, 1500);
+										BungeeUtil.sendPlayer(player, "AratorSystem", "AratorSystem", 2598, 100, 1500);
 										Bukkit.dispatchCommand(Bukkit.getConsoleSender(), 
 												"eb janesudo Aratorians, please welcome your newest member " + player.getName() + "!");
 									} else if(p.empire == Empire.REQUIEM.getID()){

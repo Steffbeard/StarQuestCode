@@ -1,15 +1,12 @@
 package com.whirlwindgames.dibujaron.sqempire.database;
 
 import java.sql.Connection;
-
-import net.countercraft.movecraft.bedspawns.Bedspawn;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
+import com.starquestminecraft.bukkit.StarQuest;
 
 public class EmpireDB {
 	
@@ -33,7 +30,7 @@ public class EmpireDB {
 		Statement s = null;
 		ResultSet rs = null;
 		try{
-			s = getConn().createStatement();
+			s = StarQuest.getDatabaseConnection().createStatement();
 			rs = s.executeQuery(query);
 		} catch(Exception e){
 			System.out.println("Empire Database: SQL Exception!");
@@ -45,7 +42,7 @@ public class EmpireDB {
 	public static void command(String query){
 		Statement s = null;
 		try{
-			s = getConn().createStatement();
+			s = StarQuest.getDatabaseConnection().createStatement();
 			s.executeUpdate(query);
 		} catch(Exception e){
 			System.out.println("Empire Database: SQL Exception!");
@@ -55,15 +52,11 @@ public class EmpireDB {
 
 	public static PreparedStatement prepareStatement(String statement) {
 		try {
-			return getConn().prepareStatement(statement);
+			return StarQuest.getDatabaseConnection().prepareStatement(statement);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	private static Connection getConn() {
-		return Bedspawn.cntx;
 	}
 
 }

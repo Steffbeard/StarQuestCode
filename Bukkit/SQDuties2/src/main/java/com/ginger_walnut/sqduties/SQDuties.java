@@ -23,9 +23,10 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
-import com.dibujaron.cardboardbox.Knapsack;
 import com.ginger_walnut.sqduties.database.InvRestoreDB;
 import com.ginger_walnut.sqduties.database.SQLDatabase;
+import com.starquestminecraft.bukkit.StarQuest;
+import com.starquestminecraft.bukkit.cardboardbox.Knapsack;
 
 public class SQDuties extends JavaPlugin implements Listener{
 
@@ -125,7 +126,12 @@ public class SQDuties extends JavaPlugin implements Listener{
 						Knapsack knapsack = new Knapsack(player);
 						
 						SQLDatabase database = new SQLDatabase();						
-						database.addPlayer(SQLDatabase.con.getConnection(), player, knapsack);
+						try {
+                            database.addPlayer(StarQuest.getDatabaseConnection(), player, knapsack);
+                        }
+                        catch(Exception ex) {
+
+                        }
 						
 						GameMode gameMode = getDutyGameMode(player);
 						player.setGameMode(gameMode);
@@ -153,7 +159,12 @@ public class SQDuties extends JavaPlugin implements Listener{
 					player.setGameMode(GameMode.SURVIVAL);
 					
 					SQLDatabase database = new SQLDatabase();					
-					database.loadPlayer(SQLDatabase.con.getConnection(), player);
+					try {
+                        database.loadPlayer(StarQuest.getDatabaseConnection(), player);
+                    }
+                    catch(Exception ex) {
+
+                    }
 
 					player.sendMessage(ChatColor.RED + "Dutymode disabled!");
 					

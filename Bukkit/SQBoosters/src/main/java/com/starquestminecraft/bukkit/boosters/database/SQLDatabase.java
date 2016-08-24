@@ -9,9 +9,9 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.starquestminecraft.bukkit.StarQuest;
 import com.starquestminecraft.bukkit.boosters.Booster;
 import com.starquestminecraft.bukkit.boosters.SQBoosters;
-import com.starquestminecraft.bukkit.database.SQDatabase;
 
 public class SQLDatabase {
 
@@ -26,7 +26,7 @@ public class SQLDatabase {
         this.plugin = plugin;
 
         try {
-            createTable(SQDatabase.getConnection());
+            createTable(StarQuest.getDatabaseConnection());
         }
         catch(SQLException ex) {
             throw new RuntimeException(ex);
@@ -36,7 +36,7 @@ public class SQLDatabase {
 
     public void addMultiplier(final String booster, final int multiplier, final String purchaser, final int minutes) {
 
-        try(Connection con = SQDatabase.getConnection()) {
+        try(Connection con = StarQuest.getDatabaseConnection()) {
 
             try(PreparedStatement ps = con.prepareStatement(SQL_WRITE_OBJECT)) {
 
@@ -68,7 +68,7 @@ public class SQLDatabase {
 
         Map<Booster.Type, Booster> boosters = new HashMap<>();
 
-        try(Connection con = SQDatabase.getConnection()) {
+        try(Connection con = StarQuest.getDatabaseConnection()) {
 
             try(Statement s = con.createStatement()) {
 

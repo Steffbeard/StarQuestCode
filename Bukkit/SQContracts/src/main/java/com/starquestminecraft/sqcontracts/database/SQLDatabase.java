@@ -10,9 +10,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class SQLDatabase implements Database {
+import com.starquestminecraft.bukkit.StarQuest;
 
-	ConnectionProvider con;
+public class SQLDatabase implements Database {
 
 	static final String HAS_KEY_SQL = "SELECT * from contract_data WHERE `uuid` = ?";
 	static final String UPDATE_OBJECT_SQL = "UPDATE contract_data SET object_value = ? WHERE `uuid` = ?";
@@ -21,15 +21,19 @@ public class SQLDatabase implements Database {
 	static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS contract_data ( uuid varchar(32), object_value BLOB, primary key (uuid))";
 	static final String READ_ALL_SQL = "SELECT object_value from contract_data";
 	public SQLDatabase() {
-		con = new BedspawnConnectionProvider();
-		createTable(con.getConnection());
+		try {
+            createTable(StarQuest.getDatabaseConnection());
+        }
+        catch(SQLException ex) {
+
+        }
 	}
 
 	@Override
 	public ContractPlayerData getDataOfPlayer(UUID u) {
 		try {
-			if (hasKey(con.getConnection(), u)) {
-				return readData(con.getConnection(), u);
+			if (hasKey(StarQuest.getDatabaseConnection(), u)) {
+				return readData(StarQuest.getDatabaseConnection(), u);
 			} else {
 				return ContractPlayerData.createDefault(u);
 			}
@@ -43,10 +47,10 @@ public class SQLDatabase implements Database {
 	@Override
 	public void updatePlayerData(UUID u, ContractPlayerData d) {
 		try {
-			if (hasKey(con.getConnection(), u)) {
-				updateData(con.getConnection(), d);
+			if (hasKey(StarQuest.getDatabaseConnection(), u)) {
+				updateData(StarQuest.getDatabaseConnection(), d);
 			} else {
-				writeData(con.getConnection(), d);
+				writeData(StarQuest.getDatabaseConnection(), d);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -127,7 +131,7 @@ public class SQLDatabase implements Database {
 	public ContractPlayerData[] readAllPlayerData() throws Exception{
 		ArrayList<ContractPlayerData> all = new ArrayList<ContractPlayerData>();
 		int i = 0;
-		PreparedStatement pstmt = con.getConnection().prepareStatement(READ_ALL_SQL);
+		PreparedStatement pstmt = StarQuest.getDatabaseConnection().prepareStatement(READ_ALL_SQL);
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()){
 			byte[] buffer = rs.getBytes(1);

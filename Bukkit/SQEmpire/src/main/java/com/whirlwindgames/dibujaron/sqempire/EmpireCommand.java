@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import net.countercraft.movecraft.bungee.BungeePlayerHandler;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -17,6 +15,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
+
 import org.dynmap.markers.Marker;
 import org.dynmap.markers.PolyLineMarker;
 
@@ -30,6 +29,8 @@ import com.sk89q.worldguard.protection.flags.DefaultFlag;
 import com.sk89q.worldguard.protection.flags.StateFlag.State;
 import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+import com.starquestminecraft.bukkit.util.BungeeUtil;
+import com.starquestminecraft.bukkit.util.InventoryUtil;
 import com.whirlwindgames.dibujaron.sqempire.database.object.EmpirePercentage;
 import com.whirlwindgames.dibujaron.sqempire.database.object.EmpirePlayer;
 import com.whirlwindgames.dibujaron.sqempire.util.AsyncUtil;
@@ -46,17 +47,17 @@ public class EmpireCommand implements CommandExecutor{
 			Empire e = ep.getEmpire();
 			if(e == Empire.ARATOR){
 				//SQEmpire.permission.playerAddGroup(p,"Arator0");
-				BungeePlayerHandler.sendPlayer(p, "AratorSystem", "AratorSystem", 2598, 100, 1500);
+				BungeeUtil.sendPlayer(p, "AratorSystem", "AratorSystem", 2598, 100, 1500);
 				//Bukkit.dispatchCommand(Bukkit.getConsoleSender(), 
 						//"eb janesudo Aratorians, please welcome your newest member " + p.getName() + "!");
 			} else if(e == Empire.REQUIEM){
 				//SQEmpire.permission.playerAddGroup(p,"Requiem0");
-				BungeePlayerHandler.sendPlayer(p, "QuillonSystem", "QuillonSystem", 1375, 100, -2381);
+				BungeeUtil.sendPlayer(p, "QuillonSystem", "QuillonSystem", 1375, 100, -2381);
 				//Bukkit.dispatchCommand(Bukkit.getConsoleSender(), 
 						//"eb janesudo Requiem, please welcome your newest member " + p.getName() + "!");
 			} else if(e == Empire.YAVARI){
 				//SQEmpire.permission.playerAddGroup(p,"Yavari0");
-				BungeePlayerHandler.sendPlayer(p, "YavarSystem", "YavarSystem", 0, 231, 2500);
+				BungeeUtil.sendPlayer(p, "YavarSystem", "YavarSystem", 0, 231, 2500);
 				//Bukkit.dispatchCommand(Bukkit.getConsoleSender(), 
 				//		"eb janesudo Yavari, please welcome your newest member " + p.getName() + "!");
 			} else if(e == Empire.NONE){
@@ -92,12 +93,12 @@ public class EmpireCommand implements CommandExecutor{
 			ep.setEmpire(Empire.NONE);
 			ep.publishData();
 			
-			BungeePlayerHandler.sendPlayer(p, "CoreSystem", "CoreSystem", 0, 102, 0);
+			BungeeUtil.sendPlayer(p, "CoreSystem", "CoreSystem", 0, 102, 0);
 			
 			if (full) {
 				
 				SQEmpire.economy.withdrawPlayer(p, SQEmpire.economy.getBalance(p));
-				BungeePlayerHandler.wipePlayerInventory(p);
+				InventoryUtil.wipePlayerInventory(p);
 				
 				MPlayer.get(p).setFaction(FactionColl.get().getNone());
 				
@@ -1018,7 +1019,7 @@ public class EmpireCommand implements CommandExecutor{
 						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pp user " + p.getUniqueId().toString() + " removegroup " + ep.getEmpire().getName() + "5");
 						
 						SQEmpire.economy.withdrawPlayer(p, SQEmpire.economy.getBalance(p));
-						BungeePlayerHandler.wipePlayerInventory(p);
+						InventoryUtil.wipePlayerInventory(p);
 							
 						MPlayer.get(p).setFaction(FactionColl.get().getNone());
 					
@@ -1037,17 +1038,17 @@ public class EmpireCommand implements CommandExecutor{
 					p.sendMessage(ChatColor.GREEN + "You have succesfully joined empire " + e + "!");
 					if(e == Empire.ARATOR){
 						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ee pp user " + p.getUniqueId().toString() + " addgroup Arator0");
-						BungeePlayerHandler.sendPlayer(p, "AratorSystem", "AratorSystem", 2598, 100, 1500);
+						BungeeUtil.sendPlayer(p, "AratorSystem", "AratorSystem", 2598, 100, 1500);
 						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), 
 								"eb janesudo Aratorians, please welcome your newest member " + p.getName() + "!");
 					} else if(e == Empire.REQUIEM){
 						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ee pp user " + p.getUniqueId().toString() + " addgroup Requiem0");
-						BungeePlayerHandler.sendPlayer(p, "QuillonSystem", "QuillonSystem", 1375, 100, -2381);
+						BungeeUtil.sendPlayer(p, "QuillonSystem", "QuillonSystem", 1375, 100, -2381);
 						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), 
 								"eb janesudo Requiem, please welcome your newest member " + p.getName() + "!");
 					} else if(e == Empire.YAVARI){
 						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ee pp user " + p.getUniqueId().toString() + " addgroup Yavari0");
-						BungeePlayerHandler.sendPlayer(p, "YavarSystem", "YavarSystem", 0, 231, 2500);
+						BungeeUtil.sendPlayer(p, "YavarSystem", "YavarSystem", 0, 231, 2500);
 						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), 
 								"eb janesudo Yavari, please welcome your newest member " + p.getName() + "!");
 					}

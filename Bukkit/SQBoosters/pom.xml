@@ -10,7 +10,7 @@
 
     <groupId>com.starquestminecraft.bukkit</groupId>
     <artifactId>boosters</artifactId>
-    <version>2.0.0</version>
+    <version>2.1.0</version>
 
     <name>SQBoosters</name>
     <description>A plugin that adds various boosters.</description>
@@ -24,7 +24,7 @@
             </roles>
         </developer>
     </developers>
-    
+
     <dependencies>
         <dependency>
             <groupId>com.gmail.nossr50.mcMMO</groupId>
@@ -32,17 +32,7 @@
         </dependency>
         <dependency>
             <groupId>com.starquestminecraft.bukkit</groupId>
-            <artifactId>database</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.starquestminecraft.bukkit</groupId>
-            <artifactId>movecraft</artifactId>
-            <version>3.1.32</version>
-            <scope>provided</scope>
-            <optional>true</optional>
+            <artifactId>starquest</artifactId>
         </dependency>
     </dependencies>
 

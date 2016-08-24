@@ -10,19 +10,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import net.countercraft.movecraft.bungee.BungeePlayerHandler;
-
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-import com.dibujaron.cardboardbox.Knapsack;
 import com.ginger_walnut.sqduties.SQDuties;
+import com.starquestminecraft.bukkit.StarQuest;
+import com.starquestminecraft.bukkit.cardboardbox.Knapsack;
+import com.starquestminecraft.bukkit.util.BungeeUtil;
 
 public class SQLDatabase {
-
-	public static BedspawnConnectionProvider con;
 
 	static final String CHECK_RECORD_EXISTS_SQL = "SELECT count(1) FROM duties2 WHERE uuid = ?";
 	static final String ADD_PLAYER_SQL = "INSERT INTO duties2 (`uuid`, `data`, `location`) VALUES (?,?,?)";
@@ -31,8 +29,7 @@ public class SQLDatabase {
 	static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS duties2 (uuid varchar(64), data BLOB, location varchar(64), primary key (uuid))";
 	
 	public SQLDatabase() {
-		
-		con = new BedspawnConnectionProvider();
+
 		createTable()	;	
 		
 	}
@@ -41,7 +38,7 @@ public class SQLDatabase {
 		
 		try {
 			
-			Statement s = con.getConnection().createStatement();
+			Statement s = StarQuest.getDatabaseConnection().createStatement();
 			s.executeUpdate(CREATE_TABLE);
 			
 		} catch (Exception e) {
@@ -58,7 +55,7 @@ public class SQLDatabase {
 			
 			if (checkRecordExists(conn, player)) {
 				
-				PreparedStatement pstmt2 = con.getConnection().prepareStatement(DELETE_PLAYER_SQL);
+				PreparedStatement pstmt2 = StarQuest.getDatabaseConnection().prepareStatement(DELETE_PLAYER_SQL);
 				
 				pstmt2.setString(1, player.getUniqueId().toString());
 				
@@ -128,11 +125,11 @@ public class SQLDatabase {
 					
 			} else {
 				
-				BungeePlayerHandler.sendPlayer(player, parts[0], parts[1], (int) x, (int) y, (int) z);
+				BungeeUtil.sendPlayer(player, parts[0], parts[1], (int) x, (int) y, (int) z);
 					
 			}
 			
-			PreparedStatement pstmt2 = con.getConnection().prepareStatement(DELETE_PLAYER_SQL);
+			PreparedStatement pstmt2 = StarQuest.getDatabaseConnection().prepareStatement(DELETE_PLAYER_SQL);
 			
 			pstmt2.setString(1, player.getUniqueId().toString());
 			

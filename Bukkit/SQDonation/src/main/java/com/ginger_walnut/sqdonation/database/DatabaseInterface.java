@@ -2,32 +2,31 @@ package com.ginger_walnut.sqdonation.database;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 
 import com.ginger_walnut.sqdonation.SQDonation;
+import com.starquestminecraft.bukkit.StarQuest;
 
 public class DatabaseInterface {
 	
 	public static void setAmount(String uuid, int amount) {
 		
 		SQLDatabase database = new SQLDatabase();
-		
-		Connection con = database.con.getConnection();
-		
-		try {
+
+		try(Connection con = StarQuest.getDatabaseConnection()) {
 			
 			database.writeData(con, uuid, amount);
 			updateLocalCopy();
 			
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
-			
+
 		}
 		
 	}
@@ -35,19 +34,17 @@ public class DatabaseInterface {
 	public static void addAmount(String uuid, int amount) {
 		
 		SQLDatabase database = new SQLDatabase();
-		
-		Connection con = database.con.getConnection();
-		
-		try {
+
+		try(Connection con = StarQuest.getDatabaseConnection()) {
 			
 			updateLocalCopy();
 			database.writeData(con, uuid, SQDonation.donaterMap.get(Bukkit.getOfflinePlayer(UUID.fromString(uuid)).getName()) + amount);
 			updateLocalCopy();
 			
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
-			
+
 		}
 		
 		
@@ -56,10 +53,8 @@ public class DatabaseInterface {
 	public static void updateLocalCopy() {
 		
 		SQLDatabase database = new SQLDatabase();
-		
-		Connection con = database.con.getConnection();
-		
-		try {
+
+		try(Connection con = StarQuest.getDatabaseConnection()) {
 			
 			ResultSet rs = database.readData(con);
 			

@@ -10,7 +10,7 @@
 
     <groupId>com.starquestminecraft.bukkit</groupId>
     <artifactId>donation</artifactId>
-    <version>1.0</version>
+    <version>1.1.0</version>
 
     <name>SQDonation</name>
     <description>A plugin that adds tags for donating</description>
@@ -24,5 +24,12 @@
             </roles>
         </developer>
     </developers>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.starquestminecraft.bukkit</groupId>
+            <artifactId>starquest</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -5,28 +5,29 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.dibujaron.cardboardbox.Knapsack;
+import com.starquestminecraft.bukkit.StarQuest;
+import com.starquestminecraft.bukkit.cardboardbox.Knapsack;
 
 public class InvRestoreDB {
 	
-	public static BedspawnConnectionProvider con;
 	
 	public InvRestoreDB() {
-		con = new BedspawnConnectionProvider();	
+
 		String Database_table = "CREATE TABLE IF NOT EXISTS InventoryRestore ("
 				+ "`name` VARCHAR(32) NOT NULL," + "`data` BLOB," 
 				+ "`time` DATETIME,"
 				+ ")";
 		Statement s = null;
 
-		try {
-			s = con.getConnection().createStatement();
+		try(Connection con = StarQuest.getDatabaseConnection()) {
+			s = con.createStatement();
 			s.executeUpdate(Database_table);
 			System.out.println("[SQDatabase] Table check/creation sucessful");
 		} catch (SQLException ee) {
@@ -38,7 +39,7 @@ public class InvRestoreDB {
 	public Knapsack getKnapsack(String name, String datetime) {
 		PreparedStatement s = null;
 		try {
-			s = con.getConnection().prepareStatement("SELECT `data` FROM InventoryRestore WHERE `name` = ? && `time` = ?");
+			s = StarQuest.getDatabaseConnection().prepareStatement("SELECT `data` FROM InventoryRestore WHERE `name` = ? && `time` = ?");
 			s.setString(1, name);
 			s.setString(2, datetime);
 			ResultSet rs = s.executeQuery();
@@ -71,7 +72,7 @@ public class InvRestoreDB {
                 try {
             		PreparedStatement s = null;
             		try {
-            			s = con.getConnection().prepareStatement("DELETE FROM InventoryRestore WHERE `time` = ?");
+            			s = StarQuest.getDatabaseConnection().prepareStatement("DELETE FROM InventoryRestore WHERE `time` = ?");
             			s.setString(1, datetime);
             			s.execute();
             			s.close();
@@ -99,7 +100,7 @@ public class InvRestoreDB {
 		PreparedStatement s = null;
 		try {
 			System.out.println("TRYING");
-			s = con.getConnection().prepareStatement("SELECT * FROM InventoryRestore WHERE `name` = ? ORDER BY InventoryRestore.time DESC");
+			s = StarQuest.getDatabaseConnection().prepareStatement("SELECT * FROM InventoryRestore WHERE `name` = ? ORDER BY InventoryRestore.time DESC");
 			s.setString(1, name);
 			ResultSet rs = s.executeQuery();
 			while (rs.next()) {
@@ -125,7 +126,7 @@ public class InvRestoreDB {
 		int counter = 1;
 		PreparedStatement s = null;
 		try {
-			s = con.getConnection().prepareStatement("SELECT `time` FROM InventoryRestore WHERE `name` = ? ORDER BY InventoryRestore.time DESC");
+			s = StarQuest.getDatabaseConnection().prepareStatement("SELECT `time` FROM InventoryRestore WHERE `name` = ? ORDER BY InventoryRestore.time DESC");
 			s.setString(1, name);
 			ResultSet rs = s.executeQuery();
 			while (rs.next()) {
@@ -156,7 +157,7 @@ public class InvRestoreDB {
             			
           byte[] knapsackBytes = convertToBytes(knapsack);
             			
-          s = con.getConnection().prepareStatement("INSERT INTO InventoryRestore VALUES (?,?,NOW())");
+          s = StarQuest.getDatabaseConnection().prepareStatement("INSERT INTO InventoryRestore VALUES (?,?,NOW())");
           s.setString(1, name);
           s.setBinaryStream(2, convertToBinary(knapsackBytes), knapsackBytes.length);
           s.executeUpdate();
@@ -178,7 +179,7 @@ public class InvRestoreDB {
 	            		int counter = 1;
 	            		PreparedStatement s = null;
 	            		try {
-	            			s = con.getConnection().prepareStatement("SELECT * FROM InventoryRestore WHERE `name` = ? ORDER BY InventoryRestore.time DESC");
+	            			s = StarQuest.getDatabaseConnection().prepareStatement("SELECT * FROM InventoryRestore WHERE `name` = ? ORDER BY InventoryRestore.time DESC");
 	            			s.setString(1, name);
 	            			ResultSet rs = s.executeQuery();
 	            			while (rs.next()) {
