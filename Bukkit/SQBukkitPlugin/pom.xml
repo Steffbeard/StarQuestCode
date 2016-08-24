@@ -168,6 +168,12 @@
                 </exclusions>
             </dependency>
             <dependency>
+                <groupId>com.starquestminecraft.bukkit</groupId>
+                <artifactId>starquest</artifactId>
+                <version>1.0.0</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
                 <groupId>net.milkbowl.vault</groupId>
                 <artifactId>VaultAPI</artifactId>
                 <version>1.6</version>
@@ -205,6 +211,13 @@
                         <artifactId>junit</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.spigotmc</groupId>
+                <artifactId>spigot</artifactId>
+                <version>1.10.2-R0.1-SNAPSHOT</version>
+                <scope>provided</scope>
+                <optional>true</optional>
             </dependency>
             <dependency>
                 <groupId>us.dynmap</groupId>
