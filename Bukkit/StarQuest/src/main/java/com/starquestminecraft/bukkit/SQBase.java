@@ -4,8 +4,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class SQBase extends JavaPlugin {
 
+    private static SQBase instance;
+
+    public static SQBase getInstance() {
+        return instance;
+    }
+
     @Override
     public void onLoad() {
+
+        instance = this;
 
         saveDefaultConfig();
 
