@@ -2,5 +2,5 @@ name: ${project.name}
 version: ${project.version}
 authors: [LittleWolf30510, zreed]
 description: ${project.description}
-main: com.starquestminecraft.bukkit.database.SQDatabase
+main: ${project.groupId}.SQBase
 load: STARTUP

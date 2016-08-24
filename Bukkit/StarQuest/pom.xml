@@ -13,6 +13,7 @@
     <version>1.0.0</version>
 
     <name>StarQuest</name>
+    <description>Core plugin providing commonly used code.</description>
 
     <developers>
         <developer>
