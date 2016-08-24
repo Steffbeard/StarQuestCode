@@ -329,7 +329,7 @@ public class Certification implements Comparable<Certification>{
 
 	public boolean canAffordCosts(Player p) {
 		// TODO Auto-generated method stub
-		return StarQuest.getEconomy().has(p, getCost());
+		return StarQuest.getVaultEconomy().has(p, getCost());
 	}
 
 	public boolean hasLevels(ContractPlayerData d) {
@@ -337,7 +337,7 @@ public class Certification implements Comparable<Certification>{
 	}
 
 	public void takeCost(Player p) {
-		StarQuest.getEconomy().withdrawPlayer(p, getCost());
+		StarQuest.getVaultEconomy().withdrawPlayer(p, getCost());
 
 	}
 

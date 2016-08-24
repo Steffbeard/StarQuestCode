@@ -226,7 +226,7 @@ public class SQShops extends JavaPlugin implements Listener {
 		if (total == 0)
 			return;
 
-		StarQuest.getEconomy().depositPlayer(player.getName(), total * MULTIPLIER);
+		StarQuest.getVaultEconomy().depositPlayer(player.getName(), total * MULTIPLIER);
 		if (MULTIPLIER == 1) {
 			player.sendMessage(ChatColor.AQUA + "You earned " + roundTwoDecimals(total) + " from selling items.");
 		} else {

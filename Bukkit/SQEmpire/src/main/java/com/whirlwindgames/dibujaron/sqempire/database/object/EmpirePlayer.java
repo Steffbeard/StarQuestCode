@@ -70,7 +70,7 @@ public class EmpirePlayer {
 							AsyncUtil.runSyncLater(new Runnable(){
 								public void run(){
 									player.sendMessage("[EmpireBuilder] you've been assigned empire " + Empire.fromID(p.empire).getName() + "!");
-									StarQuest.getEconomy().depositPlayer(player, 10000);
+									StarQuest.getVaultEconomy().depositPlayer(player, 10000);
 									if(p.empire == Empire.ARATOR.getID()){
 										Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pp user " + player.getName() + " addgroup Arator0");
 										BungeeUtil.sendPlayer(player, "AratorSystem", "AratorSystem", 2598, 100, 1500);

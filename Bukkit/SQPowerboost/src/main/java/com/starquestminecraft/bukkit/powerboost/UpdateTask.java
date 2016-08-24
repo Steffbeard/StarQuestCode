@@ -70,7 +70,7 @@ public class UpdateTask extends BukkitRunnable {
 
                     if(oplayer != null) {
 
-                        if(StarQuest.getEconomy().withdrawPlayer(oplayer, taxes).transactionSuccess()) {
+                        if(StarQuest.getVaultEconomy().withdrawPlayer(oplayer, taxes).transactionSuccess()) {
                             total += taxes;
                         }
                         else if(!(mplayer.getRole() == Rel.LEADER)) {

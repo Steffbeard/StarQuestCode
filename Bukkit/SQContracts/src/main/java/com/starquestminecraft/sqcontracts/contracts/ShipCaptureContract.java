@@ -112,7 +112,7 @@ public class ShipCaptureContract implements Contract{
 	@Override
 	public void giveRewards(ContractPlayerData d) {
 		OfflinePlayer plr = Bukkit.getOfflinePlayer(d.getPlayer());
-		StarQuest.getEconomy().depositPlayer(plr, reward);
+		StarQuest.getVaultEconomy().depositPlayer(plr, reward);
 		String currency;
 		if(isBlackMarket()){
 			currency = "infamy";
@@ -130,11 +130,11 @@ public class ShipCaptureContract implements Contract{
 	
 	@Override
 	public void penalizeForCancellation(Player p) {
-		StarQuest.getEconomy().withdrawPlayer(p, reward / 2);
+		StarQuest.getVaultEconomy().withdrawPlayer(p, reward / 2);
 	}
 	
 	@Override
 	public boolean canAffordCancellation(Player p){
-		return StarQuest.getEconomy().getBalance(p) >= (reward / 2);
+		return StarQuest.getVaultEconomy().getBalance(p) >= (reward / 2);
 	}
 }

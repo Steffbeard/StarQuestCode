@@ -113,13 +113,13 @@ public class AutomatorGUI extends GUI {
 
         if(event.getCurrentItem().getItemMeta().getDisplayName().contains("Upgrade")) {
 
-            if(StarQuest.getEconomy().getBalance(owner) < automator.getUpgradeCost()) {
+            if(StarQuest.getVaultEconomy().getBalance(owner) < automator.getUpgradeCost()) {
                 return;
             }
 
             level = level + 1;
             automator.data.put("level", level);
-            StarQuest.getEconomy().withdrawPlayer(owner, automator.getUpgradeCost());
+            StarQuest.getVaultEconomy().withdrawPlayer(owner, automator.getUpgradeCost());
 
             Inventory gui = event.getClickedInventory();
 

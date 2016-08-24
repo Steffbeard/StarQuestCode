@@ -96,18 +96,18 @@ public class SQRanks4 extends JavaPlugin implements Listener{
 		}
 		
 		if(skill.equals("all")) {
-			if(StarQuest.getEconomy().has(player, price) && ExperienceAPI.getPowerLevel(player) >= level && has_prereqs){
+			if(StarQuest.getVaultEconomy().has(player, price) && ExperienceAPI.getPowerLevel(player) >= level && has_prereqs){
 				//permission.playerRemoveGroup(player, current_rank);
 				//Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pp user " + player.getName() + " removegroup " + current_rank);
 				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pp user " + player.getName() + " addgroup " + next_rank);
-				StarQuest.getEconomy().withdrawPlayer(player, price);
+				StarQuest.getVaultEconomy().withdrawPlayer(player, price);
 				player.sendMessage(ChatColor.GREEN + "You have bought the rank: " + rankTitle(next_rank));
 			}
 			else{
 				if(ExperienceAPI.getPowerLevel(player) < level){
 					player.sendMessage(ChatColor.GOLD + "This rank requires a total power level of at least " + Integer.toString(level));
 				}
-				if(!StarQuest.getEconomy().has(player, price)){
+				if(!StarQuest.getVaultEconomy().has(player, price)){
 					player.sendMessage(ChatColor.GOLD + "You cannot afford this rank, it costs " + Double.toString(price) + " credits");
 				}
 				if(!has_prereqs){
@@ -118,17 +118,17 @@ public class SQRanks4 extends JavaPlugin implements Listener{
 				}
 			}
 		}
-		else if(StarQuest.getEconomy().has(player, price) && ExperienceAPI.getLevel(player, skill) >= level && has_prereqs){
+		else if(StarQuest.getVaultEconomy().has(player, price) && ExperienceAPI.getLevel(player, skill) >= level && has_prereqs){
 			//Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pp user " + player.getName() + " removegroup " + current_rank);
 			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pp user " + player.getName() + " addgroup " + next_rank);
-			StarQuest.getEconomy().withdrawPlayer(player, price);
+			StarQuest.getVaultEconomy().withdrawPlayer(player, price);
 			player.sendMessage(ChatColor.GREEN + "You have bought the rank: " + rankTitle(next_rank));
 		}
 		else{
 			if(ExperienceAPI.getLevel(player, skill) < level){
 				player.sendMessage(ChatColor.GOLD + "This rank requires a " + skill + " level of at least " + Integer.toString(level));
 			}
-			if(!StarQuest.getEconomy().has(player, price)){
+			if(!StarQuest.getVaultEconomy().has(player, price)){
 				player.sendMessage(ChatColor.GOLD + "You cannot afford this rank, it costs " + Double.toString(price) + " credits");
 			}
 			if(!has_prereqs){

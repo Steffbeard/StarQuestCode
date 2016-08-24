@@ -65,7 +65,7 @@ public class StarQuest {
         return database.getConnection();
     }
 
-    public static Economy getEconomy() {
+    public static Economy getVaultEconomy() {
         return economy;
     }
 

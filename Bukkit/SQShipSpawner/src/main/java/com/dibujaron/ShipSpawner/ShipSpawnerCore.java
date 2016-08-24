@@ -67,7 +67,7 @@ public class ShipSpawnerCore extends JavaPlugin implements Listener {
 					s.setLine(0, ChatColor.AQUA + "Ship Spawner");
 					s.setLine(1, "-*+*-");
 					s.setLine(2, schematic);
-					s.setLine(3, price + " " + StarQuest.getEconomy().currencyNamePlural());
+					s.setLine(3, price + " " + StarQuest.getVaultEconomy().currencyNamePlural());
 					s.update();
 					return;
 				}
@@ -86,8 +86,8 @@ public class ShipSpawnerCore extends JavaPlugin implements Listener {
 					File f;
 					Vector v = new Vector(startBlock.getX(), startBlock.getY(), startBlock.getZ());
 
-					if (StarQuest.getEconomy().getBalance(event.getPlayer()) < price) {
-						event.getPlayer().sendMessage("You do not have " + price + " " + StarQuest.getEconomy().currencyNamePlural());
+					if (StarQuest.getVaultEconomy().getBalance(event.getPlayer()) < price) {
+						event.getPlayer().sendMessage("You do not have " + price + " " + StarQuest.getVaultEconomy().currencyNamePlural());
 						return;
 					}
 
@@ -167,8 +167,8 @@ public class ShipSpawnerCore extends JavaPlugin implements Listener {
 							}
 						}
 						event.getPlayer().sendMessage("Enjoy your new ship!");
-						StarQuest.getEconomy().withdrawPlayer(event.getPlayer(), price);
-						event.getPlayer().sendMessage(price + " " + StarQuest.getEconomy().currencyNamePlural() + " have been withdrawn from your account.");
+						StarQuest.getVaultEconomy().withdrawPlayer(event.getPlayer(), price);
+						event.getPlayer().sendMessage(price + " " + StarQuest.getVaultEconomy().currencyNamePlural() + " have been withdrawn from your account.");
 						event.getPlayer().getWorld().playSound(startBlock, Sound.BLOCK_PISTON_EXTEND, 2.0F, 1.0F);
 						ShipSpawnerCore.data.put(s.getLocation(), System.currentTimeMillis());
 						event.getPlayer().sendMessage("Be sure to move your ship away from the spawner quickly! After" + ChatColor.RED + " five minutes " + ChatColor.WHITE + "your ship can be deleted!");
@@ -219,7 +219,7 @@ public class ShipSpawnerCore extends JavaPlugin implements Listener {
 
 	private int getPrice(Sign s) {
 		String priceline = s.getLine(3);
-		String cname = StarQuest.getEconomy().currencyNamePlural();
+		String cname = StarQuest.getVaultEconomy().currencyNamePlural();
 		String price = priceline.substring(0, priceline.length() - cname.length());
 		return Integer.parseInt(price.trim());
 	}

@@ -179,7 +179,7 @@ public class TowerGUI extends GUI {
 				EmpirePlayer ep = EmpirePlayer.getOnlinePlayer(owner);
 				t.turretEmpire = ep.getEmpire().toString();
 				
-				Double balance = StarQuest.getEconomy().getBalance(owner);
+				Double balance = StarQuest.getVaultEconomy().getBalance(owner);
 				if(balance < t.cost) {
 					owner.sendMessage("You cannot afford that turret!");
 					return;
@@ -203,7 +203,7 @@ public class TowerGUI extends GUI {
 					t.setTurretBlock(blockFour, 3);
 					t.setTurretBlock(blockFive, 4);
 					t.owner = owner.getDisplayName();
-					StarQuest.getEconomy().withdrawPlayer(owner, t.cost);
+					StarQuest.getVaultEconomy().withdrawPlayer(owner, t.cost);
 					TurretData turretData = new TurretData(t);
 					towerMachine.data.put("turretData", turretData);
 					towerMachine.turret = t;
@@ -324,12 +324,12 @@ public class TowerGUI extends GUI {
 				}
 				else if(itemName.contains("Repair")) {
 
-					Double balance = StarQuest.getEconomy().getBalance(owner);
+					Double balance = StarQuest.getVaultEconomy().getBalance(owner);
 					if(balance < towerMachine.turret.cost) {
 						owner.sendMessage("You cannot afford to repair this turret!");
 						return;
 					}
-					StarQuest.getEconomy().withdrawPlayer(owner, towerMachine.turret.cost);
+					StarQuest.getVaultEconomy().withdrawPlayer(owner, towerMachine.turret.cost);
 					
 					Block mainBlock = guiBlock.getLocation().getBlock();
 					Block blockTwo = mainBlock.getRelative(BlockFace.UP);

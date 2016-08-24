@@ -142,7 +142,7 @@ public class ItemContract implements Contract {
 	public void giveRewards(ContractPlayerData d) {
 		OfflinePlayer plr = Bukkit.getOfflinePlayer(d.getPlayer());
 		try {
-			StarQuest.getEconomy().depositPlayer(plr, reward);
+			StarQuest.getVaultEconomy().depositPlayer(plr, reward);
 		} catch (Exception e) {
 			System.out.println("ERROR: no economy found!");
 		}
@@ -163,11 +163,11 @@ public class ItemContract implements Contract {
 
 	@Override
 	public void penalizeForCancellation(Player p) {
-		StarQuest.getEconomy().withdrawPlayer(p, reward / 2);
+		StarQuest.getVaultEconomy().withdrawPlayer(p, reward / 2);
 	}
 	
 	@Override
 	public boolean canAffordCancellation(Player p){
-		return StarQuest.getEconomy().getBalance(p) >= (reward / 2);
+		return StarQuest.getVaultEconomy().getBalance(p) >= (reward / 2);
 	}
 }

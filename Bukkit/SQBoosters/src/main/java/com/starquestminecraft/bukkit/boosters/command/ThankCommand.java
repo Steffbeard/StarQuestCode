@@ -32,7 +32,7 @@ public class ThankCommand implements CommandExecutor {
             return true;
         }
 
-        if(!StarQuest.getEconomy().hasAccount(args[0])) {
+        if(!StarQuest.getVaultEconomy().hasAccount(args[0])) {
             player.sendMessage(ChatColor.RED + "That person does not exsist");
             return true;
         }
@@ -47,20 +47,20 @@ public class ThankCommand implements CommandExecutor {
             return true;
         }
 
-        if(!StarQuest.getEconomy().has(player, player.getWorld().getName(), amount)) {
+        if(!StarQuest.getVaultEconomy().has(player, player.getWorld().getName(), amount)) {
             player.sendMessage(ChatColor.RED + "You do not have enough money");
             return true;
         }
 
-        StarQuest.getEconomy().withdrawPlayer(player, player.getWorld().getName(), amount);
-        StarQuest.getEconomy().depositPlayer(args[0], player.getWorld().getName(), amount);
+        StarQuest.getVaultEconomy().withdrawPlayer(player, player.getWorld().getName(), amount);
+        StarQuest.getVaultEconomy().depositPlayer(args[0], player.getWorld().getName(), amount);
 
         String currency;
         if(amount != 1) {
-            currency = StarQuest.getEconomy().currencyNamePlural();
+            currency = StarQuest.getVaultEconomy().currencyNamePlural();
         }
         else {
-            currency = StarQuest.getEconomy().currencyNamePlural();
+            currency = StarQuest.getVaultEconomy().currencyNamePlural();
         }
 
         plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), "eb janesudo " + ChatColor.GOLD + player.getName() + " has thanked " + args[0] + " with " + amount + " " + currency);

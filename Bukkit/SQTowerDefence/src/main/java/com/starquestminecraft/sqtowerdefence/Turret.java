@@ -573,7 +573,7 @@ public class Turret implements Serializable {
 		
 			if(possibleUpgrades.contains(upgrade)) {
 
-			Double balance = StarQuest.getEconomy().getBalance(player);
+			Double balance = StarQuest.getVaultEconomy().getBalance(player);
 			Double cost = upgrade.getCurrentCost();
 			if(balance > cost) {
 				switch (upgrade.getUpgradeType()) {
@@ -594,7 +594,7 @@ public class Turret implements Serializable {
 				}
 				
 				upgrade.addLevel();
-				StarQuest.getEconomy().withdrawPlayer(player, cost);
+				StarQuest.getVaultEconomy().withdrawPlayer(player, cost);
 				
 				if(upgrade.level == upgrade.maxLevel) {
 					possibleUpgrades.remove(upgrade);
@@ -621,7 +621,7 @@ public class Turret implements Serializable {
 			}
 			else if (conflictingUpgrades.contains(upgrade)) {
 
-				Double balance = StarQuest.getEconomy().getBalance(player);
+				Double balance = StarQuest.getVaultEconomy().getBalance(player);
 				Double cost = upgrade.getCurrentCost();
 				if(balance > cost) {
 					switch (upgrade.getUpgradeType()) {
@@ -641,7 +641,7 @@ public class Turret implements Serializable {
 						break;
 					}
 					upgrade.addLevel();
-					StarQuest.getEconomy().withdrawPlayer(player, cost);
+					StarQuest.getVaultEconomy().withdrawPlayer(player, cost);
 					
 					hasConflicts = true;
 					possibleUpgrades.add(upgrade);

@@ -40,14 +40,14 @@ public class MoneyContract implements Contract {
 	@Override
 	public CompletionStatus complete(Craft c) {
 		OfflinePlayer plr = Bukkit.getOfflinePlayer(player);
-		double bal = StarQuest.getEconomy().getBalance(plr);
+		double bal = StarQuest.getVaultEconomy().getBalance(plr);
 		if(bal >= cost){
-			StarQuest.getEconomy().withdrawPlayer(plr, cost);
+			StarQuest.getVaultEconomy().withdrawPlayer(plr, cost);
 			return CompletionStatus.COMPLETE;
 		} else if(bal <= 0){
 			return CompletionStatus.INCOMPLETE;
 		} else {
-			StarQuest.getEconomy().withdrawPlayer(plr, bal);
+			StarQuest.getVaultEconomy().withdrawPlayer(plr, bal);
 			return CompletionStatus.PARTIAL;
 		}
 	}
@@ -91,11 +91,11 @@ public class MoneyContract implements Contract {
 	
 	@Override
 	public void penalizeForCancellation(Player p) {
-		StarQuest.getEconomy().withdrawPlayer(p, cost / 2);
+		StarQuest.getVaultEconomy().withdrawPlayer(p, cost / 2);
 	}
 	
 	@Override
 	public boolean canAffordCancellation(Player p){
-		return StarQuest.getEconomy().getBalance(p) >= (cost / 2);
+		return StarQuest.getVaultEconomy().getBalance(p) >= (cost / 2);
 	}
 }

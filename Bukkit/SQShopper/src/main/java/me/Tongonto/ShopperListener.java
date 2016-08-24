@@ -223,9 +223,9 @@ public class ShopperListener implements Listener {
 					if(plugin.openCartList.containsKey(player)){
 						Cart theirCart = plugin.openCartList.get(player);
 						double cost = theirCart.getCost();
-						double endPrice = StarQuest.getEconomy().getBalance(player) - cost;
+						double endPrice = StarQuest.getVaultEconomy().getBalance(player) - cost;
 						if(endPrice >= 0){
-							StarQuest.getEconomy().withdrawPlayer(player, cost);
+							StarQuest.getVaultEconomy().withdrawPlayer(player, cost);
 							plugin.getLogger().info("" + player.getName() + " bought");
 							for(int i=0; i<theirCart.cartContents.size(); i++) {
 								ItemStack itemBought = theirCart.getCartContents().get(i);
@@ -313,7 +313,7 @@ public class ShopperListener implements Listener {
 							DecimalFormat df = new DecimalFormat("#.##");
 							df.format(totalProfit);
 							plugin.getLogger().info("for " + Double.toString(totalProfit));
-							StarQuest.getEconomy().depositPlayer(player, totalProfit);
+							StarQuest.getVaultEconomy().depositPlayer(player, totalProfit);
 							player.sendMessage("Transaction Complete! " + Double.toString(totalProfit) + " made!");
 						}
 						if(itemsLeft == true) {

@@ -98,7 +98,7 @@ public class EmpireCommand implements CommandExecutor{
 			
 			if (full) {
 				
-				StarQuest.getEconomy().withdrawPlayer(p, StarQuest.getEconomy().getBalance(p));
+				StarQuest.getVaultEconomy().withdrawPlayer(p, StarQuest.getVaultEconomy().getBalance(p));
 				InventoryUtil.wipePlayerInventory(p);
 				
 				MPlayer.get(p).setFaction(FactionColl.get().getNone());
@@ -1019,7 +1019,7 @@ public class EmpireCommand implements CommandExecutor{
 						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pp user " + p.getUniqueId().toString() + " removegroup " + ep.getEmpire().getName() + "4");
 						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pp user " + p.getUniqueId().toString() + " removegroup " + ep.getEmpire().getName() + "5");
 						
-						StarQuest.getEconomy().withdrawPlayer(p, StarQuest.getEconomy().getBalance(p));
+						StarQuest.getVaultEconomy().withdrawPlayer(p, StarQuest.getVaultEconomy().getBalance(p));
 						InventoryUtil.wipePlayerInventory(p);
 							
 						MPlayer.get(p).setFaction(FactionColl.get().getNone());
@@ -1030,11 +1030,11 @@ public class EmpireCommand implements CommandExecutor{
 					
 					ep.setEmpire(e);
 					if(theirPercentage > 0.345)
-						StarQuest.getEconomy().depositPlayer(p, 7500);
+						StarQuest.getVaultEconomy().depositPlayer(p, 7500);
 					else if(theirPercentage > 0.30){
-						StarQuest.getEconomy().depositPlayer(p, 10000);
+						StarQuest.getVaultEconomy().depositPlayer(p, 10000);
 					} else {
-						StarQuest.getEconomy().depositPlayer(p, 12500);
+						StarQuest.getVaultEconomy().depositPlayer(p, 12500);
 					}
 					p.sendMessage(ChatColor.GREEN + "You have succesfully joined empire " + e + "!");
 					if(e == Empire.ARATOR){
