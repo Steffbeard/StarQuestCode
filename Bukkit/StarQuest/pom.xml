@@ -54,6 +54,10 @@
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
