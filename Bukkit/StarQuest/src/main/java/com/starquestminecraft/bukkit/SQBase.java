@@ -39,21 +39,27 @@ public class SQBase extends JavaPlugin {
     @EventHandler(priority = EventPriority.MONITOR)
     void onServiceRegister(final ServiceRegisterEvent event) {
 
-        Class<?> service = event.getProvider().getService();
-
-        if(service.equals(Chat.class) || service.equals(Economy.class) || service.equals(Permission.class)) {
-            StarQuest.setupVault(this);
-        }
+        onServiceChange(event.getProvider().getService());
 
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     void onServiceRegister(final ServiceUnregisterEvent event) {
 
-        Class<?> service = event.getProvider().getService();
+        onServiceChange(event.getProvider().getService());
 
-        if(service.equals(Chat.class) || service.equals(Economy.class) || service.equals(Permission.class)) {
-            StarQuest.setupVault(this);
+    }
+
+    private void onServiceChange(final Class<?> service) {
+
+        if(service.equals(Chat.class)) {
+            StarQuest.setupVaultChat(this);
+        }
+        else if(service.equals(Economy.class)) {
+            StarQuest.setupVaultEconomy(this);
+        }
+        else if(service.equals(Permission.class)) {
+            StarQuest.setupVaultPermission(this);
         }
 
     }
