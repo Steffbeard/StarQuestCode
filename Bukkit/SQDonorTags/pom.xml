@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.starquestminecraft</groupId>
+        <artifactId>bukkit-plugin</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <groupId>com.starquestminecraft.bukkit</groupId>
+    <artifactId>donortags</artifactId>
+    <version>1.1.0</version>
+
+    <name>SQDonorTags</name>
+
+    <developers>
+        <developer>
+            <id>buba141</id>
+            <email>afinke00@gmail.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <dependencies>
+        <dependency>
+           <groupId>com.greatmancode</groupId>
+           <artifactId>craftconomy3</artifactId>
+           <version>3.3.1-SNAPSHOT</version>
+       	   <scope>provided</scope>
+           <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+</project>

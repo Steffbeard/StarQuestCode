@@ -1,9 +1,0 @@
-name: SQApocalypse
-main: com.starquestminecraft.sqapocalypse.SQApocalypse
-version: 1.0.0
-commands:
-  apocalypse:
-    description: apocalypse information.
-    usage: /apoc score or /apoc top
-    aliases: [apoc, sqapocalypse]
-depend: [Movecraft]

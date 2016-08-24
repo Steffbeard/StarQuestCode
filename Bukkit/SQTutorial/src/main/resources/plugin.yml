@@ -1,0 +1,5 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.version}
+main: com.ginger_walnut.sqtutorial.SQTutorial
+commands:

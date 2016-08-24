@@ -1,0 +1,4 @@
+name: ${project.name}
+main: com.dibujaron.sqreconnect.SQReconnect
+version: ${project.version}
+depend: [SQGreeter]

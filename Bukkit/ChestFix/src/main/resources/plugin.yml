@@ -1,0 +1,8 @@
+name: ${project.name}
+version: ${project.version}
+main: com.gmail.igotburnt.ChestFix.ChestFix
+author: Netherfoam
+
+description: ${project.description}
+website: http://maxgamer.org
+softdepend: [HawkEye]

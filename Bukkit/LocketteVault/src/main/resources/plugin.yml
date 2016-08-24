@@ -1,0 +1,3 @@
+name: ${project.name}
+main: com.dibujaron.lockettevault.LocketteVault
+version: ${project.version}

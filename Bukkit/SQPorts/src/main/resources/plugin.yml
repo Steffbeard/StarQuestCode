@@ -1,0 +1,5 @@
+name: ${project.name}
+version: ${project.version}
+main: com.dibujaron.sqports.SQPorts
+depend: [WorldGuard, Movecraft]
+description: ${project.description}

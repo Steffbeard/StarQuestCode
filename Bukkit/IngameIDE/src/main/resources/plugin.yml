@@ -1,0 +1,7 @@
+name: ${project.name}
+main: com.dibujaron.ingameide.IngameIDE
+version: ${project.version}
+commands:
+    java:
+        description: edit java ingame.
+        usage: /java <command>

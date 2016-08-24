@@ -1,0 +1,4 @@
+name: ${project.name}
+main: us.higashiyama.george.SQLTownyCheck.SQLTownyCheck
+version: ${project.version}
+depend: [Vault]

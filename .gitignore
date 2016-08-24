@@ -1,26 +1,6 @@
-/bin/
-*/bin/
+# Maven
+**/target
 
-# eclipse specific git ignore
-*.pydevproject
-.project
-.metadata
-bin/**
-tmp/**
-tmp/**/*
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.classpath
-.settings/
-.loadpath
+# Mac filesystem dust
+**/.DS_Store
 
-# External tool builders
-.externalToolBuilders/
-
-# Locally stored "Eclipse launch configurations"
-*.launch
-/.DS_Store
-*.classpath

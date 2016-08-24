@@ -1,0 +1,15 @@
+name: ${project.name}
+main: com.ginger_walnut.sqpowertools.SQPowerTools
+version: ${project.version}
+description: ${project.description}
+commands:
+  sqpowertools:
+    description: shows information regarding SQPowerTools
+    aliases: [sqpt, sqpowertool]
+permissions:
+  SQPowerTools.reload:
+    description: permission node for reloading SQPowerTools
+    default: op
+  SQPowerTools.spawn:
+    description: permission node for spawning power tools
+    default: op

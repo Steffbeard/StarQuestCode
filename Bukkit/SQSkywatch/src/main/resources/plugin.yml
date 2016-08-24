@@ -1,0 +1,14 @@
+name: ${project.name}
+version: ${project.version}
+main: com.dibujaron.skywatch.SQSkywatch
+depend: [Movecraft]
+commands:
+   drone:
+      description: spawn a drone on a player.
+      usage: /drone <player>
+   shocktroop:
+      description: spawn a shocktroop on a player.
+      usage: /shocktroop <player>
+   triggerSkywatch:
+      description: spawn a shocktroop on a player.
+      usage: /shocktroop <player>
