@@ -9,10 +9,10 @@
     </parent>
 
     <groupId>com.starquestminecraft.bukkit</groupId>
-    <artifactId>database</artifactId>
+    <artifactId>starquest</artifactId>
     <version>1.0.0</version>
 
-    <name>SQDatabase</name>
+    <name>StarQuest</name>
 
     <developers>
         <developer>

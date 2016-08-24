@@ -1,5 +1,5 @@
 
-package com.starquestminecraft.bukkit.database;
+package com.starquestminecraft.bukkit;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,13 +11,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-public class SQDatabase extends JavaPlugin {
+public class StarQuest extends JavaPlugin {
 
-    private static SQDatabase instance;
+    private static StarQuest instance;
 
     private HikariDataSource source;
 
-    public SQDatabase() {
+    public StarQuest() {
         instance = this;
     }
 
