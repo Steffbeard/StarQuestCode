@@ -1,10 +1,10 @@
-name: SQEmpire
-version: 3.1.33
-description: StarQuest Empires!
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
 author: dibujaron
 website: http://starquestminecraft.com
 main: com.whirlwindgames.dibujaron.sqempire.SQEmpire
-depend: [Movecraft, Vault, WorldGuard]
+depend: [Movecraft, StarQuest, WorldGuard]
 
 commands:
    empire:

@@ -24,7 +24,6 @@ import net.homeip.hall.sqnetevents.packet.Data;
 import net.homeip.hall.sqnetevents.packet.EventPacket;
 import net.homeip.hall.sqnetevents.packet.Packet;
 import net.homeip.hall.sqnetevents.packet.ReceivedDataEvent;
-import net.milkbowl.vault.economy.Economy;
 
 public class SQShopper extends JavaPlugin {
 	
@@ -34,9 +33,7 @@ public class SQShopper extends JavaPlugin {
 	protected ArrayList<Sign> detectedSigns = new ArrayList<Sign>();
 	boolean newDay = false;
 	boolean sentTimeout = false;
-	
-	private Economy economy = null;
-	
+
 	SQShopper shopperInstance;
 	
 	public Permission makeShopSignPermission = new Permission("makeShopSign.allowed");
@@ -45,7 +42,6 @@ public class SQShopper extends JavaPlugin {
 	public void onEnable() {
 		getLogger().info("SQShopper has been enabled!");
 		new ShopperListener(this);
-		economy = registerEconomy();
 		shopperInstance = this;
 		PluginManager pm = getServer().getPluginManager();
 		pm.addPermission(makeShopSignPermission);
@@ -136,20 +132,6 @@ public class SQShopper extends JavaPlugin {
 		}
 		this.saveConfig();
 		getLogger().info("SQShopper has been disabled!");
-	}
-	
-	private Economy registerEconomy() {
-		Economy retval = null;
-		RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
-		if (economyProvider != null) {
-			retval = economyProvider.getProvider();
-		}
-
-		return retval;
-	}
-	
-	public Economy getEconomy() {
-		return economy;
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {

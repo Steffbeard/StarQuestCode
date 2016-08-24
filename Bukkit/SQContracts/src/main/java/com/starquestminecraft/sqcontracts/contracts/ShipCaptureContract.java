@@ -7,9 +7,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
-import net.countercraft.movecraft.bungee.InventoryUtils;
+import com.starquestminecraft.bukkit.StarQuest;
 import net.countercraft.movecraft.craft.Craft;
-import net.milkbowl.vault.economy.Economy;
 
 import com.starquestminecraft.sqcontracts.SQContracts;
 import com.starquestminecraft.sqcontracts.database.ContractPlayerData;
@@ -113,10 +112,7 @@ public class ShipCaptureContract implements Contract{
 	@Override
 	public void giveRewards(ContractPlayerData d) {
 		OfflinePlayer plr = Bukkit.getOfflinePlayer(d.getPlayer());
-		Economy e = SQContracts.get().getEconomy();
-		if(e != null){
-			SQContracts.get().getEconomy().depositPlayer(plr, reward);
-		}
+		StarQuest.getEconomy().depositPlayer(plr, reward);
 		String currency;
 		if(isBlackMarket()){
 			currency = "infamy";
@@ -134,11 +130,11 @@ public class ShipCaptureContract implements Contract{
 	
 	@Override
 	public void penalizeForCancellation(Player p) {
-		SQContracts.get().getEconomy().withdrawPlayer(p, reward / 2);
+		StarQuest.getEconomy().withdrawPlayer(p, reward / 2);
 	}
 	
 	@Override
 	public boolean canAffordCancellation(Player p){
-		return SQContracts.get().getEconomy().getBalance(p) >= (reward / 2);
+		return StarQuest.getEconomy().getBalance(p) >= (reward / 2);
 	}
 }

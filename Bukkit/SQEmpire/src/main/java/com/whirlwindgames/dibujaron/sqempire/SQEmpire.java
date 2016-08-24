@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import net.milkbowl.vault.economy.Economy;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -50,7 +48,6 @@ public class SQEmpire extends JavaPlugin{
 	
 	private static SQEmpire instance;
 	private static Planet thisPlanet;
-	public static Economy economy;
 	public static WorldGuardPlugin worldGuardPlugin;
 	public static FileConfiguration config;
 	
@@ -112,13 +109,6 @@ public class SQEmpire extends JavaPlugin{
 			pm.registerEvents( new BetaListener(), this );
 			pm.registerEvents( new PlayerHandler(), this );
 		
-	        RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
-	        if (economyProvider != null) {
-	            economy = economyProvider.getProvider();
-	        } else {
-	        	System.out.println("No economy found!");
-	        }
-	        
 	        config = this.getConfig();
 			
 		}

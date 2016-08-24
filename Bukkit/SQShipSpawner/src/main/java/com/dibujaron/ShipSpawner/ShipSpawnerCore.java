@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import net.countercraft.movecraft.listener.InteractListener;
-import net.milkbowl.vault.economy.Economy;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -36,9 +33,10 @@ import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldedit.schematic.SchematicFormat;
 import com.sk89q.worldedit.WorldEdit;
+import com.starquestminecraft.bukkit.StarQuest;
 
 public class ShipSpawnerCore extends JavaPlugin implements Listener {
-	public static Economy economy = null;
+
 	static int PRICE, LENGTH, WIDTH, HEIGHT;
 	static String SCHEMATIC;
 	static final int SPAWNER_TIMEOUT = 5 * 60 * 1000;
@@ -47,7 +45,7 @@ public class ShipSpawnerCore extends JavaPlugin implements Listener {
 	public void onEnable() {
 		saveDefaultConfig();
 		getServer().getPluginManager().registerEvents(this, this);
-		setupEconomy();
+
 		PRICE = getConfig().getInt("price");
 		WIDTH = getConfig().getInt("width");
 		LENGTH = getConfig().getInt("length");
@@ -69,7 +67,7 @@ public class ShipSpawnerCore extends JavaPlugin implements Listener {
 					s.setLine(0, ChatColor.AQUA + "Ship Spawner");
 					s.setLine(1, "-*+*-");
 					s.setLine(2, schematic);
-					s.setLine(3, price + " " + economy.currencyNamePlural());
+					s.setLine(3, price + " " + StarQuest.getEconomy().currencyNamePlural());
 					s.update();
 					return;
 				}
@@ -88,8 +86,8 @@ public class ShipSpawnerCore extends JavaPlugin implements Listener {
 					File f;
 					Vector v = new Vector(startBlock.getX(), startBlock.getY(), startBlock.getZ());
 
-					if (economy.getBalance(event.getPlayer()) < price) {
-						event.getPlayer().sendMessage("You do not have " + price + " " + economy.currencyNamePlural());
+					if (StarQuest.getEconomy().getBalance(event.getPlayer()) < price) {
+						event.getPlayer().sendMessage("You do not have " + price + " " + StarQuest.getEconomy().currencyNamePlural());
 						return;
 					}
 
@@ -169,8 +167,8 @@ public class ShipSpawnerCore extends JavaPlugin implements Listener {
 							}
 						}
 						event.getPlayer().sendMessage("Enjoy your new ship!");
-						economy.withdrawPlayer(event.getPlayer(), price);
-						event.getPlayer().sendMessage(price + " " + economy.currencyNamePlural() + " have been withdrawn from your account.");
+						StarQuest.getEconomy().withdrawPlayer(event.getPlayer(), price);
+						event.getPlayer().sendMessage(price + " " + StarQuest.getEconomy().currencyNamePlural() + " have been withdrawn from your account.");
 						event.getPlayer().getWorld().playSound(startBlock, Sound.BLOCK_PISTON_EXTEND, 2.0F, 1.0F);
 						ShipSpawnerCore.data.put(s.getLocation(), System.currentTimeMillis());
 						event.getPlayer().sendMessage("Be sure to move your ship away from the spawner quickly! After" + ChatColor.RED + " five minutes " + ChatColor.WHITE + "your ship can be deleted!");
@@ -221,20 +219,11 @@ public class ShipSpawnerCore extends JavaPlugin implements Listener {
 
 	private int getPrice(Sign s) {
 		String priceline = s.getLine(3);
-		String cname = economy.currencyNamePlural();
+		String cname = StarQuest.getEconomy().currencyNamePlural();
 		String price = priceline.substring(0, priceline.length() - cname.length());
 		return Integer.parseInt(price.trim());
 	}
 
-	private boolean setupEconomy() {
-		RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
-		if (economyProvider != null) {
-			economy = economyProvider.getProvider();
-		}
-
-		return (economy != null);
-	}
-	
 	private void clearSpawner(Sign spawner, Player clicker){
 		Long timestamp = data.get(spawner.getLocation());
 		System.out.println("timestamp: " + timestamp);

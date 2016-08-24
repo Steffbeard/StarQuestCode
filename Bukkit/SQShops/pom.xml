@@ -24,4 +24,11 @@
         </developer>
     </developers>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.starquestminecraft.bukkit</groupId>
+            <artifactId>starquest</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

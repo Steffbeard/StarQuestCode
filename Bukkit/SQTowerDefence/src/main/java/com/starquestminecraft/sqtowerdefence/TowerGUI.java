@@ -24,6 +24,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 import org.bukkit.scheduler.BukkitTask;
 
+import com.starquestminecraft.bukkit.StarQuest;
 import com.starquestminecraft.sqtechbase.SQTechBase;
 import com.starquestminecraft.sqtechbase.gui.GUI;
 import com.starquestminecraft.sqtechbase.objects.GUIBlock;
@@ -31,8 +32,6 @@ import com.starquestminecraft.sqtechbase.objects.Machine;
 import com.starquestminecraft.sqtechbase.util.InventoryUtils;
 import com.starquestminecraft.sqtechbase.util.ObjectUtils;
 import com.whirlwindgames.dibujaron.sqempire.database.object.EmpirePlayer;
-
-import net.milkbowl.vault.economy.Economy;
 
 public class TowerGUI extends GUI {
 	
@@ -180,8 +179,7 @@ public class TowerGUI extends GUI {
 				EmpirePlayer ep = EmpirePlayer.getOnlinePlayer(owner);
 				t.turretEmpire = ep.getEmpire().toString();
 				
-				Economy economy = com.starquestminecraft.sqtowerdefence.SQTowerDefence.sqtdInstance.getEconomy();
-				Double balance = economy.getBalance(owner);
+				Double balance = StarQuest.getEconomy().getBalance(owner);
 				if(balance < t.cost) {
 					owner.sendMessage("You cannot afford that turret!");
 					return;
@@ -205,7 +203,7 @@ public class TowerGUI extends GUI {
 					t.setTurretBlock(blockFour, 3);
 					t.setTurretBlock(blockFive, 4);
 					t.owner = owner.getDisplayName();
-					economy.withdrawPlayer(owner, t.cost);
+					StarQuest.getEconomy().withdrawPlayer(owner, t.cost);
 					TurretData turretData = new TurretData(t);
 					towerMachine.data.put("turretData", turretData);
 					towerMachine.turret = t;
@@ -325,13 +323,13 @@ public class TowerGUI extends GUI {
 					close = true;
 				}
 				else if(itemName.contains("Repair")) {
-					Economy economy = com.starquestminecraft.sqtowerdefence.SQTowerDefence.sqtdInstance.getEconomy();
-					Double balance = economy.getBalance(owner);
+
+					Double balance = StarQuest.getEconomy().getBalance(owner);
 					if(balance < towerMachine.turret.cost) {
 						owner.sendMessage("You cannot afford to repair this turret!");
 						return;
 					}
-					economy.withdrawPlayer(owner, towerMachine.turret.cost);
+					StarQuest.getEconomy().withdrawPlayer(owner, towerMachine.turret.cost);
 					
 					Block mainBlock = guiBlock.getLocation().getBlock();
 					Block blockTwo = mainBlock.getRelative(BlockFace.UP);

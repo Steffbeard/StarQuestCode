@@ -9,7 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import com.dibujaron.cardboardbox.CardboardBox;
+import com.starquestminecraft.bukkit.cardboardbox.CardboardBox;
 import com.starquestminecraft.sqtechbase.objects.GUIBlock;
 import com.starquestminecraft.sqtechbase.util.InventoryUtils;
 

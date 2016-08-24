@@ -13,12 +13,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import net.homeip.hall.sqglobalinfo.database.BedspawnConnectionProvider;
+import com.starquestminecraft.bukkit.StarQuest;
 
 public class SQLDatabase {
-	
-	private ConnectionProvider con;
-	
+		
 	static final String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS global_player_info (name varchar(16), uuid varchar(36), ip varchar(40), time DATETIME, online tinyint, world varchar(16), location varchar(32), PRIMARY KEY (name))";
 	
 	static final String UPSERT_SQL = "INSERT INTO global_player_info (name, uuid, ip, time, online, world, location) VALUES (?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE uuid = VALUES(uuid), ip = VALUES(ip), time = VALUES(time), online = VALUES(online), world = VALUES(world), location = VALUES(location)";
@@ -31,8 +29,13 @@ public class SQLDatabase {
 	
 	
 	public SQLDatabase() {
-		con = new BedspawnConnectionProvider();
-		createTable(getConnection());
+		
+        try {
+            createTable(getConnection());
+        }
+        catch(SQLException ex) {
+            
+        }
 	}
 	
 	private void createTable(Connection connection) {
@@ -131,7 +134,7 @@ public class SQLDatabase {
  		return null;
  	}
 
- 	public Connection getConnection() {
- 		return con.getConnection();
+ 	public Connection getConnection() throws SQLException {
+        return StarQuest.getDatabaseConnection();
  	}
 }

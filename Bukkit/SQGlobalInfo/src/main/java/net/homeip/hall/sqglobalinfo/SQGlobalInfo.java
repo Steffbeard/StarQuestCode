@@ -220,7 +220,14 @@ public class SQGlobalInfo extends JavaPlugin implements Listener {
 	}
 	//returns sqlconnect session
 	public Connection getConnection() {
-		return getSQLDatabase().getConnection();
+
+        try {
+            return getSQLDatabase().getConnection();
+        }
+        catch(Exception ex) {
+            return null;
+        }
+
 	}
 	//returns true if the player is in the do not track list (managers/upper staff)
 	private boolean playerIsIncognito(String playerName) {

@@ -2,5 +2,5 @@ name: ${project.name}
 version: ${project.version}
 description: ${project.description}
 main: com.starquestminecraft.sqtowerdefence.SQTowerDefence
-depend: [SQTechBase]
+depend: [StarQuest, SQTechBase]
 loadbefore: [SQAutomators]

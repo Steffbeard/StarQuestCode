@@ -23,8 +23,6 @@ public class SQPowerBoost extends JavaPlugin {
 
         database = new SQLDatabase();
 
-        EconomyHandler.setupEconomy();
-
         if(getServer().getServerName().equals("Trinitos_Alpha")) {
             UpdateTask.schedule(this);
         }
@@ -54,7 +52,7 @@ public class SQPowerBoost extends JavaPlugin {
     public boolean cmdPowerBoost(final Player player, final String[] args) {
 
         if(args.length < 1) {
-            player.sendMessage("Powerboosts cost " + EconomyHandler.getCost() + " per power per day.");
+            player.sendMessage("Powerboosts cost " + getPowerBoostCost() + " per power per day.");
             return true;
         }
 
@@ -174,6 +172,10 @@ public class SQPowerBoost extends JavaPlugin {
 
     }
 
+    public int getPowerBoostCost() {
+        return 100;
+    }
+
     private void setTaxes(final Faction faction, final Player player, final int rate) {
 
         database.setTaxesOfFaction(faction, rate);
@@ -244,9 +246,9 @@ public class SQPowerBoost extends JavaPlugin {
 
         FactionPowerBoost boost = new FactionPowerBoost(faction, amount);
 
-        if(Econ.hasAtLeast(faction, boost.getAmount() * EconomyHandler.getCost(), "to purchase powerboost")) {
+        if(Econ.hasAtLeast(faction, boost.getAmount() * getPowerBoostCost(), "to purchase powerboost")) {
 
-            Econ.modifyMoney(faction, -1 * boost.getAmount() * EconomyHandler.getCost(), "purchasing powerboost");
+            Econ.modifyMoney(faction, -1 * boost.getAmount() * getPowerBoostCost(), "purchasing powerboost");
 
             player.sendMessage("Your faction powerboost has been set and you have been charged for the first day.");
 

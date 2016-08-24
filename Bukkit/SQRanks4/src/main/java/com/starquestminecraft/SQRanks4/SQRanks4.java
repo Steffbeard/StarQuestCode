@@ -13,13 +13,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.starquestminecraft.bukkit.StarQuest;
 import net.milkbowl.vault.chat.Chat;
-import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
 public class SQRanks4 extends JavaPlugin implements Listener{
 	public static Permission permission;
-	public static Economy eco;
 	public static Chat chat;
 	String[] ara_ranks = {"Arator0", "Arator1", "Arator2", "Arator3", "Arator4", "Arator5"};
 	String[] req_ranks = {"Requiem0", "Requiem1", "Requiem2", "Requiem3", "Requiem4", "Requiem5"};
@@ -28,7 +27,6 @@ public class SQRanks4 extends JavaPlugin implements Listener{
 
 	public void onEnable(){
 		setupPermissions();
-		setupEconomy();
 		setupChat();
 		Bukkit.getPluginManager().registerEvents(this, this);
 		this.saveDefaultConfig();
@@ -98,18 +96,18 @@ public class SQRanks4 extends JavaPlugin implements Listener{
 		}
 		
 		if(skill.equals("all")) {
-			if(eco.has(player, price) && ExperienceAPI.getPowerLevel(player) >= level && has_prereqs){
+			if(StarQuest.getEconomy().has(player, price) && ExperienceAPI.getPowerLevel(player) >= level && has_prereqs){
 				//permission.playerRemoveGroup(player, current_rank);
 				//Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pp user " + player.getName() + " removegroup " + current_rank);
 				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pp user " + player.getName() + " addgroup " + next_rank);
-				eco.withdrawPlayer(player, price);
+				StarQuest.getEconomy().withdrawPlayer(player, price);
 				player.sendMessage(ChatColor.GREEN + "You have bought the rank: " + rankTitle(next_rank));
 			}
 			else{
 				if(ExperienceAPI.getPowerLevel(player) < level){
 					player.sendMessage(ChatColor.GOLD + "This rank requires a total power level of at least " + Integer.toString(level));
 				}
-				if(!eco.has(player, price)){
+				if(!StarQuest.getEconomy().has(player, price)){
 					player.sendMessage(ChatColor.GOLD + "You cannot afford this rank, it costs " + Double.toString(price) + " credits");
 				}
 				if(!has_prereqs){
@@ -120,17 +118,17 @@ public class SQRanks4 extends JavaPlugin implements Listener{
 				}
 			}
 		}
-		else if(eco.has(player, price) && ExperienceAPI.getLevel(player, skill) >= level && has_prereqs){
+		else if(StarQuest.getEconomy().has(player, price) && ExperienceAPI.getLevel(player, skill) >= level && has_prereqs){
 			//Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pp user " + player.getName() + " removegroup " + current_rank);
 			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pp user " + player.getName() + " addgroup " + next_rank);
-			eco.withdrawPlayer(player, price);
+			StarQuest.getEconomy().withdrawPlayer(player, price);
 			player.sendMessage(ChatColor.GREEN + "You have bought the rank: " + rankTitle(next_rank));
 		}
 		else{
 			if(ExperienceAPI.getLevel(player, skill) < level){
 				player.sendMessage(ChatColor.GOLD + "This rank requires a " + skill + " level of at least " + Integer.toString(level));
 			}
-			if(!eco.has(player, price)){
+			if(!StarQuest.getEconomy().has(player, price)){
 				player.sendMessage(ChatColor.GOLD + "You cannot afford this rank, it costs " + Double.toString(price) + " credits");
 			}
 			if(!has_prereqs){
@@ -151,14 +149,6 @@ public class SQRanks4 extends JavaPlugin implements Listener{
 		return (permission != null);
 	}
 
-	private boolean setupEconomy(){
-		RegisteredServiceProvider<Economy> ecoProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
-		if (ecoProvider != null) {
-			eco = ecoProvider.getProvider();
-		}
-		return (eco != null);
-	}
-	
 	private boolean setupChat() {
         RegisteredServiceProvider<Chat> chatProvider = getServer().getServicesManager().getRegistration(Chat.class);
         chat = chatProvider.getProvider();

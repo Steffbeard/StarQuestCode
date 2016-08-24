@@ -23,7 +23,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
-import com.dibujaron.cardboardbox.Knapsack;
+import com.starquestminecraft.bukkit.cardboardbox.Knapsack;
 import com.ginger_walnut.sqsmoothcraft.entites.CustomEntityType;
 import com.ginger_walnut.sqsmoothcraft.enums.BlockType;
 import com.ginger_walnut.sqsmoothcraft.gui.Gui;

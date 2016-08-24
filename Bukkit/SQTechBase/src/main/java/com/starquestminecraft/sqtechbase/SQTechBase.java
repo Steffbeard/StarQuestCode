@@ -1,6 +1,7 @@
 package com.starquestminecraft.sqtechbase;
 
 import java.io.File;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.starquestminecraft.bukkit.StarQuest;
 import com.starquestminecraft.sqtechbase.database.DatabaseInterface;
 import com.starquestminecraft.sqtechbase.database.SQLDatabase;
 import com.starquestminecraft.sqtechbase.gui.GUI;
@@ -58,10 +60,10 @@ public class SQTechBase extends JavaPlugin {
 		
 		saveDefaultConfig();
 		
-		try {
+		try(Connection con = StarQuest.getDatabaseConnection()) {
 			
-			SQLDatabase.clearMachines(SQLDatabase.con.getConnection(), SQTechBase.config.getString("server name"));
-			SQLDatabase.clearGUIBlocks(SQLDatabase.con.getConnection(), SQTechBase.config.getString("server name"));
+			SQLDatabase.clearMachines(con, SQTechBase.config.getString("server name"));
+			SQLDatabase.clearGUIBlocks(con, SQTechBase.config.getString("server name"));
 			
 		} catch (Exception e) {
 			

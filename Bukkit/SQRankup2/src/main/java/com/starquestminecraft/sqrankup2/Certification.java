@@ -12,6 +12,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import com.starquestminecraft.bukkit.StarQuest;
 import com.starquestminecraft.sqcontracts.SQContracts;
 import com.starquestminecraft.sqcontracts.database.ContractPlayerData;
 
@@ -328,7 +329,7 @@ public class Certification implements Comparable<Certification>{
 
 	public boolean canAffordCosts(Player p) {
 		// TODO Auto-generated method stub
-		return SQRankup2.eco.has(p, getCost());
+		return StarQuest.getEconomy().has(p, getCost());
 	}
 
 	public boolean hasLevels(ContractPlayerData d) {
@@ -336,7 +337,7 @@ public class Certification implements Comparable<Certification>{
 	}
 
 	public void takeCost(Player p) {
-		SQRankup2.eco.withdrawPlayer(p, getCost());
+		StarQuest.getEconomy().withdrawPlayer(p, getCost());
 
 	}
 

@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import net.milkbowl.vault.chat.Chat;
-import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
 import org.bukkit.Achievement;
@@ -27,7 +26,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.starquestminecraft.sqcontracts.SQContracts;
 import com.starquestminecraft.sqcontracts.database.ContractPlayerData;
-import com.starquestminecraft.sqrankup2.database.Database;
 import com.starquestminecraft.sqrankup2.database.SQLDatabase;
 
 public class SQRankup2 extends JavaPlugin implements Listener{
@@ -37,10 +35,9 @@ public class SQRankup2 extends JavaPlugin implements Listener{
 	HashMap<String, BonusTag> bonusTags = new HashMap<String, BonusTag>();
 
 	private static SQRankup2 instance;
-	private Database database;
+	private SQLDatabase database;
 	public static Permission permission;
 	public static Chat chat;
-	public static Economy eco;
 
 	public void onEnable() {
 		instance = this;
@@ -58,7 +55,6 @@ public class SQRankup2 extends JavaPlugin implements Listener{
 		}
 		setupPermissions();
 		setupChat();
-		setupEconomy();
 		Bukkit.getPluginManager().registerEvents(this, this);
 		AchievementTag.loadAchievements(bonusTags);
 
@@ -99,20 +95,11 @@ public class SQRankup2 extends JavaPlugin implements Listener{
 		return (chat != null);
 	}
 	
-	private boolean setupEconomy(){
-		RegisteredServiceProvider<Economy> ecoProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
-		if (ecoProvider != null) {
-			eco = ecoProvider.getProvider();
-		}
-
-		return (eco != null);
-	}
-
 	public static SQRankup2 get() {
 		return instance;
 	}
 
-	public Database getCertsDatabase() {
+	public SQLDatabase getCertsDatabase() {
 		return database;
 	}
 
@@ -218,7 +205,6 @@ public class SQRankup2 extends JavaPlugin implements Listener{
 		}
 		setupPermissions();
 		setupChat();
-		setupEconomy();
 		Bukkit.getPluginManager().registerEvents(this, this);
 		AchievementTag.loadAchievements(bonusTags);
 

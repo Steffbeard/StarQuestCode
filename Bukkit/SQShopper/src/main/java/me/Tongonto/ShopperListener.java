@@ -20,10 +20,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 
+import com.starquestminecraft.bukkit.StarQuest;
 import net.homeip.hall.sqnetevents.packet.Data;
 import net.homeip.hall.sqnetevents.packet.ReceivedDataEvent;
-import net.milkbowl.vault.economy.Economy;
-
 
 public class ShopperListener implements Listener {
 	
@@ -223,11 +222,10 @@ public class ShopperListener implements Listener {
 				if(clickedSign.getLine(0).equals(ChatColor.BOLD + "Checkout")) {
 					if(plugin.openCartList.containsKey(player)){
 						Cart theirCart = plugin.openCartList.get(player);
-						Economy economy = plugin.shopperInstance.getEconomy();
 						double cost = theirCart.getCost();
-						double endPrice = economy.getBalance(player) - cost;
+						double endPrice = StarQuest.getEconomy().getBalance(player) - cost;
 						if(endPrice >= 0){
-							economy.withdrawPlayer(player, cost);
+							StarQuest.getEconomy().withdrawPlayer(player, cost);
 							plugin.getLogger().info("" + player.getName() + " bought");
 							for(int i=0; i<theirCart.cartContents.size(); i++) {
 								ItemStack itemBought = theirCart.getCartContents().get(i);
@@ -249,7 +247,6 @@ public class ShopperListener implements Listener {
 				
 				if(clickedSign.getLine(0).equals(ChatColor.BOLD + "Sell Shop")) {
 					if(blockClicked.getRelative(BlockFace.DOWN).getType() == Material.CHEST) {
-						Economy economy = plugin.shopperInstance.getEconomy();
 						Block blockBelow = blockClicked.getRelative(BlockFace.DOWN);
 						Chest sellChest = (Chest) blockBelow.getState();
 						ItemStack[] chestList = sellChest.getInventory().getContents();
@@ -316,7 +313,7 @@ public class ShopperListener implements Listener {
 							DecimalFormat df = new DecimalFormat("#.##");
 							df.format(totalProfit);
 							plugin.getLogger().info("for " + Double.toString(totalProfit));
-							economy.depositPlayer(player, totalProfit);
+							StarQuest.getEconomy().depositPlayer(player, totalProfit);
 							player.sendMessage("Transaction Complete! " + Double.toString(totalProfit) + " made!");
 						}
 						if(itemsLeft == true) {

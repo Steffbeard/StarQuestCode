@@ -3,20 +3,25 @@ package com.ginger_walnut.sqsmoothcraft.database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
-public class SQLDatabase {
+import com.starquestminecraft.bukkit.StarQuest;
 
-	BedspawnConnectionProvider con;
+public class SQLDatabase {
 
 	static final String WRITE_OBJECT_SETTINGS_SQL = "CALL set_smoothcraft_options(?, ?, ?);";
 	static final String READ_OBJECT_SETTINGS_SQL = "SELECT * FROM minecraft.smoothcraft_settings";
 	static final String CREATE_TABLE_SETTINGS = "CREATE TABLE IF NOT EXISTS minecraft.smoothcraft_settings(player varchar(40) NOT NULL, object BLOB)";
 	
 	public SQLDatabase() {
-		
-		con = new BedspawnConnectionProvider();
-		createSettingsTable(con.getConnection());
+
+        try {
+            createSettingsTable(StarQuest.getDatabaseConnection());
+        }
+        catch(SQLException ex) {
+
+        }
 		
 	}
 

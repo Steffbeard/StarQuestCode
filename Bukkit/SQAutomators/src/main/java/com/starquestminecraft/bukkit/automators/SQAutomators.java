@@ -15,7 +15,6 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.starquestminecraft.sqtechbase.SQTechBase;
-import net.milkbowl.vault.economy.Economy;
 
 public class SQAutomators extends JavaPlugin {
 
@@ -24,16 +23,12 @@ public class SQAutomators extends JavaPlugin {
     public static List<Recipe> recipes = new ArrayList<>();
     public static Map<ItemStack, Ingredient> ingredients = new HashMap<>();
 
-    private Economy economy = null;
-
     @Override
     public void onEnable() {
 
         getLogger().info("SQAutomators has been enabled!");
 
         instance = this;
-
-        economy = registerEconomy();
 
         crafterUpgradeCost = getConfig().getDouble("crafterUpgradeCost");
         int run_speed = getConfig().getInt("runspeed");
@@ -169,22 +164,6 @@ public class SQAutomators extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().info("SQAutomators has been disabled!");
-    }
-
-    private Economy registerEconomy() {
-
-        RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(Economy.class);
-
-        if(economyProvider != null) {
-            return economyProvider.getProvider();
-        }
-
-        return null;
-
-    }
-
-    public Economy getEconomy() {
-        return economy;
     }
 
 }

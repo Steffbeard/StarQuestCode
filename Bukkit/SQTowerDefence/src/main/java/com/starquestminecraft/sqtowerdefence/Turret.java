@@ -27,6 +27,7 @@ import org.bukkit.potion.PotionType;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
+import com.starquestminecraft.bukkit.StarQuest;
 import com.starquestminecraft.sqtechbase.SQTechBase;
 import com.starquestminecraft.sqtechbase.objects.GUIBlock;
 import com.starquestminecraft.sqtechbase.objects.Machine;
@@ -34,9 +35,6 @@ import com.starquestminecraft.sqtechbase.objects.Network;
 import com.starquestminecraft.sqtechbase.util.ObjectUtils;
 import com.whirlwindgames.dibujaron.sqempire.Empire;
 import com.whirlwindgames.dibujaron.sqempire.database.object.EmpirePlayer;
-
-import net.milkbowl.vault.economy.Economy;
-
 
 public class Turret implements Serializable {
 	
@@ -574,8 +572,8 @@ public class Turret implements Serializable {
 		}
 		
 			if(possibleUpgrades.contains(upgrade)) {
-			Economy economy = com.starquestminecraft.sqtowerdefence.SQTowerDefence.sqtdInstance.getEconomy();
-			Double balance = economy.getBalance(player);
+
+			Double balance = StarQuest.getEconomy().getBalance(player);
 			Double cost = upgrade.getCurrentCost();
 			if(balance > cost) {
 				switch (upgrade.getUpgradeType()) {
@@ -596,7 +594,7 @@ public class Turret implements Serializable {
 				}
 				
 				upgrade.addLevel();
-				economy.withdrawPlayer(player, cost);
+				StarQuest.getEconomy().withdrawPlayer(player, cost);
 				
 				if(upgrade.level == upgrade.maxLevel) {
 					possibleUpgrades.remove(upgrade);
@@ -622,8 +620,8 @@ public class Turret implements Serializable {
 			
 			}
 			else if (conflictingUpgrades.contains(upgrade)) {
-				Economy economy = com.starquestminecraft.sqtowerdefence.SQTowerDefence.sqtdInstance.getEconomy();
-				Double balance = economy.getBalance(player);
+
+				Double balance = StarQuest.getEconomy().getBalance(player);
 				Double cost = upgrade.getCurrentCost();
 				if(balance > cost) {
 					switch (upgrade.getUpgradeType()) {
@@ -643,7 +641,7 @@ public class Turret implements Serializable {
 						break;
 					}
 					upgrade.addLevel();
-					economy.withdrawPlayer(player, cost);
+					StarQuest.getEconomy().withdrawPlayer(player, cost);
 					
 					hasConflicts = true;
 					possibleUpgrades.add(upgrade);

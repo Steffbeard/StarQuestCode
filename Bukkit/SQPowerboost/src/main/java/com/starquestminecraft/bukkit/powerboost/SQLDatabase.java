@@ -10,7 +10,7 @@ import java.util.UUID;
 import org.bukkit.entity.Player;
 
 import com.massivecraft.factions.entity.Faction;
-import com.starquestminecraft.bukkit.database.SQDatabase;
+import com.starquestminecraft.bukkit.StarQuest;
 import com.starquestminecraft.bukkit.powerboost.boost.FactionPowerBoost;
 import com.starquestminecraft.bukkit.powerboost.boost.PersonalPowerBoost;
 
@@ -25,7 +25,7 @@ public class SQLDatabase {
     public SQLDatabase() {
 
         try {
-            createTable(SQDatabase.getConnection());
+            createTable(StarQuest.getDatabaseConnection());
         }
         catch(SQLException ex) {
             throw new RuntimeException(ex);
@@ -53,7 +53,7 @@ public class SQLDatabase {
 
         String stripped_id = stripDashes(faction.getId());
 
-        try(Connection con = SQDatabase.getConnection()) {
+        try(Connection con = StarQuest.getDatabaseConnection()) {
 
             try(PreparedStatement ps = con.prepareStatement(SQL_SELECT_TAXES)) {
 
@@ -82,7 +82,7 @@ public class SQLDatabase {
 
         String stripped_id = stripDashes(faction.getId());
 
-        try(Connection con = SQDatabase.getConnection()) {
+        try(Connection con = StarQuest.getDatabaseConnection()) {
 
             try(PreparedStatement ps = con.prepareStatement(SQL_INSUPD_TAXES)) {
 
@@ -113,7 +113,7 @@ public class SQLDatabase {
 
         String stripped_id = stripDashes(id);
 
-        try(Connection con = SQDatabase.getConnection()) {
+        try(Connection con = StarQuest.getDatabaseConnection()) {
 
             try(PreparedStatement ps = con.prepareStatement(SQL_SELECT_BOOST)) {
 
@@ -142,7 +142,7 @@ public class SQLDatabase {
 
         String stripped_id = stripDashes(id);
 
-        try(Connection con = SQDatabase.getConnection()) {
+        try(Connection con = StarQuest.getDatabaseConnection()) {
 
             try(PreparedStatement ps = con.prepareStatement(SQL_INSUPD_BOOST)) {
 

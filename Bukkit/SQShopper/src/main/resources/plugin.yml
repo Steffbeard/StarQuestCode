@@ -1,6 +1,8 @@
 name: ${project.name}
-main: me.Tongonto.SQShopper
 version: ${project.version}
+main: me.Tongonto.SQShopper
+depend: [StarQuest]
+
 commands:
    cart:
       description: Main SQShopper command

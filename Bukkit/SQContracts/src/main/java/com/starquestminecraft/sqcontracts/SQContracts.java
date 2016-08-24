@@ -6,7 +6,6 @@ import java.util.UUID;
 import net.countercraft.movecraft.database.StarshipData;
 import net.countercraft.movecraft.event.CraftSignBreakEvent;
 import net.md_5.bungee.api.ChatColor;
-import net.milkbowl.vault.economy.Economy;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -30,8 +29,6 @@ public class SQContracts extends JavaPlugin implements Listener{
 
 	private static SQContracts instance;
 
-	private Economy economy = null;
-
 	private Randomizer randomizer;
 	
 	public void onEnable() {
@@ -45,7 +42,6 @@ public class SQContracts extends JavaPlugin implements Listener{
 		}
 		Randomizer.captureBaseSeed();
 		StationUtils.setUp(getConfig());
-		economy = registerEconomy();
 		getCommand("contract").setExecutor(new ContractCommand());
 		ContractCompletionRunnable r = new ContractCompletionRunnable();
 		r.runTaskTimer(this, 20, 20);
@@ -64,20 +60,6 @@ public class SQContracts extends JavaPlugin implements Listener{
 
 	public Database getContractDatabase() {
 		return contractDatabase;
-	}
-
-	private Economy registerEconomy() {
-		Economy retval = null;
-		RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
-		if (economyProvider != null) {
-			retval = economyProvider.getProvider();
-		}
-
-		return retval;
-	}
-	
-	public Economy getEconomy(){
-		return economy;
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR)

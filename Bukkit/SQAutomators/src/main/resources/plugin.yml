@@ -2,4 +2,4 @@ name: ${project.name}
 version: ${project.version}
 description: ${project.description}
 main: ${project.groupId}.${project.artifactId}.${project.name}
-depend: [SQTechBase]
+depend: [StarQuest, SQTechBase]

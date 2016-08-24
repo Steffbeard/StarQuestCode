@@ -1,8 +1,9 @@
 name: ${project.name}
-description: ${project.description}
-depend: [Movecraft]
-main: net.homeip.hall.sqglobalinfo.SQGlobalInfo
 version: ${project.version}
+description: ${project.description}
+main: net.homeip.hall.sqglobalinfo.SQGlobalInfo
+depend: [StarQuest]
+
 commands:
     gseen:
         description: Shows information about a player, cross-world

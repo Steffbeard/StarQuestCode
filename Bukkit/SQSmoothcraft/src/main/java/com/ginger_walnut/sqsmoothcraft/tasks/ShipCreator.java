@@ -12,7 +12,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 
 import us.higashiyama.george.SQSpace.SQSpace;
 
-import com.dibujaron.cardboardbox.Knapsack;
+import com.starquestminecraft.bukkit.cardboardbox.Knapsack;
 import com.ginger_walnut.sqsmoothcraft.SQSmoothCraft;
 import com.ginger_walnut.sqsmoothcraft.objects.Ship;
 import com.ginger_walnut.sqsmoothcraft.objects.ShipBlock;

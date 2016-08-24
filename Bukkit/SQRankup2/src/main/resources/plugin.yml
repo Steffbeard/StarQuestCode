@@ -1,7 +1,8 @@
 name: ${project.name}
 main: com.starquestminecraft.sqrankup2.SQRankup2
 version: ${project.version}
-depend: [Vault, SQContracts, Movecraft]
+depend: [StarQuest, SQContracts, Vault]
+
 commands:
   certification:
     description: Rank up!

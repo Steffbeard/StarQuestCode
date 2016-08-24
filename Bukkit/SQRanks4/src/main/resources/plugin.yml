@@ -1,8 +1,8 @@
 name: ${project.version}
-main: com.starquestminecraft.SQRanks4.SQRanks4
 version: ${project.version}
-depend: 
-  - Vault
+main: com.starquestminecraft.SQRanks4.SQRanks4
+depend: [StarQuest]
+
 commands:
   rankup:
      description: Purchase a rank wih credits.

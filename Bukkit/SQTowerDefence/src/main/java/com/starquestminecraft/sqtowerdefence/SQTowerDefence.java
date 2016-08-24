@@ -4,12 +4,9 @@ import java.util.ArrayList;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.starquestminecraft.sqtechbase.SQTechBase;
-
-import net.milkbowl.vault.economy.Economy;
 
 public class SQTowerDefence extends JavaPlugin {
 	
@@ -18,15 +15,11 @@ public class SQTowerDefence extends JavaPlugin {
 	public static ArrayList<Entity> projectileList = new ArrayList<Entity>();
 	public static boolean isChecking = false;
 	
-	private Economy economy = null;
-	
 	@Override
 	public void onEnable() {
 		getLogger().info("SQTowerDefence has been enabled!");
 		
 		sqtdInstance = this;
-		
-		economy = registerEconomy();
 		
 		FileConfiguration sqtdConfig = this.getConfig();
 
@@ -100,20 +93,6 @@ public class SQTowerDefence extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		getLogger().info("SQTowerDefence has been disabled!");
-	}
-	
-	private Economy registerEconomy() {
-		Economy retval = null;
-		RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
-		if (economyProvider != null) {
-			retval = economyProvider.getProvider();
-		}
-
-		return retval;
-	}
-	
-	public Economy getEconomy() {
-		return economy;
 	}
 	
 	public static ArrayList<Turret> getTurretList() {

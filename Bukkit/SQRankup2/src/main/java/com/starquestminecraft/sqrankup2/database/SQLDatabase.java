@@ -5,17 +5,17 @@ import java.io.ObjectInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.UUID;
 
+import com.starquestminecraft.bukkit.StarQuest;
 import com.starquestminecraft.sqrankup2.SQRankup2;
 
-public class SQLDatabase implements Database {
-
-	ConnectionProvider con;
+public class SQLDatabase {
 
 	static final String HAS_KEY_SQL = "SELECT * from rankup_data WHERE `uuid` = ?";
 	static final String UPDATE_CERTS_SQL = "UPDATE rankup_data SET certs = ? WHERE `uuid` = ?";
@@ -24,17 +24,22 @@ public class SQLDatabase implements Database {
 	static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS rankup_data ( uuid VARCHAR(32), certs TEXT, primary key (uuid))";
 
 	public SQLDatabase() {
-		con = new BedspawnConnectionProvider();
-		createTable(con.getConnection());
+
+        try {
+            createTable(StarQuest.getDatabaseConnection());
+        }
+        catch(SQLException ex) {
+
+        }
+
 	}
 
-	@Override
 	public ArrayList<String> getCertsOfPlayer(UUID u) {
 		ArrayList<String> retvals = new ArrayList<String>();
 		retvals.addAll(SQRankup2.get().defaultCerts.keySet());
-		try {
-			if (hasKey(con.getConnection(), u)) {
-				retvals.addAll(readData(con.getConnection(), u));
+		try(Connection con = StarQuest.getDatabaseConnection()) {
+			if (hasKey(con, u)) {
+				retvals.addAll(readData(con, u));
 			}
 
 		} catch (Exception e) {
@@ -43,7 +48,6 @@ public class SQLDatabase implements Database {
 		return retvals;
 	}
 
-	@Override
 	public void updateCertsOfPlayer(UUID u, ArrayList<String> newCerts) {
 		ListIterator<String> i = newCerts.listIterator();
 		while(i.hasNext()){
@@ -53,11 +57,11 @@ public class SQLDatabase implements Database {
 				i.remove();
 			}
 		}
-		try {
-			if (hasKey(con.getConnection(), u)) {
-				updateData(con.getConnection(), u, newCerts);
+		try(Connection con = StarQuest.getDatabaseConnection()) {
+			if (hasKey(con, u)) {
+				updateData(con, u, newCerts);
 			} else {
-				writeData(con.getConnection(), u, newCerts);
+				writeData(con, u, newCerts);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

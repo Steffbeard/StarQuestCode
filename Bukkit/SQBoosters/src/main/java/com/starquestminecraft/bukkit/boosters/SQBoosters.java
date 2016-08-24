@@ -14,8 +14,6 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
-import net.milkbowl.vault.economy.Economy;
-
 import com.starquestminecraft.bukkit.boosters.command.BoosterCommand;
 import com.starquestminecraft.bukkit.boosters.command.BoostersCommand;
 import com.starquestminecraft.bukkit.boosters.command.ThankCommand;
@@ -45,7 +43,6 @@ public class SQBoosters extends JavaPlugin {
     private final Set<EntityType> allowed_drop_entities = EnumSet.noneOf(EntityType.class);
 
     private BukkitTask task_boostersync;
-    private Economy economy;
     private SQLDatabase database;
 
     @Override
@@ -59,8 +56,6 @@ public class SQBoosters extends JavaPlugin {
     public void onEnable() {
 
         saveDefaultConfig();
-
-        registerEconomy();
 
         for(String str : getConfig().getStringList("entities")) {
 
@@ -107,10 +102,6 @@ public class SQBoosters extends JavaPlugin {
 
     public SQLDatabase getDB() {
         return database;
-    }
-
-    public Economy getEconomy() {
-        return economy;
     }
 
     public Booster getBooster(final Booster.Type type) {
@@ -178,20 +169,6 @@ public class SQBoosters extends JavaPlugin {
         synchronized(boosters) {
             boosters.clear();
             boosters.putAll(newboosters);
-        }
-
-    }
-
-    private void registerEconomy() {
-
-        RegisteredServiceProvider<Economy> provider = getServer().getServicesManager().getRegistration(Economy.class);
-
-        if(provider != null) {
-            economy = provider.getProvider();
-        }
-
-        if(economy == null) {
-            throw new IllegalStateException("Economy plugin required!");
         }
 
     }

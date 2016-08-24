@@ -10,6 +10,7 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import com.starquestminecraft.bukkit.StarQuest;
 import com.starquestminecraft.bukkit.util.BungeeUtil;
 import com.whirlwindgames.dibujaron.sqempire.Empire;
 import com.whirlwindgames.dibujaron.sqempire.SQEmpire;
@@ -69,7 +70,7 @@ public class EmpirePlayer {
 							AsyncUtil.runSyncLater(new Runnable(){
 								public void run(){
 									player.sendMessage("[EmpireBuilder] you've been assigned empire " + Empire.fromID(p.empire).getName() + "!");
-									SQEmpire.economy.depositPlayer(player, 10000);
+									StarQuest.getEconomy().depositPlayer(player, 10000);
 									if(p.empire == Empire.ARATOR.getID()){
 										Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pp user " + player.getName() + " addgroup Arator0");
 										BungeeUtil.sendPlayer(player, "AratorSystem", "AratorSystem", 2598, 100, 1500);

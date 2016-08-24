@@ -2,6 +2,7 @@ package com.starquestminecraft.sqtechbase.database;
 
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import com.starquestminecraft.bukkit.StarQuest;
 import com.starquestminecraft.sqtechbase.SQTechBase;
 import com.starquestminecraft.sqtechbase.database.objects.SerializableGUIBlock;
 import com.starquestminecraft.sqtechbase.database.objects.SerializableMachine;
@@ -43,9 +45,9 @@ public class DatabaseInterface {
 			
 		}
 		
-		try {
+		try(Connection con = StarQuest.getDatabaseConnection()) {
 			
-			SQLDatabase.writeGUIBlocks(SQLDatabase.con.getConnection(), SQTechBase.config.getString("server name"), guiBlocks);
+			SQLDatabase.writeGUIBlocks(con, SQTechBase.config.getString("server name"), guiBlocks);
 			
 		} catch (Exception e) {
 
@@ -53,9 +55,9 @@ public class DatabaseInterface {
 			
 		}
 		
-		try {
+		try(Connection con = StarQuest.getDatabaseConnection()) {
 
-			SQLDatabase.writeMachines(SQLDatabase.con.getConnection(), SQTechBase.config.getString("server name"), SQTechBase.machines);
+			SQLDatabase.writeMachines(con, SQTechBase.config.getString("server name"), SQTechBase.machines);
 			
 		} catch (Exception e) {
 
@@ -70,9 +72,9 @@ public class DatabaseInterface {
 		final List<SerializableGUIBlock> guiBlocks = new ArrayList<SerializableGUIBlock>();
 		final List<SerializableMachine> machines = new ArrayList<SerializableMachine>();
 		
-		try {
+		try(Connection con = StarQuest.getDatabaseConnection()) {
 			
-			ResultSet rs = SQLDatabase.readGUIBlocks(SQLDatabase.con.getConnection(), SQTechBase.config.getString("server name"));
+			ResultSet rs = SQLDatabase.readGUIBlocks(con, SQTechBase.config.getString("server name"));
 
 			while (rs.next()) {
 				
@@ -93,7 +95,7 @@ public class DatabaseInterface {
 
 			}
 			
-			SQLDatabase.clearGUIBlocks(SQLDatabase.con.getConnection(), SQTechBase.config.getString("server name"));
+			SQLDatabase.clearGUIBlocks(con, SQTechBase.config.getString("server name"));
 			
 			rs.close();
 
@@ -133,9 +135,9 @@ public class DatabaseInterface {
 					
 					public void run() {
 						
-						try {
+						try(Connection con = StarQuest.getDatabaseConnection()) {
 							
-							ResultSet rs2 = SQLDatabase.readMachines(SQLDatabase.con.getConnection(), SQTechBase.config.getString("server name"));
+							ResultSet rs2 = SQLDatabase.readMachines(con, SQTechBase.config.getString("server name"));
 							
 							while (rs2.next()) {
 								
@@ -156,7 +158,7 @@ public class DatabaseInterface {
 
 							}
 							
-							SQLDatabase.clearMachines(SQLDatabase.con.getConnection(), SQTechBase.config.getString("server name"));
+							SQLDatabase.clearMachines(con, SQTechBase.config.getString("server name"));
 							
 							rs2.close();
 
@@ -229,9 +231,9 @@ public class DatabaseInterface {
 			
 		}
 
-		try {
+		try(Connection con = StarQuest.getDatabaseConnection()) {
 			
-			SQLDatabase.updateOptions(SQLDatabase.con.getConnection(), player.getUniqueId(), options);
+			SQLDatabase.updateOptions(con, player.getUniqueId(), options);
 		
 		} catch (Exception e) {
 			
@@ -243,9 +245,9 @@ public class DatabaseInterface {
 	
 	public static void readOptions(Player player) {
 		
-		try {
+		try(Connection con = StarQuest.getDatabaseConnection()) {
 		
-			ResultSet rs = SQLDatabase.readOption(SQLDatabase.con.getConnection(), player.getUniqueId());
+			ResultSet rs = SQLDatabase.readOption(con, player.getUniqueId());
 			
 			while (rs.next()) {
 				

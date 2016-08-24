@@ -28,10 +28,7 @@
     <dependencies>
         <dependency>
             <groupId>com.starquestminecraft.bukkit</groupId>
-            <artifactId>movecraft</artifactId>
-            <version>3.1.32</version>
-            <scope>provided</scope>
-			<optional>true</optional>
+            <artifactId>starquest</artifactId>
 		</dependency>
     </dependencies>
 

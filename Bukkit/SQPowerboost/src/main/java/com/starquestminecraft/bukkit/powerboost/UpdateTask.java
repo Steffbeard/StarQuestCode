@@ -11,6 +11,7 @@ import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.FactionColl;
 import com.massivecraft.factions.entity.MPlayer;
 import com.massivecraft.factions.integration.Econ;
+import com.starquestminecraft.bukkit.StarQuest;
 import com.starquestminecraft.bukkit.powerboost.boost.FactionPowerBoost;
 
 public class UpdateTask extends BukkitRunnable {
@@ -69,7 +70,7 @@ public class UpdateTask extends BukkitRunnable {
 
                     if(oplayer != null) {
 
-                        if(EconomyHandler.getEconomy().withdrawPlayer(oplayer, taxes).transactionSuccess()) {
+                        if(StarQuest.getEconomy().withdrawPlayer(oplayer, taxes).transactionSuccess()) {
                             total += taxes;
                         }
                         else if(!(mplayer.getRole() == Rel.LEADER)) {
@@ -106,8 +107,8 @@ public class UpdateTask extends BukkitRunnable {
 
                 }
 
-                if(Econ.hasAtLeast(faction, EconomyHandler.getCost() * boost, "powerboost daily charge")) {
-                    Econ.modifyMoney(faction, -1 * EconomyHandler.getCost() * boost, "powerboost daily charge");
+                if(Econ.hasAtLeast(faction, plugin.getPowerBoostCost() * boost, "powerboost daily charge")) {
+                    Econ.modifyMoney(faction, -1 * plugin.getPowerBoostCost() * boost, "powerboost daily charge");
                 }
                 else {
 

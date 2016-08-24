@@ -17,13 +17,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.starquestminecraft.bukkit.StarQuest;
 import com.starquestminecraft.sqtechbase.SQTechBase;
 import com.starquestminecraft.sqtechbase.gui.GUI;
 import com.starquestminecraft.sqtechbase.objects.GUIBlock;
 import com.starquestminecraft.sqtechbase.objects.Machine;
 import com.starquestminecraft.sqtechbase.util.InventoryUtils;
 import com.starquestminecraft.sqtechbase.util.ObjectUtils;
-import net.milkbowl.vault.economy.Economy;
 
 public class AutomatorGUI extends GUI {
 
@@ -113,15 +113,13 @@ public class AutomatorGUI extends GUI {
 
         if(event.getCurrentItem().getItemMeta().getDisplayName().contains("Upgrade")) {
 
-            Economy economy = plugin.getEconomy();
-
-            if(economy.getBalance(owner) < automator.getUpgradeCost()) {
+            if(StarQuest.getEconomy().getBalance(owner) < automator.getUpgradeCost()) {
                 return;
             }
 
             level = level + 1;
             automator.data.put("level", level);
-            economy.withdrawPlayer(owner, automator.getUpgradeCost());
+            StarQuest.getEconomy().withdrawPlayer(owner, automator.getUpgradeCost());
 
             Inventory gui = event.getClickedInventory();
 

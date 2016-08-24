@@ -8,8 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import net.milkbowl.vault.economy.Economy;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -26,22 +24,21 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import com.starquestminecraft.bukkit.StarQuest;
 
 public class SQShops extends JavaPlugin implements Listener {
 
 	public static SQShops instance;
 	public static HashMap<ItemStack, Double> itemIndex = new HashMap<ItemStack, Double>();
 	public static Set<ItemStack> blacklist;
-	public static Economy economy = null;
 	public static double MULTIPLIER = 1;
 
 	public void onEnable() {
 
 		instance = this;
 		saveDefaultConfig();
-		setupEconomy();
 		Database.setUp();
 		LogDatabase.setUp();
 		Bukkit.getServer().getPluginManager().registerEvents(this, this);
@@ -229,7 +226,7 @@ public class SQShops extends JavaPlugin implements Listener {
 		if (total == 0)
 			return;
 
-		economy.depositPlayer(player.getName(), total * MULTIPLIER);
+		StarQuest.getEconomy().depositPlayer(player.getName(), total * MULTIPLIER);
 		if (MULTIPLIER == 1) {
 			player.sendMessage(ChatColor.AQUA + "You earned " + roundTwoDecimals(total) + " from selling items.");
 		} else {
@@ -242,15 +239,6 @@ public class SQShops extends JavaPlugin implements Listener {
 			player.sendMessage(ChatColor.AQUA + "Some items could not be sold. Check your chest to recover un-sellable items.");
 		}
 
-	}
-
-	private boolean setupEconomy() {
-
-		RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(Economy.class);
-		if (economyProvider != null) {
-			economy = (Economy) economyProvider.getProvider();
-		}
-		return economy != null;
 	}
 
 	double roundTwoDecimals(double d) {

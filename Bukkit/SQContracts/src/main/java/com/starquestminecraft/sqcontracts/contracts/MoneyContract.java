@@ -7,9 +7,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
+import com.starquestminecraft.bukkit.StarQuest;
 import net.countercraft.movecraft.craft.Craft;
-import net.milkbowl.vault.economy.Economy;
-import net.milkbowl.vault.economy.EconomyResponse;
 
 import com.starquestminecraft.sqcontracts.SQContracts;
 import com.starquestminecraft.sqcontracts.database.ContractPlayerData;
@@ -40,16 +39,15 @@ public class MoneyContract implements Contract {
 
 	@Override
 	public CompletionStatus complete(Craft c) {
-		Economy e = SQContracts.get().getEconomy();
 		OfflinePlayer plr = Bukkit.getOfflinePlayer(player);
-		double bal = e.getBalance(plr);
+		double bal = StarQuest.getEconomy().getBalance(plr);
 		if(bal >= cost){
-			e.withdrawPlayer(plr, cost);
+			StarQuest.getEconomy().withdrawPlayer(plr, cost);
 			return CompletionStatus.COMPLETE;
 		} else if(bal <= 0){
 			return CompletionStatus.INCOMPLETE;
 		} else {
-			e.withdrawPlayer(plr, bal);
+			StarQuest.getEconomy().withdrawPlayer(plr, bal);
 			return CompletionStatus.PARTIAL;
 		}
 	}
@@ -93,11 +91,11 @@ public class MoneyContract implements Contract {
 	
 	@Override
 	public void penalizeForCancellation(Player p) {
-		SQContracts.get().getEconomy().withdrawPlayer(p, cost / 2);
+		StarQuest.getEconomy().withdrawPlayer(p, cost / 2);
 	}
 	
 	@Override
 	public boolean canAffordCancellation(Player p){
-		return SQContracts.get().getEconomy().getBalance(p) >= (cost / 2);
+		return StarQuest.getEconomy().getBalance(p) >= (cost / 2);
 	}
 }

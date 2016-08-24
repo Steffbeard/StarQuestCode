@@ -11,6 +11,7 @@ import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
+import com.starquestminecraft.bukkit.StarQuest;
 import com.starquestminecraft.sqcontracts.SQContracts;
 import com.starquestminecraft.sqcontracts.database.ContractPlayerData;
 import com.starquestminecraft.sqcontracts.util.CompletionStatus;
@@ -141,7 +142,7 @@ public class ItemContract implements Contract {
 	public void giveRewards(ContractPlayerData d) {
 		OfflinePlayer plr = Bukkit.getOfflinePlayer(d.getPlayer());
 		try {
-			SQContracts.get().getEconomy().depositPlayer(plr, reward);
+			StarQuest.getEconomy().depositPlayer(plr, reward);
 		} catch (Exception e) {
 			System.out.println("ERROR: no economy found!");
 		}
@@ -162,11 +163,11 @@ public class ItemContract implements Contract {
 
 	@Override
 	public void penalizeForCancellation(Player p) {
-		SQContracts.get().getEconomy().withdrawPlayer(p, reward / 2);
+		StarQuest.getEconomy().withdrawPlayer(p, reward / 2);
 	}
 	
 	@Override
 	public boolean canAffordCancellation(Player p){
-		return SQContracts.get().getEconomy().getBalance(p) >= (reward / 2);
+		return StarQuest.getEconomy().getBalance(p) >= (reward / 2);
 	}
 }

@@ -1,7 +1,8 @@
 name: ${project.name}
 version: ${project.version}
 main: ${project.groupId}.${project.artifactId}.${project.name}
-depend: [Factions, Movecraft, SQDatabase]
+depend: [Factions, Movecraft, StarQuest]
+
 commands:
    powerboost:
       description: Manage personal or faction power boosts.

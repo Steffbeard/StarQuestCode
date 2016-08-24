@@ -7,10 +7,12 @@ import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import java.util.UUID;
 
+import com.starquestminecraft.bukkit.StarQuest;
 import com.starquestminecraft.sqtechbase.database.objects.SerializableGUIBlock;
 import com.starquestminecraft.sqtechbase.database.objects.SerializableMachine;
 import com.starquestminecraft.sqtechbase.objects.GUIBlock;
@@ -18,8 +20,6 @@ import com.starquestminecraft.sqtechbase.objects.Machine;
 import com.starquestminecraft.sqtechbase.objects.PlayerOptions;
 
 public class SQLDatabase {
-
-	public static BedspawnConnectionProvider con;
 
 	static final String WRITE_GUIBLOCKS = "INSERT INTO minecraft.guiblocks(server, object) VALUES (?, ?)";
 	static final String READ_GUIBLOCKS = "SELECT * FROM minecraft.guiblocks WHERE server = ?";
@@ -37,8 +37,12 @@ public class SQLDatabase {
 	
 	public SQLDatabase() {
 		
-		con = new BedspawnConnectionProvider();
-		createTables(con.getConnection());
+		try {
+            createTables(StarQuest.getDatabaseConnection());
+        }
+        catch(SQLException ex) {
+            
+        }
 		
 	}
 

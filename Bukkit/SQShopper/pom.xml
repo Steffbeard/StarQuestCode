@@ -37,6 +37,10 @@
             <version>0.8.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.starquestminecraft.bukkit</groupId>
+            <artifactId>starquest</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
