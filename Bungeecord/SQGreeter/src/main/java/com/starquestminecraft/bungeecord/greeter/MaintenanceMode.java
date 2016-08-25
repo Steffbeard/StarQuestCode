@@ -1,4 +1,4 @@
-package com.starquestminecraft.greeter;
+package com.starquestminecraft.bungeecord.greeter;
 
 import java.util.ArrayList;
 import java.util.UUID;

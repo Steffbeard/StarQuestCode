@@ -1,7 +1,7 @@
-package com.starquestminecraft.greeter;
-import com.starquestminecraft.greeter.command.MaintenanceCommand;
-import com.starquestminecraft.greeter.command.ReloadCommand;
-import com.starquestminecraft.greeter.sqldb.CachingMySQLDB;
+package com.starquestminecraft.bungeecord.greeter;
+import com.starquestminecraft.bungeecord.greeter.command.MaintenanceCommand;
+import com.starquestminecraft.bungeecord.greeter.command.ReloadCommand;
+import com.starquestminecraft.bungeecord.greeter.sqldb.CachingMySQLDB;
 
 import java.io.File;
 import java.net.InetSocketAddress;
@@ -24,8 +24,8 @@ import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.event.EventHandler;
 
-public class Greeter extends Plugin implements Listener {
-	private static Greeter instance;
+public class SQGreeter extends Plugin implements Listener {
+	private static SQGreeter instance;
 	private CachingMySQLDB d;
 	private Settings settings;
 
@@ -111,7 +111,7 @@ public class Greeter extends Plugin implements Listener {
 		d.updateIP(ip, username);
 		return;
 	}
-	public static Greeter getInstance() {
+	public static SQGreeter getInstance() {
 		return instance;
 	}
 

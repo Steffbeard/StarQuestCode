@@ -1,7 +1,7 @@
-package com.starquestminecraft.greeter.command;
+package com.starquestminecraft.bungeecord.greeter.command;
 
-import com.starquestminecraft.greeter.MaintenanceMode;
-import com.starquestminecraft.greeter.Greeter;
+import com.starquestminecraft.bungeecord.greeter.MaintenanceMode;
+import com.starquestminecraft.bungeecord.greeter.SQGreeter;
 
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.BaseComponent;

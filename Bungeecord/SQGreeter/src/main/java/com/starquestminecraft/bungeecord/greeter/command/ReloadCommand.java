@@ -1,6 +1,6 @@
-package com.starquestminecraft.greeter.command;
+package com.starquestminecraft.bungeecord.greeter.command;
 
-import com.starquestminecraft.greeter.Greeter;
+import com.starquestminecraft.bungeecord.greeter.SQGreeter;
 
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -18,7 +18,7 @@ public class ReloadCommand extends Command {
 			sender.sendMessage(createMessage("This command can only be run from console!"));
 			return;
 		}
-		Greeter.getInstance().loadSettings();
+		SQGreeter.getInstance().loadSettings();
 		sender.sendMessage(createMessage("Settings reloaded."));
 	}
 

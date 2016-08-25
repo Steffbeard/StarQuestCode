@@ -1,4 +1,4 @@
-package com.starquestminecraft.greeter.sqldb;
+package com.starquestminecraft.bungeecord.greeter.sqldb;
 
 import java.sql.Connection;
 import java.sql.Driver;
@@ -15,8 +15,8 @@ import java.util.concurrent.TimeUnit;
 
 import net.md_5.bungee.api.ProxyServer;
 
-import com.starquestminecraft.greeter.Settings;
-import com.starquestminecraft.greeter.Greeter;
+import com.starquestminecraft.bungeecord.greeter.Settings;
+import com.starquestminecraft.bungeecord.greeter.SQGreeter;
 
 public class CachingMySQLDB{
 
@@ -100,7 +100,7 @@ public class CachingMySQLDB{
 	
 	public void updateIP(final String ip, final String username){
 		allPlayerData.put(ip, username);
-		ProxyServer.getInstance().getScheduler().runAsync(Greeter.getInstance(),
+		ProxyServer.getInstance().getScheduler().runAsync(SQGreeter.getInstance(),
             new Runnable() {
                 public void run() {
             		getContext();

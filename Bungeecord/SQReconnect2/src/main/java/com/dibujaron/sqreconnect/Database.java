@@ -8,11 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
-import com.starquestminecraft.greeter.sqldb.CachingMySQLDB;
+import com.starquestminecraft.bungeecord.greeter.sqldb.CachingMySQLDB;
 
 public class Database {
 

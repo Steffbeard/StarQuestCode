@@ -1,4 +1,4 @@
-package com.starquestminecraft.greeter;
+package com.starquestminecraft.bungeecord.greeter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -24,7 +24,7 @@ public class CryoBounce extends Plugin implements Listener{
 			sendMessage(plr.getName(), info);
 		} else if(iteration < 15){
 			final int itr2 = iteration + 1;
-			Greeter.getInstance().getProxy().getScheduler().schedule(Greeter.getInstance(), new Runnable(){
+			SQGreeter.getInstance().getProxy().getScheduler().schedule(SQGreeter.getInstance(), new Runnable(){
 				public void run(){
 					callCryoMessage(plr, itr2);
 				}

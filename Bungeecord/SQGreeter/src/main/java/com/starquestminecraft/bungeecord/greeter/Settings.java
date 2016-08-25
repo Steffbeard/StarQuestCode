@@ -1,4 +1,4 @@
-package com.starquestminecraft.greeter;
+package com.starquestminecraft.bungeecord.greeter;
 
 import net.md_5.bungee.config.Configuration;
 
