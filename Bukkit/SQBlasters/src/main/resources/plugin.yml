@@ -1,9 +1,7 @@
-name: SQBlasters
-main: com.ginger_walnut.sqblasters.Main
-version: 1.1.5
-description: A plugin that changes bows to blasters
-depend: [StarQuest]
-
+name: ${project.name}
+main: ${project.groupId}.${project.artifactId}.${project.name}
+version: ${project.version}
+description: ${project.description}
 commands:
   blaster:
     description: Manages SQBlasters
@@ -16,6 +14,6 @@ commands:
   blaster guide:
     description: Displays the guide for SQBlasters
 permissions:
-   SQBlasters.spawnBlaster:
+   sqblasters.spawnblaster:
       description: Premission node for spawning in a blaster
       default: false

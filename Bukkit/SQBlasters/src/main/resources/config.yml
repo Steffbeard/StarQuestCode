@@ -1,4 +1,6 @@
 blaster:
+  name: Blaster
+  type: STANDARD
   ammo per pack: 7
   #Damage in half of hearts
   damage: 4.0
@@ -10,9 +12,9 @@ blaster:
   flame ticks: 100
   #0-6
   scope: 4
-  #currently useless
-  special:
 sniper:
+  name: Sniper
+  type: STANDARD
   ammo per pack: 3
   #Damage in half of hearts
   damage: 12.0
@@ -24,9 +26,9 @@ sniper:
   flame ticks: 150
   #0-6
   scope: 6
-  #currently useless
-  special:
 automatic:
+  name: Automatic
+  type: AUTOMATIC
   ammo per pack: 25
   #Damage in half of hearts
   damage: 1.0
@@ -38,7 +40,3 @@ automatic:
   flame ticks: 0
   #0-6
   scope: 2
-  automatic: true
-  #currently useless
-  special:
-    - automatic
