@@ -13,11 +13,12 @@
     <artifactId>bungeecord-plugin</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    
+
     <name>SQBungeePlugin</name>
     <description>Parent POM for all Bungeecord plugins.</description>
 
     <build>
+        <finalName>${project.name}</finalName>
         <resources>
             <resource>
                 <filtering>true</filtering>

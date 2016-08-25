@@ -18,6 +18,7 @@
     <description>Parent POM for all Bukkit plugins.</description>
 
     <build>
+        <finalName>${project.name}</finalName>
         <resources>
             <resource>
                 <filtering>true</filtering>
