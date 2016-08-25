@@ -60,10 +60,6 @@
 			<optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.starquestminecraft.bukkit</groupId>
-            <artifactId>starquest</artifactId>
-        </dependency>
-        <dependency>
             <groupId>us.dynmap</groupId>
             <artifactId>dynmap-api</artifactId>
         </dependency>

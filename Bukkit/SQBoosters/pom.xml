@@ -30,10 +30,6 @@
             <groupId>com.gmail.nossr50.mcMMO</groupId>
             <artifactId>mcMMO</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.starquestminecraft.bukkit</groupId>
-            <artifactId>starquest</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

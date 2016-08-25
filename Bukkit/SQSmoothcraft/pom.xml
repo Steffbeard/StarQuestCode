@@ -45,10 +45,6 @@
            <optional>true</optional>
        </dependency>
        <dependency>
-           <groupId>com.starquestminecraft.bukkit</groupId>
-           <artifactId>starquest</artifactId>
-       </dependency>
-       <dependency>
             <groupId>org.inventivetalent</groupId>
             <artifactId>particleapi</artifactId>
        </dependency>

@@ -34,10 +34,6 @@
         </dependency>
         <dependency>
             <groupId>com.starquestminecraft.bukkit</groupId>
-            <artifactId>starquest</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.starquestminecraft.bukkit</groupId>
             <artifactId>tech-base</artifactId>
             <version>1.0.0</version>
             <scope>provided</scope>

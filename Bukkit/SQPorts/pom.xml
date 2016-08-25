@@ -26,11 +26,6 @@
     </developers>
 
     <dependencies>
-        
-        <dependency>
-            <groupId>com.starquestminecraft.bukkit</groupId>
-            <artifactId>starquest</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.sk89q.worldguard</groupId>
             <artifactId>worldguard-legacy</artifactId>

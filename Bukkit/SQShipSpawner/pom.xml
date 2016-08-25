@@ -29,10 +29,6 @@
 			<groupId>com.sk89q.worldedit</groupId>
 			<artifactId>worldedit-bukkit</artifactId>
 		</dependency>
-        <dependency>
-			<groupId>com.starquestminecraft.bukkit</groupId>
-			<artifactId>starquest</artifactId>
-		</dependency>
     </dependencies>
 
 </project>

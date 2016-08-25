@@ -32,6 +32,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.starquestminecraft.bukkit</groupId>
+            <artifactId>starquest</artifactId>
+        </dependency>
+        <dependency>
             <groupId>net.md-5</groupId>
             <artifactId>bungeecord-chat</artifactId>
             <version>1.10-SNAPSHOT</version>
