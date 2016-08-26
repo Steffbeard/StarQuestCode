@@ -70,7 +70,7 @@ public class SQBase extends Plugin {
 
                 Configuration cfg = ConfigurationProvider.getProvider(YamlConfiguration.class).load(isr);
 
-                saveConfig();
+                saveConfig(cfg);
 
                 return cfg;
 
@@ -84,8 +84,12 @@ public class SQBase extends Plugin {
         return new Configuration();
 
     }
-    
+
     public void saveConfig() {
+        saveConfig(config);
+    }
+
+    private void saveConfig(final Configuration config) {
 
         try {
 
