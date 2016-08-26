@@ -1,4 +1,4 @@
-package com.dibujaron.sqreconnect;
+package com.starquestminecraft.bungeecord.reconnect;
 
 import java.io.File;
 import java.nio.file.CopyOption;

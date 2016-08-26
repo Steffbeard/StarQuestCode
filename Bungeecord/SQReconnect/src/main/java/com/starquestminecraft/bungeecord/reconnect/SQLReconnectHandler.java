@@ -1,4 +1,4 @@
-package com.dibujaron.sqreconnect;
+package com.starquestminecraft.bungeecord.reconnect;
 
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.ReconnectHandler;

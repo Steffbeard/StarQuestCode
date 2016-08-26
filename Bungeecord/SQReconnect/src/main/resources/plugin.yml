@@ -1,4 +1,4 @@
 name: ${project.name}
 version: ${project.version}
-main: com.dibujaron.sqreconnect.SQReconnect
+main: ${project.groupId}.${project.artifactId}.${project.name}
 depend: [SQGreeter]

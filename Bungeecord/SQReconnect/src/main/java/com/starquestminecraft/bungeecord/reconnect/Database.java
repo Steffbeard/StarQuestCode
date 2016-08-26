@@ -1,4 +1,4 @@
-package com.dibujaron.sqreconnect;
+package com.starquestminecraft.bungeecord.reconnect;
 
 import java.sql.Connection;
 import java.sql.Driver;
