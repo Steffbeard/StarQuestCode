@@ -1,35 +1,32 @@
 package com.starquestminecraft.bungeecord.greeter.command;
 
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+
+import com.starquestminecraft.bungeecord.SQBungeeCommand;
 import com.starquestminecraft.bungeecord.greeter.SQGreeter;
 
-import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.plugin.Command;
+public class ReloadCommand extends SQBungeeCommand<SQGreeter> {
 
-public class ReloadCommand extends Command {
+    private final TextComponent TC_RELOADED = new TextComponent("Settings reloaded.");
 
-    public ReloadCommand() {
-        super("priorityreload");
+    public ReloadCommand(final SQGreeter plugin) {
+        super(plugin, "priorityreload");
     }
 
     @Override
     public void execute(final CommandSender sender, final String[] args) {
 
         if(sender instanceof ProxiedPlayer) {
-            sender.sendMessage(createMessage("This command can only be run from console!"));
+            sender.sendMessage(TC_MESSAGE_CONSOLE_ONLY);
             return;
         }
 
-        SQGreeter.getInstance().loadSettings();
+        plugin.reloadConfig();
 
-        sender.sendMessage(createMessage("Settings reloaded."));
+        sender.sendMessage(TC_RELOADED);
 
-    }
-
-    private static BaseComponent[] createMessage(String s) {
-        return new ComponentBuilder(s).create();
     }
 
 }

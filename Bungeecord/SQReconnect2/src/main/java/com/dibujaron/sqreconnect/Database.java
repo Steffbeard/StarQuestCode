@@ -11,7 +11,7 @@ import java.sql.Statement;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
-import com.starquestminecraft.bungeecord.greeter.sqldb.CachingMySQLDB;
+import com.starquestminecraft.bungeecord.greeter.GreeterDatabase;
 
 public class Database {
 
@@ -138,11 +138,11 @@ public class Database {
 	}
 
 	public static boolean getContext() {
-		return CachingMySQLDB.getContext();
+		return GreeterDatabase.getContext();
 	}
 	
 	public static Connection getConnection(){
-		return CachingMySQLDB.cntx;
+		return GreeterDatabase.cntx;
 	}
 
 }

@@ -1,64 +1,89 @@
 package com.starquestminecraft.bungeecord.greeter.command;
 
+import java.util.StringJoiner;
+
+import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.plugin.Command;
 
-import com.starquestminecraft.bungeecord.greeter.MaintenanceMode;
+import com.starquestminecraft.bungeecord.SQBungeeCommand;
+import com.starquestminecraft.bungeecord.greeter.SQGreeter;
+import com.starquestminecraft.bungeecord.util.UUIDFetcher;
 
-public class MaintenanceCommand extends Command {
+public class MaintenanceCommand extends SQBungeeCommand<SQGreeter> {
 
-    public MaintenanceCommand() {
-        super("maintenance");
+    private static final TextComponent TC_DISABLED = new TextComponent("Maintenance mode disabled.");
+    private static final TextComponent TC_ENABLED = new TextComponent("Maintenance mode enabled.");
+    private static final TextComponent TC_ERROR_UNKNOWN_PLAYER = new TextComponent("Unknown player!");
+    private static final TextComponent TC_USAGE = new TextComponent("Usage: /maintenance <toggle/player>");
+
+    static {
+
+        TC_DISABLED.setColor(ChatColor.GREEN);
+        TC_ENABLED.setColor(ChatColor.GREEN);
+        TC_ERROR_UNKNOWN_PLAYER.setColor(ChatColor.RED);
+
+    }
+
+    public MaintenanceCommand(final SQGreeter plugin) {
+        super(plugin, "maintenance");
     }
 
     @Override
     public void execute(final CommandSender sender, final String[] args) {
 
         if(sender instanceof ProxiedPlayer) {
-            sender.sendMessage(createMessage("This command can only be run from console!"));
+            sender.sendMessage(TC_MESSAGE_CONSOLE_ONLY);
             return;
         }
 
-        if(args.length >= 1) {
+        if(args.length == 0) {
+            sender.sendMessage(TC_USAGE);
+            return;
+        }
 
-            if(args[0].equals("toggle")) {
+        if(args[0].equals("toggle")) {
 
-                String message = "";
+            StringJoiner sj = new StringJoiner(" ");
 
-                for(int i = 1; i < args.length; i++) {
-                    message = message + " " + args[i];
-                }
+            for(int i = 1; i < args.length; i++) {
+                sj.add(args[i]);
+            }
 
-                MaintenanceMode.toggleEnabled(message);
+            plugin.getMaintenanceMode().toggleEnabled(sj.toString());
 
-                if(MaintenanceMode.isEnabled()) {
-                    sender.sendMessage(createMessage("Maintenance mode enabled."));
-                }
-                else {
-                    sender.sendMessage(createMessage("Maintenance mode disabled."));
-                }
-
+            if(plugin.getMaintenanceMode().isEnabled()) {
+                sender.sendMessage(TC_ENABLED);
             }
             else {
-
-                MaintenanceMode.addPlayer(args[0]);
-
-                sender.sendMessage(createMessage("Player " + args[0] + " added to maintenance list."));
-
+                sender.sendMessage(TC_DISABLED);
             }
 
-        }
-        else {
-            sender.sendMessage(createMessage("maintenance <toggle/player>"));
+            return;
+
         }
 
-    }
+        UUIDFetcher.Profile profile = UUIDFetcher.getProfile(args[0]);
 
-    private static BaseComponent[] createMessage(String s) {
-        return new ComponentBuilder(s).create();
+        if(profile == null) {
+            sender.sendMessage(TC_ERROR_UNKNOWN_PLAYER);
+            return;
+        }
+
+        plugin.getMaintenanceMode().addPlayer(profile.getID());
+
+        TextComponent tc = new TextComponent("Player ");
+        tc.setColor(ChatColor.GREEN);
+
+        TextComponent tc_player = new TextComponent(profile.getName());
+        tc_player.setColor(ChatColor.GRAY);
+
+        tc.addExtra(tc_player);
+        tc.addExtra(" added to maintenance list.");
+
+        sender.sendMessage(tc);
+
     }
 
 }

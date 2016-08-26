@@ -4,17 +4,33 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.util.concurrent.TimeUnit;
 
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.connection.Server;
-import net.md_5.bungee.api.plugin.Listener;
-import net.md_5.bungee.api.plugin.Plugin;
 
-public class CryoBounce extends Plugin implements Listener {
+public class CryoBounce {
 
-    public static void callCryoMessage(final ProxiedPlayer player, final int iteration) {
+    private static final TextComponent TC_CRYO_MESSAGE_FAILED = new TextComponent("Took more than 15 seconds to connect to server, active cryopod message failed!");
+
+    static {
+
+        TC_CRYO_MESSAGE_FAILED.setColor(ChatColor.RED);
+
+    }
+
+    private final SQGreeter plugin;
+
+    public CryoBounce(final SQGreeter plugin) {
+        this.plugin = plugin;
+    }
+
+    public void callCryoMessage(final ProxiedPlayer player) {
+        callCryoMessage(player, 0);
+    }
+
+    private void callCryoMessage(final ProxiedPlayer player, final int iteration) {
 
         Server server = player.getServer();
 
@@ -25,7 +41,7 @@ public class CryoBounce extends Plugin implements Listener {
 
             final int itr2 = iteration + 1;
 
-            SQGreeter.getInstance().getProxy().getScheduler().schedule(SQGreeter.getInstance(), new Runnable() {
+            plugin.getProxy().getScheduler().schedule(plugin, new Runnable() {
 
                 @Override
                 public void run() {
@@ -36,16 +52,12 @@ public class CryoBounce extends Plugin implements Listener {
 
         }
         else {
-            player.sendMessage(createMessage("Took more than 15 seconds to connect to server, active cryopod message failed!"));
+            player.sendMessage(TC_CRYO_MESSAGE_FAILED);
         }
 
     }
 
-    public static void fakeCryopodLogin(final ProxiedPlayer player, final ServerInfo target) {
-        sendMessage(player.getName(), target);
-    }
-
-    public static void sendMessage(final String message, final ServerInfo server) {
+    public void sendMessage(final String message, final ServerInfo server) {
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
@@ -58,10 +70,6 @@ public class CryoBounce extends Plugin implements Listener {
 
         server.sendData("cryoBounce", stream.toByteArray());
 
-    }
-
-    private static BaseComponent[] createMessage(final String str) {
-        return new ComponentBuilder(str).create();
     }
 
 }

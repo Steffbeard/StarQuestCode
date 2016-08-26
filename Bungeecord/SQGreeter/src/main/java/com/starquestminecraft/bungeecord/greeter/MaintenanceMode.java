@@ -4,66 +4,46 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.starquestminecraft.bungeecord.util.UUIDFetcher;
-
 public class MaintenanceMode {
 
-    private static final List<UUID> ALLOWED_PLAYERS = new ArrayList<>();
+    private static final String DEFAULT_MESSAGE = "See http://starquestminecraft.com for more information.";
 
-    public static String message;
+    private final List<UUID> allowed_players = new ArrayList<>();
 
-    private static boolean active;
+    private String message;
+    private boolean active;
 
-    public static boolean isEnabled() {
+    public boolean isEnabled() {
         return active;
     }
 
-    public static void toggleEnabled(final String msg) {
+    public String getMessage() {
+        return message;
+    }
 
-        if((msg == null) || msg.equals("")) {
-            message = "See http://starquestminecraft.com for more information.";
+    public void toggleEnabled(final String message) {
+
+        if((message == null) || message.isEmpty()) {
+            this.message = DEFAULT_MESSAGE;
         }
         else {
-            message = msg;
+            this.message = message;
         }
 
         active = !active;
 
         if(active == false) {
-            ALLOWED_PLAYERS.clear();
+            allowed_players.clear();
         }
 
     }
 
-    public static boolean addPlayer(final String player) {
-
-        UUID profile_id = uuidFromUsername(player);
-
-        if(profile_id == null) {
-            return false;
-        }
-
-        ALLOWED_PLAYERS.add(profile_id);
-
-        return true;
-
+    public boolean addPlayer(final UUID profile_id) {
+        return allowed_players.add(profile_id);
     }
 
-    public static boolean isAllowed(final UUID profile_id) {
-        return ALLOWED_PLAYERS.contains(profile_id);
-    }
-
-    public static UUID uuidFromUsername(final String username) {
-
-        UUIDFetcher.Profile profile = UUIDFetcher.getProfile(username);
-        UUID profile_id = profile.getID();
-        String name = profile.getName();
-
-        System.out.println(profile_id);
-        System.out.println(name);
-
-        return profile_id;
-
+    public boolean isAllowed(final UUID profile_id) {
+        return allowed_players.contains(profile_id);
     }
 
 }
