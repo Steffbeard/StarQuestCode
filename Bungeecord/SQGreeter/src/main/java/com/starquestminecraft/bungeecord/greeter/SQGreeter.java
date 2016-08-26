@@ -1,19 +1,13 @@
 package com.starquestminecraft.bungeecord.greeter;
-import com.starquestminecraft.bungeecord.greeter.command.MaintenanceCommand;
-import com.starquestminecraft.bungeecord.greeter.command.ReloadCommand;
-import com.starquestminecraft.bungeecord.greeter.sqldb.CachingMySQLDB;
 
 import java.io.File;
 import java.net.InetSocketAddress;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
+import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ServerPing;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
@@ -23,93 +17,134 @@ import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.event.EventHandler;
+import net.md_5.bungee.event.EventPriority;
+
+import com.starquestminecraft.bungeecord.greeter.command.MaintenanceCommand;
+import com.starquestminecraft.bungeecord.greeter.command.ReloadCommand;
+import com.starquestminecraft.bungeecord.greeter.sqldb.CachingMySQLDB;
 
 public class SQGreeter extends Plugin implements Listener {
-	private static SQGreeter instance;
-	private CachingMySQLDB d;
 
-	public void onEnable() {
-		instance = this;
-		loadSettings();
-		this.d = new CachingMySQLDB();
-		d.initialize();
-		getProxy().getPluginManager().registerListener(this, this);
-		getProxy().getPluginManager().registerCommand(this, new ReloadCommand());
-		getProxy().getPluginManager().registerCommand(this, new MaintenanceCommand());
-		this.getProxy().registerChannel("cryoBounce");
+    private static SQGreeter instance;
 
-	}
+    private CachingMySQLDB database;
 
-	public void loadSettings() {
-		try {
-			System.out.println("saving default config.");
-			saveDefaultConfig();
-			System.out.println("loading config");
-			Configuration config = getConfig();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    @Override
+    public void onEnable() {
 
-	private void saveDefaultConfig() throws Exception {
-		if (!getDataFolder().exists()) {
-			getDataFolder().mkdir();
-		}
-		File file = new File(getDataFolder(), "config.yml");
-		System.out.println("file exists check.");
-		if (!file.exists()) {
-			System.out.println("attempting to save config");
-			Files.copy(getResourceAsStream("config.yml"), file.toPath(), new CopyOption[0]);
-			System.out.println("saved config.");
-		}
-	}
+        instance = this;
 
-	private Configuration getConfig() throws Exception {
-		return ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
-	}
+        loadSettings();
 
-	@EventHandler
-	public void onServerListPing(ProxyPingEvent event) {
-		ServerPing ping = event.getResponse();
-		String username = d.getUsername(event.getConnection().getAddress().getAddress().getHostAddress());
-		String line2;
-		if(username != null){
-			line2 = "\u00a7fWelcome back, \u00a76"+username+"\u00a7f!";
-		} else {
-			line2 = "\u00a7fWelcome to StarQuest!";
-		}
-		ping.setDescription("\u00a71=====\u00a76Star\u00a79Quest \u00a7c4.0\u00a71===== \n" + line2);
-	}
+        database = new CachingMySQLDB();
 
-	@EventHandler(priority = 64)
-	public void onLogin(LoginEvent event) {
-		if (!event.isCancelled()) {
-			UUID u = event.getConnection().getUniqueId();
-			if(MaintenanceMode.isEnabled()){
-				if(!MaintenanceMode.isAllowed(u)){
-					event.setCancelReason("StarQuest is in maintenance mode: " + MaintenanceMode.message);
-					event.setCancelled(true);
-					return;
-				}
-			}
-		}
-	}
+        database.initialize();
 
-	@EventHandler
-	public void onPostLogin(PostLoginEvent event) {			
-		CryoBounce.callCryoMessage(event.getPlayer(), 0);
-		InetSocketAddress inet = event.getPlayer().getAddress();
-		String ip = inet.getAddress().getHostAddress();
-		String username = event.getPlayer().getName();
-		d.updateIP(ip, username);
-		return;
-	}
-	public static SQGreeter getInstance() {
-		return instance;
-	}
+        getProxy().getPluginManager().registerListener(this, this);
 
-	private static BaseComponent[] createMessage(String s) {
-		return new ComponentBuilder(s).create();
-	}
+        getProxy().getPluginManager().registerCommand(this, new ReloadCommand());
+        getProxy().getPluginManager().registerCommand(this, new MaintenanceCommand());
+
+        getProxy().registerChannel("cryoBounce");
+
+    }
+
+    public void loadSettings() {
+
+        try {
+
+            System.out.println("saving default config.");
+            saveDefaultConfig();
+
+            System.out.println("loading config");
+            Configuration config = getConfig();
+
+        }
+        catch(Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    private void saveDefaultConfig() throws Exception {
+
+        if(!getDataFolder().exists()) {
+            getDataFolder().mkdir();
+        }
+
+        File file = new File(getDataFolder(), "config.yml");
+
+        System.out.println("file exists check.");
+        if(!file.exists()) {
+
+            System.out.println("attempting to save config");
+            Files.copy(getResourceAsStream("config.yml"), file.toPath(), new CopyOption[0]);
+
+            System.out.println("saved config.");
+
+        }
+
+    }
+
+    private Configuration getConfig() throws Exception {
+        return ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
+    }
+
+    @EventHandler
+    public void onServerListPing(final ProxyPingEvent event) {
+
+        ServerPing ping = event.getResponse();
+        String username = database.getUsername(event.getConnection().getAddress().getAddress().getHostAddress());
+        String line2;
+
+        if(username != null) {
+            line2 = ChatColor.WHITE + "Welcome back, " + ChatColor.GOLD + username + ChatColor.WHITE + "!";
+        }
+        else {
+            line2 = ChatColor.WHITE + "Welcome to StarQuest!";
+        }
+
+        ping.setDescription(ChatColor.DARK_BLUE + "=====" + ChatColor.GOLD + "Star" + ChatColor.BLUE + "Quest " + ChatColor.RED + "4.0" + ChatColor.DARK_BLUE + "===== \n" + line2);
+
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onLogin(final LoginEvent event) {
+
+        if(!event.isCancelled()) {
+
+            UUID u = event.getConnection().getUniqueId();
+
+            if(MaintenanceMode.isEnabled()) {
+
+                if(!MaintenanceMode.isAllowed(u)) {
+
+                    event.setCancelReason("StarQuest is in maintenance mode: " + MaintenanceMode.message);
+                    event.setCancelled(true);
+
+                }
+
+            }
+
+        }
+
+    }
+
+    @EventHandler
+    public void onPostLogin(final PostLoginEvent event) {
+
+        CryoBounce.callCryoMessage(event.getPlayer(), 0);
+
+        InetSocketAddress inet = event.getPlayer().getAddress();
+        String ip = inet.getAddress().getHostAddress();
+        String username = event.getPlayer().getName();
+
+        database.updateIP(ip, username);
+
+    }
+
+    public static SQGreeter getInstance() {
+        return instance;
+    }
 
 }
