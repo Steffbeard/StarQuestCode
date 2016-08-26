@@ -27,7 +27,6 @@ import net.md_5.bungee.event.EventHandler;
 public class SQGreeter extends Plugin implements Listener {
 	private static SQGreeter instance;
 	private CachingMySQLDB d;
-	private Settings settings;
 
 	public void onEnable() {
 		instance = this;
@@ -40,10 +39,6 @@ public class SQGreeter extends Plugin implements Listener {
 		this.getProxy().registerChannel("cryoBounce");
 
 	}
-	
-	public void onDisable(){
-		d.shutDown();
-	}
 
 	public void loadSettings() {
 		try {
@@ -51,8 +46,6 @@ public class SQGreeter extends Plugin implements Listener {
 			saveDefaultConfig();
 			System.out.println("loading config");
 			Configuration config = getConfig();
-			System.out.println("saving settings.");
-			this.settings = new Settings(config);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -118,7 +111,5 @@ public class SQGreeter extends Plugin implements Listener {
 	private static BaseComponent[] createMessage(String s) {
 		return new ComponentBuilder(s).create();
 	}
-	public Settings getSettings() {
-		return this.settings;
-	}
+
 }
