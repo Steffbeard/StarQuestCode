@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
 
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
@@ -65,7 +66,7 @@ public abstract class SQBungeePlugin extends Plugin {
                 return ConfigurationProvider.getProvider(YamlConfiguration.class).load(file_config);
             }
             catch(IOException ex) {
-                getLogger().severe("Error loading '" + file_config.getName() + "': " + ex.getMessage());
+                logSevere("Error loading '" + file_config.getName() + "': " + ex.getMessage());
             }
 
         }
@@ -84,7 +85,7 @@ public abstract class SQBungeePlugin extends Plugin {
 
             }
             catch(IOException ex) {
-                getLogger().severe("Error loading '" + file_config.getName() + "': " + ex.getMessage());
+                logSevere("Error loading '" + file_config.getName() + "': " + ex.getMessage());
             }
 
         }
@@ -110,9 +111,25 @@ public abstract class SQBungeePlugin extends Plugin {
 
         }
         catch(IOException ex) {
-            getLogger().severe("Error saving '" + file_config.getName() + "': " + ex.getMessage());
+            logSevere("Error saving '" + file_config.getName() + "': " + ex.getMessage());
         }
 
+    }
+
+    public void logInfo(final String message) {
+        getLogger().log(Level.INFO, message);
+    }
+
+    public void logWarning(final String message) {
+        getLogger().log(Level.WARNING, message);
+    }
+
+    public void logSevere(final String message) {
+        getLogger().log(Level.SEVERE, message);
+    }
+
+    public void logSevere(final String message, final Throwable throwable) {
+        getLogger().log(Level.SEVERE, message, throwable);
     }
 
 }
