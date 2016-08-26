@@ -1,54 +1,72 @@
 package com.starquestminecraft.bungeecord.reconnect;
 
-import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.AbstractReconnectHandler;
 import net.md_5.bungee.api.ReconnectHandler;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
-public class SQLReconnectHandler implements ReconnectHandler {
+public class SQLReconnectHandler extends AbstractReconnectHandler {
 
-	ReconnectHandler conventional;
-	
-	public SQLReconnectHandler(ReconnectHandler conventional){
-		this.conventional = conventional;
-	}
-	
-	@Override
-	public void close() {
-		conventional.close();
-	}
+    private final SQReconnect plugin;
+    private final ReconnectHandler fallback;
 
-	@Override
-	public ServerInfo getServer(ProxiedPlayer p) {
-		//when getting server, we want to return the main server they were on
-		String server = Database.getServer(p, false);
-		System.out.println(p.getName() + "'s last server is " + server);
-		if(server == null){
-			ServerInfo i = conventional.getServer(p);
-			System.out.println("Sending to conventional location: " + i);
-			return conventional.getServer(p);
-		}
-		return ProxyServer.getInstance().getServerInfo(server);
-	}
+    public SQLReconnectHandler(final SQReconnect plugin, final ReconnectHandler fallback) {
 
-	@Override
-	public void save() {
-		conventional.save();
-	}
+        this.plugin = plugin;
+        this.fallback = fallback;
 
-	@Override
-	public void setServer(ProxiedPlayer p) {
-		//set the conventional just to make sure.
-		conventional.setServer(p);
-		//if it's a main server, set main. Else set alt.
-		String servername = p.getServer().getInfo().getName();
-		if(SQReconnect.isSQServer(servername)){
-			System.out.println(servername + " is a main server.");
-			Database.updateServer(p, servername, true);
-		} else {
-			System.out.println(servername + " is not a main server.");
-			Database.updateServer(p, servername, false);
-		}
-	}
+    }
+
+    @Override
+    public void close() {
+        fallback.close();
+    }
+
+    @Override
+    public ServerInfo getStoredServer(final ProxiedPlayer player) {
+
+        // when getting server, we want to return the main server they were on
+        // TODO: THIS REALLY NEEDS TO BE CACHED
+        String server = plugin.getDatabase().getServer(player, false);
+
+        plugin.logInfo(player.getName() + "'s last server is " + server);
+
+        if(server != null) {
+            return plugin.getProxy().getServerInfo(server);
+        }
+
+        ServerInfo info = fallback.getServer(player);
+
+        plugin.logInfo("Sending to conventional location: " + info);
+
+        return info;
+
+    }
+
+    @Override
+    public void save() {
+        fallback.save();
+    }
+
+    @Override
+    public void setServer(final ProxiedPlayer player) {
+
+        // set the fallback just to make sure.
+        fallback.setServer(player);
+
+        // if it's a main server, set main. Else set alt.
+        String server = player.getServer().getInfo().getName();
+        boolean is_main = plugin.isSQServer(server);
+
+        if(is_main) {
+            plugin.logInfo(server + " is a main server.");
+        }
+        else {
+            plugin.logInfo(server + " is not a main server.");
+        }
+
+        plugin.getDatabase().updateServer(player, server, is_main);
+
+    }
 
 }

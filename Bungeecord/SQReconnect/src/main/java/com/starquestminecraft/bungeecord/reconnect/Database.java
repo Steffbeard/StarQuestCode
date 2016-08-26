@@ -1,148 +1,113 @@
 package com.starquestminecraft.bungeecord.reconnect;
 
 import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
-import com.starquestminecraft.bungeecord.greeter.GreeterDatabase;
+import com.starquestminecraft.bungeecord.StarQuest;
 
-public class Database {
+class Database {
 
-	/*public static String driverString = "com.mysql.jdbc.Driver";
-	public static String hostname = "starquest.c1odbljhmyum.us-east-1.rds.amazonaws.com";
-	public static String port = "3306";
-	public static String db_name = "minecraft";
-	public static String username = "sqmaster";
-	public static String password = "R3b!rth!ng";
-	public static Connection cntx = null;
-	public static String dsn = ("jdbc:mysql://" + hostname + ":" + port + "/" + db_name);*/
-	
-	private static final String update_both = "INSERT INTO reconnect_data(uuid, lastServer, lastSQServer) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE lastServer=?,lastSQServer=?";
-	private static final String update_other_only = "INSERT INTO reconnect_data(uuid, lastServer) VALUES (?, ?) ON DUPLICATE KEY UPDATE lastServer=?";
-	private static final String get_last = "SELECT lastServer FROM reconnect_data WHERE uuid = ?";
-	private static final String get_SQ = "SELECT lastSQServer FROM reconnect_data WHERE uuid = ?";
+    private static final String SQL_INSUPD_BOTH = "INSERT INTO `reconnect_data` (`uuid`,`lastServer`,`lastSQServer`) VALUES (?,?,?) ON DUPLICATE KEY UPDATE `lastServer`=VALUES(`lastServer`),`lastSQServer`=VALUES(`lastSQServer`)";
+    private static final String SQL_INSUPD_OTHER_ONLY = "INSERT INTO `reconnect_data` (`uuid`,`lastServer`) VALUES (?,?) ON DUPLICATE KEY UPDATE `lastServer`=VALUES(`lastServer`)";
+    private static final String SQL_SELECT_LAST = "SELECT `lastServer` FROM `reconnect_data` WHERE `uuid`=?";
+    private static final String SQL_SELECT_MAIN = "SELECT `lastSQServer` FROM `reconnect_data` WHERE `uuid`=?";
 
-	//c
-	public static void setUp() {
+    private final SQReconnect plugin;
 
-		String Database_table = "CREATE TABLE IF NOT EXISTS reconnect_data (`uuid` VARCHAR(36),`lastServer` VARCHAR(32),`lastSQServer` VARCHAR(32), PRIMARY KEY(`uuid`))";
-		getContext();
-		/*try {
-			Driver driver = (Driver) Class.forName(driverString).newInstance();
-			DriverManager.registerDriver(driver);
-		} catch (Exception e) {
-			System.out.println("[SQReconnect] Driver error: " + e);
-		}*/
-		Statement s = null;
-		try {
-			getContext();
-			s = getConnection().createStatement();
-			s.executeUpdate(Database_table);
-			System.out.println("[SQReconnect] Table check/creation sucessful");
-		} catch (SQLException ee) {
-			System.out.println("[SQReconnect] Table Creation Error");
-		}
-	}
+    Database(final SQReconnect plugin) {
+        this.plugin = plugin;
+    }
 
-	public static void updateServer(final ProxiedPlayer player, final String server, final boolean isSQ) {
+    public void setUp() throws Exception {
 
-		Runnable task = new Runnable() {
+        try(Connection con = StarQuest.getDatabaseConnection()) {
 
-			public void run() {
+            try(Statement s = con.createStatement()) {
 
-				if (!Database.getContext()) {
-					System.out.println("something is wrong!");
-				}
-				PreparedStatement s = null;
-				try {
-					String uidstr = player.getUniqueId().toString();
-					if(isSQ){
-						s = getConnection().prepareStatement(update_both);
-						System.out.println("Update type: sq");
-						s.setString(1, uidstr);
-						s.setString(2, server);
-						s.setString(3, server);
-						s.setString(4, server);
-						s.setString(5, server);
-					} else {
-						s = getConnection().prepareStatement(update_other_only);
-						System.out.println("Update type: other server");
-						s.setString(1, uidstr);
-						s.setString(2, server);
-						s.setString(3, server);
-					}
-					s.execute();
-					s.close();
-				} catch (SQLException e) {
-					System.out.print("[SQReconnect] SQL Error" + e.getMessage());
-				} catch (Exception e) {
-					System.out.print("[SQReconnect] SQL Error (Unknown)");
-					e.printStackTrace();
-				}
-			}
-		};
-		ProxyServer.getInstance().getScheduler().runAsync(SQReconnect.getInstance(), task);
-	}
+                s.executeUpdate("CREATE TABLE IF NOT EXISTS `reconnect_data` ("
+                    + "`uuid` VARCHAR(36),"
+                    + "`lastServer` VARCHAR(32),"
+                    + "`lastSQServer` VARCHAR(32),"
+                    + "PRIMARY KEY(`uuid`))");
 
-	public static String getServer(ProxiedPlayer plr, boolean SQOnly) {
+                plugin.logInfo("Table check/creation sucessful.");
 
-		if (!getContext()) {
-			System.out.println("something is wrong!");
-		}
-		PreparedStatement s = null;
-		try {
-			String statement;
-			if(SQOnly){
-				statement = get_SQ;
-			} else {
-				statement = get_last;
-			}
-			s = getConnection().prepareStatement(statement);
-			s.setString(1, plr.getUniqueId().toString());
-			ResultSet rs = s.executeQuery();
-			if (rs.next()) {
-				String server;
-				if(SQOnly){
-					try{
-					server = rs.getString("lastSQServer");
-					} catch (Exception e){
-						server = "Trinitos_Alpha";
-					}
-					if(server == null){
-						server = "Trinitos_Alpha";
-					}
-				} else {
-					server = rs.getString("lastServer");
-				}
-				s.close();
-				return server;
-			} else {
-				s.close();
-				return null;
-			}
+            }
 
-		} catch (SQLException e) {
-			System.out.print("[SQDatabase] SQL Error" + e.getMessage());
-		} catch (Exception e) {
-			System.out.print("[SQDatabase] SQL Error (Unknown)");
-			e.printStackTrace();
-		}
-		return null;
-	}
+        }
+        catch(SQLException ex) {
+            throw new SQLException("Exception creating database table:", ex);
+        }
 
-	public static boolean getContext() {
-		return GreeterDatabase.getContext();
-	}
-	
-	public static Connection getConnection(){
-		return GreeterDatabase.cntx;
-	}
+    }
+
+    public void updateServer(final ProxiedPlayer player, final String server, final boolean is_main) {
+
+        final String uuid = player.getUniqueId().toString();
+
+        plugin.getProxy().getScheduler().runAsync(plugin, new Runnable() {
+
+            @Override
+            public void run() {
+
+                try(Connection con = StarQuest.getDatabaseConnection()) {
+
+                    try(PreparedStatement ps = con.prepareStatement(is_main ? SQL_INSUPD_BOTH : SQL_INSUPD_OTHER_ONLY)) {
+
+                        ps.setString(1, uuid);
+                        ps.setString(2, server);
+
+                        if(is_main) {
+                            ps.setString(3, server);
+                        }
+
+                        ps.executeUpdate();
+
+                    }
+
+                }
+                catch(SQLException ex) {
+                    plugin.logSevere("Exception storing player's last server:", ex);
+                }
+
+            }
+
+        });
+
+    }
+
+    public String getServer(final ProxiedPlayer player, final boolean main_only) {
+
+        final String uuid = player.getUniqueId().toString();
+
+        try(Connection con = StarQuest.getDatabaseConnection()) {
+
+            try(PreparedStatement ps = con.prepareStatement(main_only ? SQL_SELECT_MAIN : SQL_SELECT_LAST)) {
+
+                ps.setString(1, uuid);
+
+                try(ResultSet rs = ps.executeQuery()) {
+
+                    if(rs.next()) {
+                        return rs.getString(1);
+                    }
+
+                }
+
+            }
+
+        }
+        catch(SQLException ex) {
+            plugin.logSevere("Exception fetching player's last server:", ex);
+        }
+
+        return null;
+
+    }
 
 }
