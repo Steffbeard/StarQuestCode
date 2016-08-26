@@ -1,14 +1,14 @@
-package us.higashiyama.george.SQSpace;
+package com.starquestminecraft.bukkit.space;
 
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class TimeReset
+public class TimeResetTask
   extends BukkitRunnable
 {
   SQSpace plugin;
   
-  TimeReset(SQSpace plugin)
+  TimeResetTask(SQSpace plugin)
   {
     runTaskTimer(plugin, 0L, 600L);
   }

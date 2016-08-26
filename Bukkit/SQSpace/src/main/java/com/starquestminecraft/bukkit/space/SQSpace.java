@@ -1,5 +1,4 @@
-
-package us.higashiyama.george.SQSpace;
+package com.starquestminecraft.bukkit.space;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -33,8 +33,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
-import us.higashiyama.george.SQSpace.SQSpace;
-
+import com.starquestminecraft.bukkit.space.SQSpace;
 import com.ginger_walnut.sqsmoothcraft.SQSmoothCraft;
 import com.ginger_walnut.sqsmoothcraft.enums.BlockType;
 import com.ginger_walnut.sqsmoothcraft.gui.MainGui;

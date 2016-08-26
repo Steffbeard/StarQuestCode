@@ -1,4 +1,4 @@
-package us.higashiyama.george.SQSpace;
+package com.starquestminecraft.bukkit.space;
 
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
