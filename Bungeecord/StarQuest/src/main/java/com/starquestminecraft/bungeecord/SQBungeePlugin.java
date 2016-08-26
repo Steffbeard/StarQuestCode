@@ -22,29 +22,48 @@ public abstract class SQBungeePlugin extends Plugin {
         file_config = new File(getDataFolder(), "config.yml");
         config = loadConfig();
 
+        try {
         load();
+        }
+        catch(Exception ex) {
+            logSevere("Exception loading " + getDescription().getName() + ":", ex);
+        }
 
     }
 
     @Override
     public final void onEnable() {
-        enable();
+
+        try {
+            enable();
+        }
+        catch(Exception ex) {
+            logSevere("Exception enabling " + getDescription().getName() + ":", ex);
+        }
+
     }
 
     @Override
     public final void onDisable() {
-        disable();
+
+        try {
+            disable();
+        }
+        catch(Exception ex) {
+            logSevere("Exception disabling " + getDescription().getName() + ":", ex);
+        }
+
     }
 
-    protected void load() {
+    protected void load() throws Exception {
 
     }
 
-    protected void enable() {
+    protected void enable() throws Exception {
 
     }
 
-    protected void disable() {
+    protected void disable() throws Exception {
 
     }
 
