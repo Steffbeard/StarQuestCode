@@ -1,4 +1,4 @@
-package com.whirlwindgames.sqorbits.core;
+package com.starquestminecraft.bungeecord.orbits;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,7 +24,7 @@ import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 
-public class SQOrbitsBungeeplugin extends Plugin {
+public class SQOrbits extends Plugin {
 
     private static final double RADIANS_PER_DEGREE = Math.PI / 180;     //useful math constant
     private static final String CHAT_PREFIX = "[SQOrbitsBungee]";
@@ -360,7 +360,7 @@ public class SQOrbitsBungeeplugin extends Plugin {
 
                 configFile.createNewFile();
 
-                ByteStreams.copy(getResourceAsStream("defaultConfig.yml"), new FileOutputStream(configFile));
+                ByteStreams.copy(getResourceAsStream("config.yml"), new FileOutputStream(configFile));
 
             }
             catch(IOException ex) {

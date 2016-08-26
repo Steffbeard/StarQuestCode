@@ -1,4 +1,4 @@
-package com.whirlwindgames.sqorbits.core;
+package com.starquestminecraft.bungeecord.orbits;
 
 public class BadConfigException extends Exception {
 

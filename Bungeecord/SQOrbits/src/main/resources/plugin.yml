@@ -1,4 +1,4 @@
 name: ${project.name}
 version: ${project.version}
 author: lawrencethefrog
-main: com.whirlwindgames.sqorbits.core.SQOrbitsBungeeplugin
+main: ${project.groupId}.${project.artifactId}.${project.name}
