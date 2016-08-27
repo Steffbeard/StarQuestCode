@@ -1,32 +1,37 @@
 package com.starquestminecraft.bukkit.space;
 
-import org.bukkit.Bukkit;
+import java.util.Arrays;
+import java.util.List;
+
+import org.bukkit.World;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class TimeResetTask
-  extends BukkitRunnable
-{
-  SQSpace plugin;
-  
-  TimeResetTask(SQSpace plugin)
-  {
-    runTaskTimer(plugin, 0L, 600L);
-  }
-  
-  public void run()
-  {
-    if (Bukkit.getServer().getWorld("Defalos") != null) {
-      Bukkit.getServer().getWorld("Defalos").setTime(16000L);
+public class TimeResetTask extends BukkitRunnable {
+
+    private static final List<String> WORLDS = Arrays.asList("AsteroidBelt", "Defalos", "Digitalia", "Regalis");
+
+    private final SQSpace plugin;
+
+    public TimeResetTask(final SQSpace plugin) {
+
+        this.plugin = plugin;
+
+        runTaskTimer(plugin, 0, 600);
+
     }
-    if (Bukkit.getServer().getWorld("AsteroidBelt") != null) {
-      Bukkit.getServer().getWorld("AsteroidBelt").setTime(16000L);
+
+    @Override
+    public void run() {
+        
+        for(String name : WORLDS) {
+            
+            World world = plugin.getServer().getWorld(name);
+            
+            if(world != null) {
+                world.setTime(16000);
+            }
+            
+        }
+
     }
-    if (Bukkit.getServer().getWorld("Digitalia") != null) {
-        Bukkit.getServer().getWorld("Digitalia").setTime(16000L);
-      }
-    if (Bukkit.getServer().getWorld("Regalis") != null) {
-        Bukkit.getServer().getWorld("Regalis").setTime(16000L);
-    
-      }
-  }
 }
