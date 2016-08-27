@@ -25,4 +25,17 @@
         </developer>
     </developers>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.inventivetalent</groupId>
+            <artifactId>particleapi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.starquestminecraft.bukkit</groupId>
+            <artifactId>empire</artifactId>
+            <version>3.1.33</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
 </project>

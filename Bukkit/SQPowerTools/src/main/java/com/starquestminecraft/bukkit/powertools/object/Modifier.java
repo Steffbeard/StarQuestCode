@@ -1,4 +1,4 @@
-package com.ginger_walnut.sqpowertools.objects;
+package com.starquestminecraft.bukkit.powertools.object;
 
 import java.util.List;
 import java.util.Map;

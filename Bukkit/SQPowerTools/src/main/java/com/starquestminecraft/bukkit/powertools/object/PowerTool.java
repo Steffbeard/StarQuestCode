@@ -1,4 +1,4 @@
-package com.ginger_walnut.sqpowertools.objects;
+package com.starquestminecraft.bukkit.powertools.object;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,15 +6,17 @@ import java.util.List;
 import java.util.Map;
 
 import org.bukkit.ChatColor;
+
 import org.bukkit.craftbukkit.v1_10_R1.inventory.CraftItemStack;
+
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.ginger_walnut.sqpowertools.SQPowerTools;
-import com.ginger_walnut.sqpowertools.enums.ProjectileType;
-import com.ginger_walnut.sqpowertools.utils.AttributeUtils;
-import com.ginger_walnut.sqpowertools.utils.EffectUtils;
+import com.starquestminecraft.bukkit.powertools.SQPowerTools;
+import com.starquestminecraft.bukkit.powertools.enums.ProjectileType;
+import com.starquestminecraft.bukkit.powertools.util.AttributeUtils;
+import com.starquestminecraft.bukkit.powertools.util.EffectUtils;
 
 import net.minecraft.server.v1_10_R1.NBTTagCompound;
 import net.minecraft.server.v1_10_R1.NBTTagFloat;

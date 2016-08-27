@@ -1,4 +1,4 @@
-package com.ginger_walnut.sqpowertools.events;
+package com.starquestminecraft.bukkit.powertools.listener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,19 +34,20 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
 import org.inventivetalent.particle.ParticleEffect;
 
-import com.ginger_walnut.sqpowertools.SQPowerTools;
-import com.ginger_walnut.sqpowertools.enums.AmmoType;
-import com.ginger_walnut.sqpowertools.enums.ProjectileType;
-import com.ginger_walnut.sqpowertools.objects.BlasterStats;
-import com.ginger_walnut.sqpowertools.objects.Effect;
-import com.ginger_walnut.sqpowertools.objects.Modifier;
-import com.ginger_walnut.sqpowertools.objects.PowerTool;
-import com.ginger_walnut.sqpowertools.objects.PowerToolType;
-import com.ginger_walnut.sqpowertools.tasks.BlasterTask;
-import com.ginger_walnut.sqpowertools.tasks.CooldownTask;
-import com.ginger_walnut.sqpowertools.utils.EffectUtils;
+import com.starquestminecraft.bukkit.powertools.SQPowerTools;
+import com.starquestminecraft.bukkit.powertools.enums.AmmoType;
+import com.starquestminecraft.bukkit.powertools.enums.ProjectileType;
+import com.starquestminecraft.bukkit.powertools.object.BlasterStats;
+import com.starquestminecraft.bukkit.powertools.object.Effect;
+import com.starquestminecraft.bukkit.powertools.object.Modifier;
+import com.starquestminecraft.bukkit.powertools.object.PowerTool;
+import com.starquestminecraft.bukkit.powertools.object.PowerToolType;
+import com.starquestminecraft.bukkit.powertools.task.BlasterTask;
+import com.starquestminecraft.bukkit.powertools.task.CooldownTask;
+import com.starquestminecraft.bukkit.powertools.util.EffectUtils;
 import com.whirlwindgames.dibujaron.sqempire.Empire;
 import com.whirlwindgames.dibujaron.sqempire.database.object.EmpirePlayer;
 

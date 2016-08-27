@@ -1,4 +1,4 @@
-package com.ginger_walnut.sqpowertools.tasks;
+package com.starquestminecraft.bukkit.powertools.task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,10 +11,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitScheduler;
 
-import com.ginger_walnut.sqpowertools.SQPowerTools;
-import com.ginger_walnut.sqpowertools.objects.Modifier;
-import com.ginger_walnut.sqpowertools.objects.PowerToolType;
-import com.ginger_walnut.sqpowertools.utils.EffectUtils;
+import com.starquestminecraft.bukkit.powertools.SQPowerTools;
+import com.starquestminecraft.bukkit.powertools.object.Modifier;
+import com.starquestminecraft.bukkit.powertools.object.PowerToolType;
+import com.starquestminecraft.bukkit.powertools.util.EffectUtils;
 
 public class HoldingTask extends Thread{
 

@@ -1,4 +1,4 @@
-package com.ginger_walnut.sqpowertools.enums;
+package com.starquestminecraft.bukkit.powertools.enums;
 
 public enum ProjectileType {
 

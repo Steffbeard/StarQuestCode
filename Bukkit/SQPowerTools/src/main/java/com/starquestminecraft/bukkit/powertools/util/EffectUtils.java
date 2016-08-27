@@ -1,4 +1,4 @@
-package com.ginger_walnut.sqpowertools.utils;
+package com.starquestminecraft.bukkit.powertools.util;
 
 import org.bukkit.potion.PotionEffectType;
 

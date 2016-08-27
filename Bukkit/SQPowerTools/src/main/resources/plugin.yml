@@ -1,7 +1,7 @@
 name: ${project.name}
 version: ${project.version}
 description: ${project.description}
-main: com.ginger_walnut.sqpowertools.SQPowerTools
+main: ${project.groupId}.${project.artifactId}.${project.name}
 depend: [ParticleLIB, SQEmpire]
 
 commands:

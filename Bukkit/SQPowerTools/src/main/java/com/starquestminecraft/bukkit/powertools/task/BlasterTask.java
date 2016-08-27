@@ -1,4 +1,4 @@
-package com.ginger_walnut.sqpowertools.tasks;
+package com.starquestminecraft.bukkit.powertools.task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,8 +13,8 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.util.Vector;
 
-import com.ginger_walnut.sqpowertools.SQPowerTools;
-import com.ginger_walnut.sqpowertools.objects.PowerToolType;
+import com.starquestminecraft.bukkit.powertools.SQPowerTools;
+import com.starquestminecraft.bukkit.powertools.object.PowerToolType;
 
 public class BlasterTask extends Thread {
 

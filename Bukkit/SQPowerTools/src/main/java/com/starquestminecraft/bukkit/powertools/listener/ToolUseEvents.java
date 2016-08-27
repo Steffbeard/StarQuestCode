@@ -1,4 +1,4 @@
-package com.ginger_walnut.sqpowertools.events;
+package com.starquestminecraft.bukkit.powertools.listener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,12 +21,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
 import com.ginger_walnut.sqboosters.SQBoosters;
-import com.ginger_walnut.sqpowertools.SQPowerTools;
-import com.ginger_walnut.sqpowertools.objects.Attribute;
-import com.ginger_walnut.sqpowertools.objects.Modifier;
-import com.ginger_walnut.sqpowertools.objects.PowerTool;
-import com.ginger_walnut.sqpowertools.objects.PowerToolType;
-import com.ginger_walnut.sqpowertools.utils.EffectUtils;
+import com.starquestminecraft.bukkit.powertools.SQPowerTools;
+import com.starquestminecraft.bukkit.powertools.object.Attribute;
+import com.starquestminecraft.bukkit.powertools.object.Modifier;
+import com.starquestminecraft.bukkit.powertools.object.PowerTool;
+import com.starquestminecraft.bukkit.powertools.object.PowerToolType;
+import com.starquestminecraft.bukkit.powertools.util.EffectUtils;
 
 import io.netty.util.internal.ThreadLocalRandom;
 

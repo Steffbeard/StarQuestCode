@@ -1,7 +1,7 @@
-package com.ginger_walnut.sqpowertools.objects;
+package com.starquestminecraft.bukkit.powertools.object;
 
-import com.ginger_walnut.sqpowertools.enums.AmmoType;
-import com.ginger_walnut.sqpowertools.enums.ProjectileType;
+import com.starquestminecraft.bukkit.powertools.enums.AmmoType;
+import com.starquestminecraft.bukkit.powertools.enums.ProjectileType;
 
 public class BlasterStats {
 

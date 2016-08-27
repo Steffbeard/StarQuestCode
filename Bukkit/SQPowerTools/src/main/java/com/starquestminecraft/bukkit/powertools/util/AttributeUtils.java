@@ -1,6 +1,6 @@
-package com.ginger_walnut.sqpowertools.utils;
+package com.starquestminecraft.bukkit.powertools.util;
 
-import com.ginger_walnut.sqpowertools.objects.Attribute;
+import com.starquestminecraft.bukkit.powertools.object.Attribute;
 
 public class AttributeUtils {
 

@@ -1,4 +1,4 @@
-package com.ginger_walnut.sqpowertools.gui;
+package com.starquestminecraft.bukkit.powertools.gui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +11,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.ginger_walnut.sqpowertools.SQPowerTools;
-import com.ginger_walnut.sqpowertools.objects.BlasterStats;
-import com.ginger_walnut.sqpowertools.objects.Modifier;
-import com.ginger_walnut.sqpowertools.objects.PowerToolType;
-import com.ginger_walnut.sqpowertools.utils.EffectUtils;
+import com.starquestminecraft.bukkit.powertools.SQPowerTools;
+import com.starquestminecraft.bukkit.powertools.object.BlasterStats;
+import com.starquestminecraft.bukkit.powertools.object.Modifier;
+import com.starquestminecraft.bukkit.powertools.object.PowerToolType;
+import com.starquestminecraft.bukkit.powertools.util.EffectUtils;
 
 import net.md_5.bungee.api.ChatColor;
 

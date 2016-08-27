@@ -1,4 +1,4 @@
-package com.ginger_walnut.sqpowertools;
+package com.starquestminecraft.bukkit.powertools;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,11 +27,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Attachable;
 import org.bukkit.material.MaterialData;
 
-import com.ginger_walnut.sqpowertools.objects.BlasterStats;
-import com.ginger_walnut.sqpowertools.objects.Modifier;
-import com.ginger_walnut.sqpowertools.objects.PowerTool;
-import com.ginger_walnut.sqpowertools.objects.PowerToolType;
-import com.ginger_walnut.sqpowertools.utils.EffectUtils;
+import com.starquestminecraft.bukkit.powertools.object.BlasterStats;
+import com.starquestminecraft.bukkit.powertools.object.Modifier;
+import com.starquestminecraft.bukkit.powertools.object.PowerTool;
+import com.starquestminecraft.bukkit.powertools.object.PowerToolType;
+import com.starquestminecraft.bukkit.powertools.util.EffectUtils;
 
 public class Events implements Listener {	
 	

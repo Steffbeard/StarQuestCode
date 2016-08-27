@@ -1,4 +1,4 @@
-package com.ginger_walnut.sqpowertools;
+package com.starquestminecraft.bukkit.powertools;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -27,22 +27,22 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.ginger_walnut.sqpowertools.enums.AmmoType;
-import com.ginger_walnut.sqpowertools.enums.ProjectileType;
-import com.ginger_walnut.sqpowertools.events.BlasterEvents;
-import com.ginger_walnut.sqpowertools.events.ToolUseEvents;
-import com.ginger_walnut.sqpowertools.gui.GUI;
-import com.ginger_walnut.sqpowertools.gui.ModifierListGUI;
-import com.ginger_walnut.sqpowertools.objects.Attribute;
-import com.ginger_walnut.sqpowertools.objects.BlasterStats;
-import com.ginger_walnut.sqpowertools.objects.Effect;
-import com.ginger_walnut.sqpowertools.objects.Modifier;
-import com.ginger_walnut.sqpowertools.objects.PowerTool;
-import com.ginger_walnut.sqpowertools.objects.PowerToolType;
-import com.ginger_walnut.sqpowertools.tasks.BlasterTask;
-import com.ginger_walnut.sqpowertools.tasks.CooldownTask;
-import com.ginger_walnut.sqpowertools.tasks.HoldingTask;
-import com.ginger_walnut.sqpowertools.utils.EffectUtils;
+import com.starquestminecraft.bukkit.powertools.enums.AmmoType;
+import com.starquestminecraft.bukkit.powertools.enums.ProjectileType;
+import com.starquestminecraft.bukkit.powertools.listener.BlasterEvents;
+import com.starquestminecraft.bukkit.powertools.listener.ToolUseEvents;
+import com.starquestminecraft.bukkit.powertools.gui.GUI;
+import com.starquestminecraft.bukkit.powertools.gui.ModifierListGUI;
+import com.starquestminecraft.bukkit.powertools.object.Attribute;
+import com.starquestminecraft.bukkit.powertools.object.BlasterStats;
+import com.starquestminecraft.bukkit.powertools.object.Effect;
+import com.starquestminecraft.bukkit.powertools.object.Modifier;
+import com.starquestminecraft.bukkit.powertools.object.PowerTool;
+import com.starquestminecraft.bukkit.powertools.object.PowerToolType;
+import com.starquestminecraft.bukkit.powertools.task.BlasterTask;
+import com.starquestminecraft.bukkit.powertools.task.CooldownTask;
+import com.starquestminecraft.bukkit.powertools.task.HoldingTask;
+import com.starquestminecraft.bukkit.powertools.util.EffectUtils;
 
 public class SQPowerTools extends JavaPlugin {
 

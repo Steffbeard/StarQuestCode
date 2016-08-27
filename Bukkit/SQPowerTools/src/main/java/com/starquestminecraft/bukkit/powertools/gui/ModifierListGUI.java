@@ -1,4 +1,4 @@
-package com.ginger_walnut.sqpowertools.gui;
+package com.starquestminecraft.bukkit.powertools.gui;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.ginger_walnut.sqpowertools.SQPowerTools;
-import com.ginger_walnut.sqpowertools.objects.PowerTool;
-import com.ginger_walnut.sqpowertools.objects.PowerToolType;
+import com.starquestminecraft.bukkit.powertools.SQPowerTools;
+import com.starquestminecraft.bukkit.powertools.object.PowerTool;
+import com.starquestminecraft.bukkit.powertools.object.PowerToolType;
 
 import net.md_5.bungee.api.ChatColor;
 

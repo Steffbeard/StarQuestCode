@@ -1,4 +1,4 @@
-package com.ginger_walnut.sqpowertools.tasks;
+package com.starquestminecraft.bukkit.powertools.task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitScheduler;
 
-import com.ginger_walnut.sqpowertools.SQPowerTools;
-import com.ginger_walnut.sqpowertools.objects.PowerToolType;
+import com.starquestminecraft.bukkit.powertools.SQPowerTools;
+import com.starquestminecraft.bukkit.powertools.object.PowerToolType;
 
 public class CooldownTask extends Thread {
 

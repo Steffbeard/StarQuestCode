@@ -1,4 +1,4 @@
-package com.ginger_walnut.sqpowertools.gui;
+package com.starquestminecraft.bukkit.powertools.gui;
 
 import net.md_5.bungee.api.ChatColor;
 
@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 
-import com.ginger_walnut.sqpowertools.SQPowerTools;
+import com.starquestminecraft.bukkit.powertools.SQPowerTools;
 
 public class GUI {
 
