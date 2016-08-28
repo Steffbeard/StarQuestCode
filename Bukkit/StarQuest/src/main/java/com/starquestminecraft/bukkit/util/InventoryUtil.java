@@ -5,8 +5,10 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Map;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
@@ -19,6 +21,22 @@ import com.starquestminecraft.bukkit.cardboardbox.Knapsack;
 public class InventoryUtil {
 
     private InventoryUtil() {
+
+    }
+
+    public static void giveOrDropItems(final Player player, final ItemStack... items) {
+
+        Map<Integer, ItemStack> overflow = player.getInventory().addItem(items);
+
+        if(!overflow.isEmpty()) {
+
+            Location loc = player.getLocation();
+
+            for(ItemStack overflow_item : overflow.values()) {
+                loc.getWorld().dropItemNaturally(loc, overflow_item);
+            }
+
+        }
 
     }
 
