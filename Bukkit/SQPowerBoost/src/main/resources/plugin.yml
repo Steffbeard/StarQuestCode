@@ -1,7 +1,7 @@
 name: ${project.name}
 version: ${project.version}
 main: ${project.groupId}.${project.artifactId}.${project.name}
-depend: [Factions, Movecraft, StarQuest]
+depend: [Factions, StarQuest]
 
 commands:
   powerboost:
