@@ -1,4 +1,5 @@
 database:
+  enabled: false
   hostname: localhost
   username: minecraft
   password: ''

@@ -45,9 +45,16 @@ public class StarQuest {
             }
         }
 
-        database = HikariDatabase.create(hostname, username, password, dbname);
+        if(plugin.getConfig().getBoolean("database.enabled")) {
 
-        plugin.getLogger().info("[Database] Using " + username + "@" + hostname + " password: " + (password.isEmpty() ? "NO" : "YES") + ", database: " + dbname);
+            database = HikariDatabase.create(hostname, username, password, dbname);
+
+            plugin.getLogger().info("[Database] Using " + username + "@" + hostname + " password: " + (password.isEmpty() ? "NO" : "YES") + ", database: " + dbname);
+
+        }
+        else {
+            plugin.getLogger().info("[Database] Database pool is disabled");
+        }
 
     }
 
