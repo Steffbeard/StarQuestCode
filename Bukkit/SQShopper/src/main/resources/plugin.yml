@@ -1,0 +1,21 @@
+name: ${project.name}
+version: ${project.version}
+main: me.Tongonto.SQShopper
+depend: [StarQuest, SQBoosters, SQNetEvents]
+
+commands:
+  cart:
+    description: Main SQShopper command
+    usage: /<command> [help]
+  value:
+    description: Command for finding the value of something
+    usage: /<command>
+  modifysign:
+    description: Staff-only command for modifying the prices of spawn shop signs
+    usage: /<command> <number>
+  valueall:
+    description: Command for viewing prices of all items
+    usage: /<command>
+  reloadshops:
+    description: Reloads the config
+    usage: /<command>

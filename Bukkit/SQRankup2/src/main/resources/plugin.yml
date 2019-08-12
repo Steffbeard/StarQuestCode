@@ -1,0 +1,16 @@
+name: ${project.name}
+main: com.starquestminecraft.sqrankup2.SQRankup2
+version: ${project.version}
+depend: [StarQuest, SQContracts]
+
+commands:
+  certification:
+    aliases: [certs, cert, ct]
+    description: Rank up!
+    usage: /<command>
+  addapp:
+    description: Mark a player as applied.
+    usage: /<command> <Player>
+  resetrank:
+    description: Reset a player's rank
+    usage: /<command> <player>

@@ -1,0 +1,88 @@
+expboost: true
+mobdropboost: true
+sheepshearingboost: true
+shopboost: true
+speedboost: true
+mcmmo-miningboost: true
+mcmmo-woodcuttingboost: true
+mcmmo-herbalismboost: true
+mcmmo-fishingboost: true
+mcmmo-excavationboost: true
+mcmmo-unarmedboost: true
+mcmmo-archeryboost: true
+mcmmo-swordsboost: true
+mcmmo-axesboost: true
+mcmmo-repairboost: true
+mcmmo-acrobaticsboost: true
+mcmmo-alchemyboost: true
+mcmmo-pilotingboost: false
+mcmmo-salvageboost: true
+mcmmo-smeltingboost: true
+mcmmo-tamingboost: true
+
+#entities that are effected by the mobdropbooster
+entities:
+  - Cow
+  - Pig
+  - Sheep
+  - Chicken
+  - Enderman
+  - Zombie
+  - Skeleton
+  - Creeper
+# - Armor Stand
+# - Arrow
+# - Bat
+  - Blaze
+# - Boat
+  - Cave Spider
+# - Complex Part
+# - Dropped Item
+# - Egg
+# - Ender Crystal
+# - Ender Dragon
+# - Ender Pearl
+# - Ender Signal
+# - Endermite
+# - Experience Orb
+# - Falling Block
+# - Fireball
+# - Firework
+# - Fishing hook
+# - Giant
+  - Ghast
+  - Guardian
+# - EntityHorse
+# - Iron Golem
+# - Item Frame
+# - Leash Hitch
+# - Lighting
+  - Magma Cube
+# - Minecart
+# - Minecart Chest
+# - Minecart Furnace
+# - Minecart Command
+# - Minecart Hopper
+# - Minecart Mob Spawner
+# - Minecart Tnt
+# - Mushroom Cow
+# - Ocelot
+# - Painting
+  - Pig Zombie
+# - Player
+# - Primed TNT
+  - Rabbit
+# - Silverfish
+  - Slime
+# - Snowman
+  - Spider
+# - Splash Potion
+  - Sqiud
+# - Thrown Exp Bottler
+# - Unkown
+# - Villager
+# - Weather
+  - Witch
+# - Wither
+# - Wither Skull
+  - Wolf

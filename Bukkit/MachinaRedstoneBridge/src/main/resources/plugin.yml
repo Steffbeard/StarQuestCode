@@ -1,0 +1,6 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+authors: [Lyneira, Dibujaron]
+main: me.lyneira.MachinaRedstoneBridge.MachinaRedstoneBridge
+depend: [MachinaCore]

@@ -1,0 +1,17 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+main: com.ginger_walnut.sqtreefarm.SQTreeFarm
+
+commands:
+  treefarm:
+    description: command for managing treefarms
+
+permissions:
+   sqtreefarm.createfarms:
+      description: Premission node for creating treefarms
+   sqtreefarm.destroyfarms:
+      description: Premission node for destroying treefarms
+   sqtreefarm.usefarms:
+      description: Premission node for using treefarms
+      default: true

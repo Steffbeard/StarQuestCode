@@ -1,0 +1,12 @@
+name: ${project.name}
+version: ${project.version}
+main: us.higashiyama.george.SQShops.SQShops
+depend: [StarQuest]
+
+commands:
+  ecoreload:
+  value:
+  setvalue:
+  ecorefresh:
+  ecomultiplier:
+  

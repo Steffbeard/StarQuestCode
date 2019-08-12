@@ -1,0 +1,13 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+main: me.ginger_walnut.sqsmoothcraft.SQSmoothCraft
+depend: [ProtocolLib]
+
+commands:
+  ship:
+    description: Main command for SQSmoothCraft
+
+permissions:
+  sqsmoothcraft.spawnship:
+    description: Permission node for spawning a default smoothcraft ship

@@ -1,0 +1,19 @@
+name: ${project.name}
+main: ${project.groupId}.${project.artifactId}.${project.name}
+version: ${project.version}
+description: ${project.description}
+commands:
+  blaster:
+    description: Manages SQBlasters
+  blaster help:
+    description: Displays help for SQBlasters
+  blaster create:
+    description: Creates a new blaster
+  blaster recipe:
+    description: Displays the recipes for blasters
+  blaster guide:
+    description: Displays the guide for SQBlasters
+permissions:
+   sqblasters.spawnblaster:
+      description: Premission node for spawning in a blaster
+      default: false

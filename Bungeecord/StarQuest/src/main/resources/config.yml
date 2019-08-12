@@ -1,0 +1,5 @@
+database:
+  hostname: localhost
+  username: bungeecord
+  password: ''
+  database: ''

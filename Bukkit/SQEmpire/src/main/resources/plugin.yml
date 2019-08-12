@@ -1,0 +1,28 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+author: dibujaron
+website: http://starquestminecraft.com
+main: com.whirlwindgames.dibujaron.sqempire.SQEmpire
+depend: [Movecraft, StarQuest, WorldGuard]
+
+commands:
+  empire:
+    description: empire master command.
+    usage: Do /empire join
+  playersendempire:
+    description: sends player to empire spawn.
+    usage: /playersendempire <player>
+  empirereset:
+    description: reset a player's empire.
+    usage: /empirereset <player>
+  setdominantempire:
+    description: used for interserver communication
+
+permissions:
+  sqempire.managecontrolpoints:
+    description: permission node for managing control points
+    default: op
+  sqempire.reloadempire:
+    description: permission node for reloading empires
+    default: op

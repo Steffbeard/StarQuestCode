@@ -1,0 +1,21 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+main: com.ginger_walnut.sqsheepshearboost.Main
+
+commands:
+  sheepshearboost:
+    description: Manages SQSheepShearBoost
+  sheepshearboost help:
+    description: Shows the help for SQSheepShearBoost
+  sheepshearboost set:
+    description: Sets the sheep shearing multiplier
+permissions:
+  sqsheepshearboost.viewhelp:
+    description: Premission node for viewing help
+  sqsheepshearboost.setmultiplier:
+    description: Premission node for setting the multiplier
+  sqsheepshearboost.addmultiplier:
+    description: Premission node for adding to the multiplier
+  sqsheepshearboost.subtractmultiplier:
+    description: Premission node for subtracting to the multiplier

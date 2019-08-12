@@ -1,0 +1,9 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+main: com.starquestminecraft.sqtechbase.SQTechBase
+softdepend: [Movecraft, StarQuest]
+
+commands:
+  sqtech:
+    description: Manages SQTech

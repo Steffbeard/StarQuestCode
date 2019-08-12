@@ -1,0 +1,3 @@
+name: ${project.name}
+main: com.starquestminecraft.bukkit.buttonblocker.ButtonBlocker
+version: ${project.version}

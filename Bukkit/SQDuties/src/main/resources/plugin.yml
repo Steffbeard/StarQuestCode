@@ -1,0 +1,28 @@
+name: ${project.name}
+main: us.higashiyama.george.SQDuties.SQDuties
+version: ${project.version}
+softdepend: [PermissionsEx]
+#depend: [Movecraft, Vault]
+depend: [Vault]
+commands:
+   duty:
+      description: enable/disable dutymode!
+      usage: /duty
+   invrestore:
+      description: restore a players invrestore
+      usage: /invrestore
+      aliases: [inventoryrestore, lastdeathrestore, deathrestore, lastinventory, lastinventoryrestore]
+   dutiestransfer:
+
+      
+permissions:
+  SQDuties.TrMod:
+    default: false
+  SQDuties.Mod:
+    default: false
+  SQDuties.SrMod:
+    default: false
+  SQDuties.Manager:
+    default: false
+  SQDuties.Developer:
+    default: false

@@ -1,0 +1,22 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+main: com.ginger_walnut.sqmobdropboost.Main
+
+commands:
+  mobdropboost:
+    description: Manages SQMobDropBoost
+  mobdropboost help:
+    description: Shows the help for SQMobDropBoost
+  mobdropboost set:
+    description: Sets the base mob drop multiplier
+
+permissions:
+  sqmobdropboost.viewhelp:
+    description: Premission node for viewing help
+  sqmobdropboost.setmultiplier:
+    description: Premission node for setting the multiplier
+  sqmobdropboost.addmultiplier:
+    description: Premission node for adding to the multiplier
+  sqmobdropboost.subtractmultiplier:
+    description: Premission node for subtracting to the multiplier

@@ -1,4 +1,0 @@
-name: ${project.name}
-main: com.whirlwindgames.sqorbits.updater.SQOrbitsConfigUpdater
-version: ${project.version}
-author: lawrencethefrog

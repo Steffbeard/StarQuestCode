@@ -1,0 +1,15 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+main: com.ginger_walnut.sqsmoothcraft.SQSmoothCraft
+depend: [ParticleLIB, ProtocolLib, StarQuest, SQEmpire, SQSpace]
+
+commands:
+  ship:
+    description: Main command for SQSmoothCraft
+  hs:
+    description: Main command for Heat Seeking Missiles
+
+permissions:
+  sqsmoothcraft.spawnship:
+    description: Permission node for spawning a default smoothcraft ship

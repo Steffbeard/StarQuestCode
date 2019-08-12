@@ -1,0 +1,9 @@
+name: ${project.name}
+version: ${project.version}
+main: ${project.groupId}.${project.artifactId}.${project.name}
+depend: [StarQuest, WorldEdit, WorldGuard]
+commands:
+  apocalypse:
+    description: Apocalypse information.
+    usage: /<command> score or /apoc top
+    aliases: [apoc, sqapocalypse]

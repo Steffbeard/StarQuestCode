@@ -1,3 +1,0 @@
-- Change column definition of `name` in perks table to accomodate items
-- Clear up hasname/wantsname
-- Check for reasons for table truncation on reload??
